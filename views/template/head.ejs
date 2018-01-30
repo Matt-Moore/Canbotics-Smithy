@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html<% if (metaData.langCode.length) { %> lang="<%= metaData.langCode %>"<% };%>>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="<%= metaData.pageDesc %>">
+	<title><%= metaData.pageTitle %> </title>
+
+	<% if (uriPath.canon.length) { %><link rel="canonical" href="<%= uriPath.siteRoot + uriPath.canon %>" /><% } %>
+	<% if (uriPath.en.length) { %><link rel="alternate" hreflang="en" href="<%= uriPath.siteRoot + uriPath.en %>" />
+	<link rel="alternate" hreflang="fr" href="<%= uriPath.siteRoot + uriPath.fr %>" /><% } %>
+
+	<link rel="stylesheet" type="text/css" href="<%= uriPath.assetRoot %>shoppe.css" />	
+</head>
