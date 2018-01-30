@@ -1,0 +1,18 @@
+{
+  "name": "catalogue",
+  "version": "1.0.0",
+  "description": "Basic web based catalogue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Moore",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Matthew-OCM/catalogue"
+  }
+}
