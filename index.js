@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 var metaData = {'pageTitle':'Shoppe','pageDesc':'Visit the Canbotics weaponsmith shoppe, for all your medieval warfare needs.','langCode':''};
 var uriPath = {'siteRoot':'http://shoppe.canbotics.ca','assetRoot':'http://asset.canbotics.ca/shoppe/','en':'','fr':'','canon':''};
 
-
+uriPath.siteRoot = '';
 
 
 
@@ -37,12 +37,44 @@ app.get('/en/',function(request,response) {
 app.get('/en/melee-weapons',function(request,response) {
 	uriPath['canon'] = '/en/melee-weapons';
 	uriPath['en'] = '/en/melee-weapons';
-	uriPath['fr'] = '/fr/arme-de-melee';
+	uriPath['fr'] = '/fr/armes-de-melee';
 	
 	metaData['langCode'] = 'en';
 	
 	response.render('en/melee-weapons',{metaData:metaData,uriPath:uriPath});
 });
+
+
+
+
+
+
+
+app.get('/fr/',function(request,response) {
+	uriPath['canon'] = '/fr';
+	uriPath['en'] = '/en';
+	uriPath['fr'] = '/fr';
+
+	metaData['langCode'] = 'fr';
+
+	response.render('fr/fr',{metaData:metaData,uriPath:uriPath});
+});
+
+app.get('/fr/armes-de-melee',function(request,response) {
+	uriPath['canon'] = '/fr/armes-de-melee';
+	uriPath['en'] = '/en/melee-weapons';
+	uriPath['fr'] = '/fr/armes-de-melee';
+	
+	metaData['langCode'] = 'fr';
+	
+	response.render('fr/armes-de-melee',{metaData:metaData,uriPath:uriPath});
+});
+
+
+
+
+
+
 
 
 
