@@ -2,50 +2,20 @@
 <body>
 <% include template/content-head.ejs %>
 
-	<main>
+	<main id="category">
 		<h1><%= pageDetails[pageDetails.langCode].title %></h1>
-		
-		
-		<hr>
-		<h2>Swords</h2>
-		
-		<ul>
-			<li>
-				<a href="">
-					<h3>Gladius</h3>
-					<img src="<%= uriPath.rootAsset %>img/gladius-short-sword-icon.png" width="150" height="150" alt="">
-				</a>
-				<div class="msrp">32<span>gp</span></div>
-			</li>
-			<li>
-				<a href="">
-					<h3>Xiphos</h3>
-					<img src="<%= uriPath.rootAsset %>img/xiphos-short-sword-icon.png" width="150" height="150" alt="">
-				</a>
-				<div class="msrp">37<span>gp</span></div>
-			</li>
-			<li>
-				<a href="">
-					<h3>Claymore</h3>
-					<img src="<%= uriPath.rootAsset %>img/claymore-heavy-long-sword-icon.png" width="150" height="150" alt="">
-				</a>
-				<div class="msrp">46<span>gp</span></div>
-			</li>
-			<li>
-				<a href="">
-					<h3>Scimitar</h3>
-					<img src="<%= uriPath.rootAsset %>img/scimitar-exotic-eastern-sabre-icon.png" width="150" height="150" alt="">
-				</a>
-				<div class="msrp">89<span>gp</span></div>
-			</li>
-			<li>
-				<a href="">
-					<h3>Katana</h3>
-					<img src="<%= uriPath.rootAsset %>img/katana-exotic-oriental-sword-icon.png" width="150" height="150" alt="">
-				</a>
-				<div class="msrp">102<span>gp</span></div>
-			</li>
+		<% weaponData.forEach(function(category) { %><section>
+			<h2><% if (category.weapons.length == 1) { %><%= category.name[pageDetails.langCode][0] %><% } else { %><%= category.name[pageDetails.langCode][1] %><% }; %></h2>
+			<ul>
+				<% category.weapons.forEach(function(weapon) { %><li>
+					<a href="<%= pageDetails[pageDetails.langCode].path + "/" + weapon[pageDetails.langCode].uriSafe %>">
+						<h3><%= weapon.name %></h3>
+						<img src="<%= uriPath.rootAsset %>img/<%= weapon.en.uriSafe%>-icon-90.png" width="90" height="90" alt="">
+					</a>
+					<p><%= weapon[pageDetails.langCode].descBlurb.split('.')[0] %></p>
+				</li><% }); %>
+			</ul>
+		</section><% }); %>
 	</main>
-
 </body>
 </html>

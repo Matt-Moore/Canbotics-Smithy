@@ -2,19 +2,20 @@
 <body>
 <% include template/content-head.ejs %>
 
-	<main>
+	<main id="category">
 		<h1><%= pageDetails[pageDetails.langCode].title %></h1>
-		
-		
-		<hr>
-		
-		
-		
-		
-		
-		
-		
+		<% weaponData.forEach(function(category) { %><section>
+			<h2><% if (category.weapons.length == 1) { %><%= category.name[pageDetails.langCode][0] %><% } else { %><%= category.name[pageDetails.langCode][1] %><% }; %></h2>
+			<ul>
+				<% category.weapons.forEach(function(weapon) { %><li>
+					<a href="<%= pageDetails[pageDetails.langCode].path + "/" + weapon[pageDetails.langCode].uriSafe %>">
+						<h3><%= weapon.name %></h3>
+						<img src="<%= uriPath.rootAsset %>img/<%= weapon.en.uriSafe%>-icon-90.png" width="90" height="90" alt="">
+					</a>
+					<p><%= weapon[pageDetails.langCode].descBlurb.split('.')[0] %></p>
+				</li><% }); %>
+			</ul>
+		</section><% }); %>
 	</main>
-
 </body>
 </html>

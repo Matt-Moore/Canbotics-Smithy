@@ -62,19 +62,278 @@ var pageData = {
 	}
 }
 
+var weaponData = {
+	melee:[
+		{
+			name:{
+				en:['Sword','Swords'],
+				fr:['Épée','Épées']
+			},
+			weapons:[
+				{
+					name:'Gladius',
+					en:{
+						className:'Short Sword',
+						uriSafe:'gladius-short-sword',
+						descBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'gladius-epee-courte',
+						descBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+					attr:{
+						price:32,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[60,45,5],
+						dimhigh:[85,68,7]}
+				},{
+					name:'Xiphos',
+					en:{
+						className:'Short Sword',
+						uriSafe:'xiphos-short-sword',
+						descBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'xiphos-epee-courte',
+						descBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+					attr:{
+						price:39,
+						damage:[1,6,1],
+						speed:1.7,
+						weight:999,
+						dimlow:[65,50,5],
+						dimhigh:[77,60,7]}
+				},{
+					name:'Claymore',
+					en:{
+						className:'Heavy Long Sword',
+						uriSafe:'claymore-heavy-long-sword',
+						descBlurb:'Enemies will cower, when they glimpse this Highland beast being wielded. Boasting a heavy weight, and two handed grip it will slice the strongest armour in half.'},
+					fr:{
+						className:'Lourde épée longue',
+						uriSafe:'claymore-lourde-epee-longue',
+						descBlurb:'Les ennemis se recroquevilleront lorsqu\'ils apercevront cette bête des Highlands qui est brandie. Bénéficiant d\'un poids lourd et d\'une prise à deux mains, il découpera l\'armure la plus solide en deux.'},
+					attr:{
+						price:46,
+						damage:[1,10,0],
+						speed:3.1,
+						weight:2.8,
+						dimlow:[120,100,4.8],
+						dimhigh:[140,120,5.1]}
+				},{
+					name:'Scimitar',
+					en:{
+						className:'Exotic Eastern Sabre',
+						uriSafe:'scimitar-exotic-eastern-sabre',
+						descBlurb:'Be the star of your own Arabian Night, with this shining pinnacle of Middle Eastern combat. The exotic curve of the blade will be the talk of your enemies.'},
+					fr:{
+						className:'Sabre de l\'est exotique',
+						uriSafe:'scimitar-sabre-de-lest-exotique',
+						descBlurb:'Soyez la star de votre propre nuit arabe, avec ce pinacle brillant du combat moyen-oriental. La courbe exotique de la lame sera le sujet de vos ennemis.'},
+					attr:{
+						price:89,
+						damage:[1,8,0],
+						speed:2.1,
+						weight:1.7,
+						dimlow:[106,76,3],
+						dimhigh:[122,92,6]}
+				},{
+					name:'Katana',
+					en:{
+						className:'Exotic Oriental Sword',
+						uriSafe:'katana-exotic-oriental-sword',
+						descBlurb:'A truly beautiful, and exotic sword straight from Japan. Now you too can be a samurai, and cut evil from the land.'},
+					fr:{
+						className:'Épée orientale exotique',
+						uriSafe:'katana-epee-orientale-exotique',
+						descBlurb:'Une épée vraiment belle et exotique venant tout droit du Japon. Maintenant vous aussi pouvez être un samouraï et couper le mal de la terre.'},
+					attr:{
+						price:102,
+						damage:[2,8,0],
+						speed:1.9,
+						weight:1.3,
+						dimlow:[90,60,3],
+						dimhigh:[103,73,4]}
+				}
+			]
+		},{
+			name:{
+				en:['Staff','Staves'],
+				fr:['Bâton','Bâtons']
+			},
+			weapons:[
+				{
+					price:32,
+					name:'Bō',
+					en:{
+						className:'Full Staff',
+						uriSafe:'bo-full-staff',
+						descBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+					fr:{
+						className:'Bâton complet',
+						uriSafe:'bo-baton-complet',
+						descBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+					attr:{
+						price:54,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[180,2.5],
+						dimhigh:[270,3]}
+				}
+			]
+		}
+	],
+	ranged:[
+		{
+			name:{
+				en:['Bow','Bows'],
+				fr:['Arc','Arcs']
+			},
+			weapons:[
+				{
+					name:'Shortbow',
+					en:{
+						className:'Short Sword',
+						uriSafe:'shortbow-short-distance-bow',
+						descBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'gladius-epee-courte',
+						descBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+					attr:{
+						price:32,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[60,45,5],
+						dimhigh:[85,68,7]}
+				},{
+					name:'Longbow',
+					en:{
+						className:'Short Sword',
+						uriSafe:'longbow-long-distance-bow',
+						descBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'xiphos-epee-courte',
+						descBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+					attr:{
+						price:39,
+						damage:[1,6,1],
+						speed:1.7,
+						weight:999,
+						dimlow:[65,50,5],
+						dimhigh:[77,60,7]}
+				}
+			]
+		},{
+			name:{
+				en:['Crossbow','Crossbows'],
+				fr:['Arbalète','Arbalètes']
+			},
+			weapons:[
+				{
+					price:32,
+					name:'Crossbow',
+					en:{
+						className:'Crossbow',
+						uriSafe:'crossbow-powerful-mid-range-bow',
+						descBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+					fr:{
+						className:'Bâton complet',
+						uriSafe:'bo-baton-complet',
+						descBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+					attr:{
+						price:54,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[180,2.5],
+						dimhigh:[270,3]}
+				}
+			]
+		}
+	],
+	magic:[
+		{
+			name:{
+				en:['Wand','Wands'],
+				fr:['Baguette magique','Baguettes magique']
+			},
+			weapons:[
+				{
+					name:'Gladius',
+					en:{
+						className:'Short Sword',
+						uriSafe:'gladius-short-sword',
+						descBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'gladius-epee-courte',
+						descBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+					attr:{
+						price:32,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[60,45,5],
+						dimhigh:[85,68,7]}
+				},{
+					name:'Xiphos',
+					en:{
+						className:'Short Sword',
+						uriSafe:'xiphos-short-sword',
+						descBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+					fr:{
+						className:'Épée courte',
+						uriSafe:'xiphos-epee-courte',
+						descBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+					attr:{
+						price:39,
+						damage:[1,6,1],
+						speed:1.7,
+						weight:999,
+						dimlow:[65,50,5],
+						dimhigh:[77,60,7]}
+				}
+			]
+		},{
+			name:{
+				en:['Staff','Staves'],
+				fr:['Bâton magique','Bâtons magique']
+			},
+			weapons:[
+				{
+					price:32,
+					name:'Bō',
+					en:{
+						className:'Full Staff',
+						uriSafe:'bo-full-staff',
+						descBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+					fr:{
+						className:'Bâton complet',
+						uriSafe:'bo-baton-complet',
+						descBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+					attr:{
+						price:54,
+						damage:[1,6,0],
+						speed:1.5,
+						weight:1,
+						dimlow:[180,2.5],
+						dimhigh:[270,3]}
+				}
+			]
+		}
+	]
+};
 
 
 
 
 
 
-
-/* TESTING PURPOSES */
-app.get('/canbotics-smithy.css',function(request,response) {
-	response.render('canbotics-smithy.css');
-});
-
-/* TESTING PURPOSES */
 
 
 
@@ -112,7 +371,7 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)',function
 	pageDetails.meta = metaData[pageDetails.langCode];
 	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
 	
-	response.render('category-melee',{uriPath:uriPath,pageDetails:pageDetails});
+	response.render('category-melee',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.melee});
 });
 
 app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)',function(request,response) {
@@ -123,7 +382,7 @@ app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)',funct
 	pageDetails.meta = metaData[pageDetails.langCode];
 	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
 	
-	response.render('category-ranged',{uriPath:uriPath,pageDetails:pageDetails});
+	response.render('category-ranged',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.ranged});
 });
 
 app.get('/:langCode(en|fr)/:categoryPage(magic-weapons|armes-magiques)',function(request,response) {
@@ -134,7 +393,7 @@ app.get('/:langCode(en|fr)/:categoryPage(magic-weapons|armes-magiques)',function
 	pageDetails.meta = metaData[pageDetails.langCode];
 	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
 	
-	response.render('category-magic',{uriPath:uriPath,pageDetails:pageDetails});
+	response.render('category-magic',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.magic});
 });
 
 
@@ -260,3 +519,49 @@ app.listen(app.get('port'), function() {
 });
 
 
+/*
+var weaponData = {
+	melee:{
+		sword:{
+			gladius:{
+				price:32,
+				name:'Gladius',
+				en:{
+					className:'Short Sword',
+					uriSafe:'gladius-short-sword',
+					descBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+				fr:{
+					className:'Épée courte',
+					uriSafe:'gladius-epee-courte',
+					descBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+				attr:{
+					price:32,
+					damage:[1,6,0],
+					speed:1.5,
+					weight:1,
+					dimlow:[60,45,5],
+					dimhigh:[85,68,7]}
+			},
+			xiphos:{
+				price:39,
+				name:'Xiphos',
+				en:{
+					className:'Short Sword',
+					uriSafe:'xiphos-short-sword',
+					descBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+				fr:{
+					className:'Épée courte',
+					uriSafe:'xiphos-epee-courte',
+					descBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+				attr:{
+					price:32,
+					damage:[1,6,0],
+					speed:1.5,
+					weight:1,
+					dimlow:[60,45,5],
+					dimhigh:[85,68,7]}
+			}
+		}
+	}
+};
+*/

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html<% if (pageDetails.langCode.length) { %> lang="<%= pageDetails.langCode %>"<% };%>>
+<html lang="<%= pageDetails.langCode %>">
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="<%= pageDetails.meta.pageDesc %>">
@@ -10,5 +10,4 @@
 	<link rel="alternate" hreflang="fr" href="<%= uriPath.rootSite + pageDetails.fr.path %>" />
 
 	<link rel="stylesheet" type="text/css" href="<%= uriPath.rootAsset %>canbotics-smithy.css" />	
-	<link rel="stylesheet" type="text/css" href="/canbotics-smithy.css" />	
 </head>
