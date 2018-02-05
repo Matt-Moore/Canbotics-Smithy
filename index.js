@@ -8,19 +8,14 @@ app.use(express.static(__dirname + '/public'));
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
 
-var uriPath = {rootSite:'http://smithy.canbotics.ca',rootAsset:'http://asset.canbotics.ca/smithy/'};
-
-var metaData = {
-	en:{
-		titleSite:'Canbotics Smithy',
-		titlePage:''},
-	fr:{
-		titleSite:'Forge Canbotics',
-		titlePage:''}
+var siteData = {
+	uriPath:{rootSite:'http://smithy.canbotics.ca',rootAsset:'http://asset.canbotics.ca/smithy/'},
+	title:{en:'Canbotics Smithy',fr:'Forge Canbotics'}
 }
 
 var pageData = {
 	index:{
+		navSite:'index',
 		en:{
 			title:'',
 			desc:'Visit the Canbotics Smithy, for all your medieval warfare needs.',
@@ -31,6 +26,7 @@ var pageData = {
 			path:'/fr'}
 	},
 	melee:{
+		navSite:'melee',
 		en:{
 			title:'Melee Weapons',
 			desc:'Browse the extensive lineup of high quality, melee weapons offered by the Canbotics Smithy.',
@@ -41,6 +37,7 @@ var pageData = {
 			path:'/fr/armes-de-melee'}
 	},
 	ranged:{
+		navSite:'ranged',
 		en:{
 			title:'Ranged Weapons',
 			desc:'Browse the extensive lineup of high quality, ranged weapons offered by the Canbotics Smithy.',
@@ -51,6 +48,7 @@ var pageData = {
 			path:'/fr/armes-a-distance'}
 	},
 	magic:{
+		navSite:'magic',
 		en:{
 			title:'Magic Weapons',
 			desc:'Browse the extensive lineup of high quality, magic weapons offered by the Canbotics Smithy.',
@@ -346,19 +344,24 @@ var weaponData = {
 
 
 app.get('/',function(request,response) {
-	response.render('landing',{uriPath:uriPath,metaData:metaData});
+	response.render('landing',{siteData:siteData});
 });
 
 app.get('/:langCode(en|fr)',function(request,response) {
 	var pageDetails = pageData.index;
 	pageDetails.langCode = request.params.langCode;
-	pageDetails.navSite = 'index';
 	
-	pageDetails.meta = metaData[pageDetails.langCode];
-	pageDetails.meta.titlePage = metaData[pageDetails.langCode].titleSite;
+	pageDetails.metaTitle = siteData.title[pageDetails.langCode];
 
-	response.render('index',{uriPath:uriPath,pageDetails:pageDetails});
+	response.render('index',{siteData:siteData,pageDetails:pageDetails});
 });
+
+
+
+
+
+
+
 
 
 
@@ -366,7 +369,64 @@ app.get('/:langCode(en|fr)',function(request,response) {
 app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)',function(request,response) {
 	var pageDetails = pageData.melee;
 	pageDetails.langCode = request.params.langCode;
+	
+	pageDetails.metaTitle = pageDetails[pageDetails.langCode].title + ' | ' + siteData.title[pageDetails.langCode];
+	
+	response.render('category',{siteData:siteData,pageDetails:pageDetails,weaponData:weaponData.melee});
+});
+
+app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)',function(request,response) {
+	var pageDetails = pageData.ranged;
+	pageDetails.langCode = request.params.langCode;
+	
+	pageDetails.metaTitle = pageDetails[pageDetails.langCode].title + ' | ' + siteData.title[pageDetails.langCode];
+	
+	response.render('category',{siteData:siteData,pageDetails:pageDetails,weaponData:weaponData.ranged});
+});
+
+app.get('/:langCode(en|fr)/:categoryPage(magic-weapons|armes-magiques)',function(request,response) {
+	var pageDetails = pageData.magic;
+	pageDetails.langCode = request.params.langCode;
+	
+	pageDetails.metaTitle = pageDetails[pageDetails.langCode].title + ' | ' + siteData.title[pageDetails.langCode];
+	
+	response.render('category',{siteData:siteData,pageDetails:pageDetails,weaponData:weaponData.magic});
+});
+
+
+
+
+
+
+
+
+
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)/:weaponUri',function(request,response) {
+	var weaponDetails;
+	weaponData.melee.forEach(function(category) {
+		var weaponFilter = category.weapons.filter(function (weapon) {return weapon.en.uriSafe == request.params.weaponUri});
+		console.log('   ' + weaponFilter.length);
+		if (weaponFilter.length) {
+			weaponDetails = weaponFilter;
+			console.log('\n  +++\n  +++\n')
+			console.log('  weaponDetails: ' + weaponDetails.name)
+			console.log('\n  +++\n  +++\n')
+		};
+		
+		console.log('weaponFilter: ' + weaponFilter)
+		console.log('\n---\n---\n')
+	});
+		console.log('weaponDetails: ' + weaponDetails.name)
+		console.log('\n+++\n+++\n')
+	
+	
+	var weaponDetails = weaponData.melee.filter(function (weapon) {return weapon != request.params.weaponUri}).weapons;
+	var pageDetails = pageData.melee;
+	pageDetails.langCode = request.params.langCode;
 	pageDetails.navSite = 'melee';
+	
+	
+	console.log(weaponDetails)
 	
 	pageDetails.meta = metaData[pageDetails.langCode];
 	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
@@ -374,27 +434,8 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)',function
 	response.render('category-melee',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.melee});
 });
 
-app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)',function(request,response) {
-	var pageDetails = pageData.ranged;
-	pageDetails.langCode = request.params.langCode;
-	pageDetails.navSite = 'ranged';
-	
-	pageDetails.meta = metaData[pageDetails.langCode];
-	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
-	
-	response.render('category-ranged',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.ranged});
-});
 
-app.get('/:langCode(en|fr)/:categoryPage(magic-weapons|armes-magiques)',function(request,response) {
-	var pageDetails = pageData.magic;
-	pageDetails.langCode = request.params.langCode;
-	pageDetails.navSite = 'magic';
-	
-	pageDetails.meta = metaData[pageDetails.langCode];
-	pageDetails.meta.titlePage = pageDetails[pageDetails.langCode].title + ' | ' + metaData[pageDetails.langCode].titleSite;
-	
-	response.render('category-magic',{uriPath:uriPath,pageDetails:pageDetails,weaponData:weaponData.magic});
-});
+
 
 
 /* TEMPLATE */

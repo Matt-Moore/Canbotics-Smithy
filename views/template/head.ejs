@@ -2,12 +2,12 @@
 <html lang="<%= pageDetails.langCode %>">
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="<%= pageDetails.meta.pageDesc %>">
-	<title><%= pageDetails.meta.titlePage %></title>
+	<meta name="description" content="<%= pageDetails[pageDetails.langCode].desc %>">
+	<title><%= pageDetails.metaTitle %></title>
 
-	<link rel="canonical" href="<%= uriPath.rootSite + pageDetails[pageDetails.langCode].path %>" />
-	<link rel="alternate" hreflang="en" href="<%= uriPath.rootSite + pageDetails.en.path %>" />
-	<link rel="alternate" hreflang="fr" href="<%= uriPath.rootSite + pageDetails.fr.path %>" />
+	<link rel="canonical" href="<%= siteData.uriPath.rootSite + pageDetails[pageDetails.langCode].path %>" />
+	<link rel="alternate" hreflang="en" href="<%= siteData.uriPath.rootSite + pageDetails.en.path %>" />
+	<link rel="alternate" hreflang="fr" href="<%= siteData.uriPath.rootSite + pageDetails.fr.path %>" />
 
-	<link rel="stylesheet" type="text/css" href="<%= uriPath.rootAsset %>canbotics-smithy.css" />	
+	<link rel="stylesheet" type="text/css" href="<%= siteData.uriPath.rootAsset %>canbotics-smithy.css" />	
 </head>

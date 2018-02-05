@@ -3,18 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="Select Language / Choisir la langue">
-	<title><%= metaData.en.titleSite %> / <%= metaData.fr.titleSite %></title>
+	<title><%= siteData.title.en %> / <%= siteData.title.fr %></title>
 
-	<link rel="canonical" href="<%= uriPath.rootSite %>" />
-	<link rel="alternate" hreflang="en" href="<%= uriPath.rootSite %>/en" />
-	<link rel="alternate" hreflang="fr" href="<%= uriPath.rootSite %>/fr" />
+	<link rel="canonical" href="<%= siteData.uriPath.rootSite %>" />
+	<link rel="alternate" hreflang="en" href="<%= siteData.uriPath.rootSite %>/en" />
+	<link rel="alternate" hreflang="fr" href="<%= siteData.uriPath.rootSite %>/fr" />
 
-	<link rel="stylesheet" type="text/css" href="<%= uriPath.rootAsset %>canbotics-smithy.css" />	
+	<link rel="stylesheet" type="text/css" href="<%= siteData.uriPath.rootAsset %>canbotics-smithy.css" />	
 </head>
 <body>
 	<header>
 		<div>
-			<h1><%= metaData.en.titleSite %> / <%= metaData.fr.titleSite %></h1>
+			<h1><%= siteData.title.en %> / <%= siteData.title.fr %></h1>
 			<nav>
 				<ul>
 					<li><a href="/en">English</a></li>
@@ -29,15 +29,6 @@
 		
 		<a href="/en/">English</a>
 		<a href="/fr/">Français</a>
-		
-		<hr>
-
-		
-		
-		
-		
-		
 	</main>
-
 </body>
 </html>

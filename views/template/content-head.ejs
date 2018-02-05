@@ -1,6 +1,6 @@
 	<header>
 		<div>
-			<h1><%= pageDetails.meta.titleSite %></h1>
+			<h1><%= siteData.title[pageDetails.langCode] %></h1>
 			<nav>
 				<% if (pageDetails.langCode.length) { if (pageDetails.langCode == 'en') {%><h2>Site Navigation</h2>
 				<ul>
