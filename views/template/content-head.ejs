@@ -1,25 +1,25 @@
 	<header>
 		<div>
-			<h1><%= siteData.title[pageDetails.langCode] %></h1>
+			<h1><%= dataSite.title[detailsPage.langCode] %></h1>
 			<nav>
-				<% if (pageDetails.langCode.length) { if (pageDetails.langCode == 'en') {%><h2>Site Navigation</h2>
+				<% if (detailsPage.langCode.length) { if (detailsPage.langCode == 'en') {%><h2>Site Navigation</h2>
 				<ul>
-					<li><a href="/en"<% if (pageDetails.navSite == 'index') { %> aria-current="page"<% }; %>>Home</a></li>
-					<li><a href="/en/melee-weapons"<% if (pageDetails.navSite == 'melee') { %> aria-current="page"<% }; %>>Melee Weapons</a></li>
-					<li><a href="/en/ranged-weapons"<% if (pageDetails.navSite == 'ranged') { %> aria-current="page"<% }; %>>Ranged Weapons</a></li>
-					<li><a href="/en/magic-weapons"<% if (pageDetails.navSite == 'magic') { %> aria-current="page"<% }; %>>Magic Weapons</a></li>
+					<li><a href="/en"<% if (detailsPage.navSite == 'index') { %> aria-current="page"<% }; %>>Home</a></li>
+					<li><a href="/en/melee-weapons"<% if (detailsPage.navSite == 'melee') { %> aria-current="page"<% }; %>>Melee Weapons</a></li>
+					<li><a href="/en/ranged-weapons"<% if (detailsPage.navSite == 'ranged') { %> aria-current="page"<% }; %>>Ranged Weapons</a></li>
+					<li><a href="/en/magic-weapons"<% if (detailsPage.navSite == 'magic') { %> aria-current="page"<% }; %>>Magic Weapons</a></li>
 				</ul>
 				<ul>
-					<li><a href="<%= pageDetails.fr.path %>">Français</a></li>
+					<li><a href="<%= detailsPage.fr.pathCanon %>">Français</a></li>
 				</ul><% } else { %><h2>Navigation du site</h2>
 				<ul>
-					<li><a href="/fr"<% if (pageDetails.navSite == 'index') { %> aria-current="page"<% }; %>>Accueil</a></li>
-					<li><a href="/fr/armes-de-melee"<% if (pageDetails.navSite == 'melee') { %> aria-current="page"<% }; %>>Armes de mêlée</a></li>
-					<li><a href="/fr/armes-a-distance"<% if (pageDetails.navSite == 'ranged') { %> aria-current="page"<% }; %>>Armes à distance</a></li>
-					<li><a href="/fr/armes-magiques"<% if (pageDetails.navSite == 'magic') { %> aria-current="page"<% }; %>>Armes magiques</a></li>
+					<li><a href="/fr"<% if (detailsPage.navSite == 'index') { %> aria-current="page"<% }; %>>Accueil</a></li>
+					<li><a href="/fr/armes-de-melee"<% if (detailsPage.navSite == 'melee') { %> aria-current="page"<% }; %>>Armes de mêlée</a></li>
+					<li><a href="/fr/armes-a-distance"<% if (detailsPage.navSite == 'ranged') { %> aria-current="page"<% }; %>>Armes à distance</a></li>
+					<li><a href="/fr/armes-magiques"<% if (detailsPage.navSite == 'magic') { %> aria-current="page"<% }; %>>Armes magiques</a></li>
 				</ul>
 				<ul>
-					<li><a href="<%= pageDetails.en.path %>">English</a></li>
+					<li><a href="<%= detailsPage.en.pathCanon %>">English</a></li>
 				</ul><% }; }; %>
 			</nav>
 		</div>

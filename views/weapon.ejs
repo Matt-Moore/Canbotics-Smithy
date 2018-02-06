@@ -1,0 +1,14 @@
+<% include template/head.ejs %>
+<body>
+<% include template/content-head.ejs %>
+
+	<main id="weapon">
+		<h1><%= detailsWeapon.attr.name %></h1>
+		<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsWeapon.en.weapUri%>-banner.jpg" width="980" height="450" alt="">
+<% include template/attribute.ejs %>
+	</main>
+</body>
+</html>
+
+
+

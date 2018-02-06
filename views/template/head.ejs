@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="<%= pageDetails.langCode %>">
+<html lang="<%= detailsPage.langCode %>">
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="<%= pageDetails[pageDetails.langCode].desc %>">
-	<title><%= pageDetails.metaTitle %></title>
+	<meta name="description" content="<%= detailsPage[detailsPage.langCode].desc %>">
+	<title><%= detailsPage.metaTitle %></title>
 
-	<link rel="canonical" href="<%= siteData.uriPath.rootSite + pageDetails[pageDetails.langCode].path %>" />
-	<link rel="alternate" hreflang="en" href="<%= siteData.uriPath.rootSite + pageDetails.en.path %>" />
-	<link rel="alternate" hreflang="fr" href="<%= siteData.uriPath.rootSite + pageDetails.fr.path %>" />
+	<link rel="canonical" href="<%= dataSite.uriPath.rootSite + detailsPage[detailsPage.langCode].pathCanon %>" />
+	<link rel="alternate" hreflang="en" href="<%= dataSite.uriPath.rootSite + detailsPage.en.pathCanon %>" />
+	<link rel="alternate" hreflang="fr" href="<%= dataSite.uriPath.rootSite + detailsPage.fr.pathCanon %>" />
 
-	<link rel="stylesheet" type="text/css" href="<%= siteData.uriPath.rootAsset %>canbotics-smithy.css" />	
+	<link rel="stylesheet" type="text/css" href="<%= dataSite.uriPath.rootAsset %>canbotics-smithy.css" />	
 </head>
