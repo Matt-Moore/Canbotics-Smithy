@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 var dataSite = {
 	uriPath:{rootSite:'http://smithy.canbotics.ca',rootAsset:'http://asset.canbotics.ca/smithy/'},
 	title:{en:'Canbotics Smithy',fr:'Forge Canbotics'}
-}
+};
 
 var dataPage = {
 	index:{
@@ -57,8 +57,14 @@ var dataPage = {
 			title:'Armes magiques',
 			desc:'Parcourez la vaste gamme d\'armes magiques de haute qualité offertes par la Forge Canbotics.',
 			path:'/fr/armes-magiques'}
+	},
+	weapon:{
+		en:{
+			desc:'Find out about the ' + dataSite.title.en + ' [WEAPONNAME] [WEAPONCLASS], on the official Canbotics website.'},
+		fr:{
+			desc:'Renseignez-vous sur [WEAPONCLASS] ' + dataSite.title.fr + ' [WEAPONNAME], sur le site officiel Canbotics.'}
 	}
-}
+};
 
 var weaponData = {
 	melee:[
@@ -99,7 +105,7 @@ var weaponData = {
 						price:39,
 						damage:[1,6,1],
 						speed:1.7,
-						weight:999,
+						weight:0,
 						dimlow:[65,50,5],
 						dimhigh:[77,60,7]}
 				},{
@@ -221,7 +227,7 @@ var weaponData = {
 						price:39,
 						damage:[1,6,1],
 						speed:1.7,
-						weight:999,
+						weight:0,
 						dimlow:[65,50,5],
 						dimhigh:[77,60,7]}
 				}
@@ -292,7 +298,7 @@ var weaponData = {
 						price:39,
 						damage:[1,6,1],
 						speed:1.7,
-						weight:999,
+						weight:0,
 						dimlow:[65,50,5],
 						dimhigh:[77,60,7]}
 				}
@@ -340,8 +346,9 @@ var dataWeapon = {
 			weapBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
 		attr:{
 			name:'Gladius',
-			skill:'Sword',
-			range:'1.1',
+			skill:{en:'Sword',fr:'Épée'},
+			category:['melee','sword'],
+			range:1.1,
 			price:32,
 			damage:[1,6,0],
 			speed:1.5,
@@ -359,12 +366,13 @@ var dataWeapon = {
 			weapBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
 		attr:{
 			name:'Xiphos',
-			skill:'Sword',
-			range:'1',
+			skill:{en:'Sword',fr:'Épée'},
+			category:['melee','sword'],
+			range:1,
 			price:39,
 			damage:[1,6,1],
 			speed:1.7,
-			weight:999,
+			weight:0,
 			dimMin:[65,50,5],
 			dimMax:[77,60,7]}},
 	claymore:{
@@ -378,8 +386,9 @@ var dataWeapon = {
 			weapBlurb:'Les ennemis se recroquevilleront lorsqu\'ils apercevront cette bête des Highlands qui est brandie. Bénéficiant d\'un poids lourd et d\'une prise à deux mains, il découpera l\'armure la plus solide en deux.'},
 		attr:{
 			name:'Claymore',
-			skill:'Sword',
-			range:'1.8',
+			skill:{en:'Sword',fr:'Épée'},
+			category:['melee','sword'],
+			range:1.8,
 			price:46,
 			damage:[1,10,0],
 			speed:3.1,
@@ -397,8 +406,9 @@ var dataWeapon = {
 			weapBlurb:'Soyez la star de votre propre nuit arabe, avec ce pinacle brillant du combat moyen-oriental. La courbe exotique de la lame sera le sujet de vos ennemis.'},
 		attr:{
 			name:'Scimitar',
-			skill:'Sword',
-			range:'1.5',
+			skill:{en:'Sword',fr:'Épée'},
+			category:['melee','sword'],
+			range:1.5,
 			price:89,
 			damage:[1,8,0],
 			speed:2.1,
@@ -416,8 +426,9 @@ var dataWeapon = {
 			weapBlurb:'Une épée vraiment belle et exotique venant tout droit du Japon. Maintenant vous aussi pouvez être un samouraï et couper le mal de la terre.'},
 		attr:{
 			name:'Katana',
-			skill:'Sword',
-			range:'1.2',
+			skill:{en:'Sword',fr:'Épée'},
+			category:['melee','sword'],
+			range:1.2,
 			price:102,
 			damage:[2,8,0],
 			speed:1.9,
@@ -435,14 +446,55 @@ var dataWeapon = {
 			weapBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
 		attr:{
 			name:'Bō',
-			skill:'Pole',
-			range:'3',
+			skill:{en:'Pole',fr:'Pôle'},
+			category:['melee','pole'],
+			range:3,
 			price:54,
 			damage:[1,8,-1],
 			speed:1.5,
 			weight:1,
 			dimMin:[180,2.5],
 			dimMax:[270,3]}},
+	spear:{
+		en:{
+			weapClass:'long reach piercing pole',
+			weapUri:'spear-long-reach-piercing-pole',
+			weapBlurb:'Stick them with the pointy end.'},
+		fr:{
+			weapClass:'Perche longue portée',
+			weapUri:'spear-perche-longue-portee',
+			weapBlurb:'Collez-les avec l\'extrémité pointue.'},
+		attr:{
+			name:'Spear',
+			skill:{en:'Pole',fr:'Pôle'},
+			category:['melee','pole'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0],
+			dimMax:[0,0]}},
+	axe:{
+		en:{
+			weapClass:'Heavy Close Range Cleaver',
+			weapUri:'axe-heavy-close-range-cleaver',
+			weapBlurb:'Excellent for cleaving skulls in twain.'},
+		fr:{
+			weapClass:'Cleaver lourd à courte portée',
+			weapUri:'axe-cleaver-lourd-a-courte-portee',
+			weapBlurb:'Excellent pour cliver en deux crânes.'},
+		attr:{
+			name:'Axe',
+			skill:{en:'Cleaver',fr:'Couperet'},
+			category:['melee','axe'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
 	shortbow:{
 		en:{
 			weapClass:'Short Distance Archery Bow',
@@ -454,14 +506,15 @@ var dataWeapon = {
 			weapBlurb:'Arc petit et léger, excellent pour la chasse au petit gibier.'},
 		attr:{
 			name:'Shortbow',
-			skill:'Archer',
-			range:'70',
+			skill:{en:'Archer',fr:'Arc'},
+			category:['ranged','bow'],
+			range:70,
 			price:32,
 			damage:[1,4,1],
-			speed:999,
-			weight:999,
-			dimMin:[999,999,999],
-			dimMax:[999,999,999]}},
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
 	longbow:{
 		en:{
 			weapClass:'Long Distance Archery Bow',
@@ -473,14 +526,15 @@ var dataWeapon = {
 			weapBlurb:'Ils ne sauront jamais ce qui les a frappés, littéralement.'},
 		attr:{
 			name:'Longbow',
-			skill:'Archer',
-			range:'200',
+			skill:{en:'Archer',fr:'Arc'},
+			category:['ranged','bow'],
+			range:200,
 			price:78,
 			damage:[1,8,0],
-			speed:999,
-			weight:999,
-			dimMin:[999,999,999],
-			dimMax:[999,999,999]}},
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
 	crossbow:{
 		en:{
 			weapClass:'Powerful Mid-range Marksman Bow',
@@ -492,14 +546,15 @@ var dataWeapon = {
 			weapBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
 		attr:{
 			name:'Crossbow',
-			skill:'Marksman',
-			range:'100',
+			skill:{en:'Sniper',fr:'Buteur'},
+			category:['ranged','bow'],
+			range:100,
 			price:120,
 			damage:[1,10,1],
-			speed:999,
-			weight:999,
-			dimMin:[999,999,999],
-			dimMax:[999,999,999]}},
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
 		
 };
 
@@ -532,15 +587,16 @@ var listCategory = {
 				dataWeapon.scimitar,
 				dataWeapon.katana]},
 		{
-			en:['Staff','Staves'],
-			fr:['Bâton','Bâtons'],
+			en:['Axe','Axes'],
+			fr:['Hache','Haches'],
 			weapons:[
-				dataWeapon.bo]},
+				dataWeapon.axe]},
 		{
-			en:['Polearm','Polearms'],
-			fr:['Guisarme','Guisarmes'],
+			en:['Pole','Poles'],
+			fr:['Pôle','Pôles'],
 			weapons:[
-				dataWeapon.bo]}],
+				dataWeapon.bo,
+				dataWeapon.spear]}],
 	ranged:[
 		{
 			en:['Bow','Bows'],
@@ -566,21 +622,21 @@ var listCategory = {
 			en:['Wand','Wands'],
 			fr:['Baguette magique','Baguettes magique'],
 			weapons:[
-				dataWeapon.shortbow,
-				dataWeapon.longbow,
-				dataWeapon.crossbow]},
+				dataWeapon.axe,
+				dataWeapon.axe,
+				dataWeapon.axe]},
 		{
 			en:['Staff','Staves'],
 			fr:['Bâton magique','Bâtons magique'],
 			weapons:[
-				dataWeapon.bo,
-				dataWeapon.bo]},
+				dataWeapon.axe,
+				dataWeapon.axe]},
 		{
 			en:['Spell Book','Spell Books'],
 			fr:['Grimoire','Grimoires'],
 			weapons:[
-				dataWeapon.bo,
-				dataWeapon.bo]}]
+				dataWeapon.axe,
+				dataWeapon.axe]}]
 };
 
 
@@ -597,9 +653,13 @@ var listUri = {
 	'katana-epee-orientale-exotique':dataWeapon.katana,
 	'bo-full-staff':dataWeapon.bo,
 	'bo-baton-complet':dataWeapon.bo,
+	'spear-long-reach-piercing-pole':dataWeapon.spear,
+	'spear-perche-longue-portee':dataWeapon.spear,
+	'axe-heavy-close-range-cleaver':dataWeapon.axe,
+	'axe-cleaver-lourd-a-courte-portee':dataWeapon.axe,
 	'shortbow-short-distance-archery-bow':dataWeapon.shortbow,
 	'shortbow-arc-de-tir-a-courte-distance':dataWeapon.shortbow,
-	'longbow-long-distance-bow':dataWeapon.longbow,
+	'longbow-long-distance-archery-bow':dataWeapon.longbow,
 	'longbow-arc-de-tir-a-longue-distance':dataWeapon.longbow,
 	'crossbow-powerful-mid-range-marksman-bow':dataWeapon.crossbow,
 	'crossbow-puissant-arc-de-tireur-de-milieu-de-gamme':dataWeapon.crossbow
@@ -635,49 +695,35 @@ app.get('/:langCode(en|fr)',function(request,response) {
 
 
 /* CATEGORY PAGES */
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)',function(request,response) {
-	var detailsPage = dataPage.melee;
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques)',function(request,response) {
+	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
+		var detailsPage = dataPage.melee;
+	} else if (request.params.categoryPage == 'ranged-weapons' || request.params.categoryPage == 'armes-a-distance') {
+		var detailsPage = dataPage.ranged;
+	} else if (request.params.categoryPage == 'magic-weapons' || request.params.categoryPage == 'armes-magiques') {
+		var detailsPage = dataPage.magic;
+	};
+
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
 	
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
 
-	response.render('category',{dataSite:dataSite,detailsPage:detailsPage,dataWeapon:listCategory.melee});
-});
-
-app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)',function(request,response) {
-	var detailsPage = dataPage.ranged;
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('category',{dataSite:dataSite,detailsPage:detailsPage,dataWeapon:listCategory.ranged});
-});
-
-app.get('/:langCode(en|fr)/:categoryPage(magic-weapons|armes-magiques)',function(request,response) {
-	var detailsPage = dataPage.magic;
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('category',{dataSite:dataSite,detailsPage:detailsPage,dataWeapon:listCategory.magic});
+	response.render('category',{dataSite:dataSite,detailsPage:detailsPage,dataWeapon:listCategory[detailsPage.navSite]});
 });
 
 
 
 
-
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)/:weaponUri',function(request,response) {
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques)/:weaponUri',function(request,response) {
 	var detailsWeapon = listUri[request.params.weaponUri];
 	
-	var detailsPage = dataPage.melee;
+	var detailsPage = dataPage[detailsWeapon.attr.category[0]];
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].weapClass + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = dataPage.weapon[detailsPage.langCode].desc.replace('[WEAPONNAME]',detailsWeapon.attr.name).replace('[WEAPONCLASS]',detailsWeapon[detailsPage.langCode].weapClass.toLowerCase());
 	
 	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.weapUri;
 	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.weapUri;
@@ -686,6 +732,21 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)/:weaponUr
 	
 	response.render('weapon',{dataSite:dataSite,detailsPage:detailsPage,detailsWeapon:detailsWeapon});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)/:weaponUri',function(request,response) {
 	var detailsWeapon = listUri[request.params.weaponUri];

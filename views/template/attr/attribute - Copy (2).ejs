@@ -1,6 +1,18 @@
-		<% if (detailsPage.langCode == "en") { %>
-		<h2 aria-hidden="true">Attributes</h2>
+		<h2 aria-hidden="true"><% if (detailsPage.langCode == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
 		<ul class="keyattr">
+<% include attr/content-head.ejs %>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 			<li class="price"><h3>Price</h3><div><%= detailsWeapon.attr.price %></div><small>gold pieces</small></li>
 			<li class="damage"><h3>Damage</h3><div><%= detailsWeapon.attr.damage[0] %><span>d</span><%= detailsWeapon.attr.damage[1] %>
 			<% if (detailsWeapon.attr.damage[2]) { %> <span><% if (detailsWeapon.attr.damage[2] > 0) { %>+<% }; %><%= detailsWeapon.attr.damage[2] %></span><% }; %></div><small>hit points</small></li>
@@ -12,8 +24,10 @@
 			<li class="skill"><h3>Skill</h3><div><%= detailsWeapon.attr.skill %></div><small>required</small></li>
 			<% }; %>
 			<li class="weight"><h3>Weight</h3><div><%= detailsWeapon.attr.weight %> <span>kg</span></div><small>~<%= detailsWeapon.attr.weight * 2.2 %> lbs</small></li>
-		</ul><% } else { %>
-		<h2 aria-hidden="true">Les attributs</h2>
+		</ul>
+
+
+
 		<ul class="keyattr">
 			<li class="price"><h3>Prix</h3><div><%= detailsWeapon.attr.price %></div><small>pièces d'or</small></li>
 			<li class="damage"><h3>Dommage</h3><div><%= detailsWeapon.attr.damage[0] %><span>d</span><%= detailsWeapon.attr.damage[1] %>
@@ -26,4 +40,4 @@
 			<li class="skill"><h3>Compétence</h3><div><%= detailsWeapon.attr.skill %></div><small>champs obligatoires</small></li>
 			<% }; %>
 			<li class="weight"><h3>Poids</h3><div><%= detailsWeapon.attr.weight %> <span>kg</span></div><small>~<%= detailsWeapon.attr.weight * 2.2 %> lb</small></li>
-		</ul><% }; %>
+		</ul>

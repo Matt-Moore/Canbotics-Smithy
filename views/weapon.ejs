@@ -4,8 +4,21 @@
 
 	<main id="weapon">
 		<h1><%= detailsWeapon.attr.name %></h1>
-		<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsWeapon.en.weapUri%>-banner.jpg" width="980" height="450" alt="">
-<% include template/attribute.ejs %>
+		<img src="<%= dataSite.uriPath.rootAsset %>img/weapon/<%= detailsWeapon.en.weapUri%>-banner.jpg" width="980" height="450" alt="">
+<% include template/attr.ejs %>
+
+		<section id="design">
+			<h2>Design</h2>
+		</section>
+		
+		<section id="performance">
+			<h2>Performance</h2>
+		</section>
+		
+		<section id="warranty">
+			<h2>Warranty</h2>
+		</section>
+		
 	</main>
 </body>
 </html>

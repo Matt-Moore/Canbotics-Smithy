@@ -1,0 +1,17 @@
+		<h2 aria-hidden="true"><% if (detailsPage.langCode == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
+		<ul class="keyattr">
+<% include attr/price.ejs %>
+<% include attr/damage.ejs %>
+<% if (detailsWeapon.attr.category[1] == "sword" || detailsWeapon.attr.category[1] == "axe") { %><% include attr/speed.ejs %>
+<% include attr/placeholder.ejs %>
+<% include attr/weight.ejs %>
+<% } else if (detailsWeapon.attr.category[1] == "pole") { %><% include attr/reach.ejs %>
+<% include attr/speed.ejs %>
+<% include attr/placeholder.ejs %>
+<% } else if (detailsWeapon.attr.category[0] == "ranged") { %><% include attr/skill.ejs %>
+<% include attr/range.ejs %>
+<% include attr/placeholder.ejs %>
+<% } else { %><% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% }; %>		</ul>

@@ -10,7 +10,7 @@
 				<% category.weapons.forEach(function(weapon) { %><li>
 					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + weapon[detailsPage.langCode].weapUri %>">
 						<h3><%= weapon.attr.name %></h3>
-						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= weapon.en.weapUri%>-icon-90.png" width="90" height="90" alt="">
+						<img src="<%= dataSite.uriPath.rootAsset %>img/weapon/<%= weapon.en.weapUri%>-icon-90.png" width="90" height="90" alt="">
 					</a>
 					<p><%= weapon[detailsPage.langCode].weapBlurb.split(".")[0] %></p>
 				</li><% }); %>
