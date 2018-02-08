@@ -1,0 +1,31 @@
+<% if (detailsPage.langCode == "en") { -%>
+		<section id="warranty" class="warranty">
+			<h2>Warranty</h2>
+			<img src="<%= dataSite.uriPath.rootAsset %>img/global/canbotics-smithy-warranty-badge.jpg" width="490" height="380" alt="A blade worn and weathered before its time; from one of our competitors.">
+			<div>
+				<p>We at <%= dataSite.title.en %> know there's nothing more frustrating, or terrifying when your weapon breaks mid-battle. It's for this reason that we craft all our weapons only from the best materials, and each forged by our master smiths. Every design must pass many rigorous tests, proving they are top quality.</p>
+				<p>That's why you can rest easy with a purchase from us, we are so confident that each of our weapons comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailsWeapon.attr.name %>:</p>
+				<ul>
+					<li>Complimentary sharpening and rust removal for 2 years<sup><a href="#dis_ast">*</a></sup></li>
+					<li>4 years/10 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#dis_astastast">***</a></sup></li>
+					<li>6 years/15 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of major failures<sup><a href="#dis_astastast">***</a></sup></li>
+				</ul>
+				<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
+			</div>
+		</section>
+<% } else { -%>
+		<section id="garantie" class="warranty">
+			<h2>Garantie</h2>
+			<img src="<%= dataSite.uriPath.rootAsset %>img/global/canbotics-smithy-warranty-badge.jpg" width="490" height="380" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
+			<div>
+				<p>Chez <%= dataSite.title.fr %>, nous savons qu'il n'y a rien de plus frustrant, ou terrifiant quand votre arme se brise au milieu de la bataille. C'est pour cette raison que nous fabriquons toutes nos armes uniquement à partir des meilleurs matériaux et forgés par nos maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
+				<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que chacune de nos armes est livré avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= dataSite.title.fr %> <%= detailsWeapon.attr.name %> :</p>
+				<ul>
+					<li>Affûtage et décapage gratuit pendant 2 ans<sup><a href="#dis_ast">*</a></sup></li>
+					<li>4 ans / 10 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#dis_astastast">***</a></sup></li>
+					<li>6 ans / 15 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#dis_astastast">***</a></sup></li>
+				</ul>
+				<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
+			</div>
+		</section>
+<% }; -%>

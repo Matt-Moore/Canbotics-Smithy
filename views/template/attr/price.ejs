@@ -1,1 +1,4 @@
-			<li class="price"><% if (detailsPage.langCode == "en") { %><h3>Price</h3><div><%= detailsWeapon.attr.price %></div><small>gold pieces</small><% } else { %><h3>Prix</h3><div><%= detailsWeapon.attr.price %></div><small>pièces d'or</small><% }; %></li>
+			<li class="price"><% if (detailsPage.langCode == "en") { %>
+				<h3>Price</h3><div><%= detailsWeapon.attr.price %></div><small>gold pieces<sup><a href="#dis_dag">&dagger;</a></sup></small><% } else { %>
+				<h3>Prix</h3><div><%= detailsWeapon.attr.price %></div><small>pièces d'or<sup><a href="#dis_dag">&dagger;</a></sup></small><% }; %>
+			</li>

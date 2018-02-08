@@ -6,7 +6,7 @@
 		<h1><%= detailsPage[detailsPage.langCode].title %></h1>
 		<% dataWeapon.forEach(function(category) { %><section>
 			<h2><% if (category.weapons.length == 1) { %><%= category[detailsPage.langCode][0] %><% } else { %><%= category[detailsPage.langCode][1] %><% }; %></h2>
-			<ul>
+			<ul class="listWeapon">
 				<% category.weapons.forEach(function(weapon) { %><li>
 					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + weapon[detailsPage.langCode].weapUri %>">
 						<h3><%= weapon.attr.name %></h3>
