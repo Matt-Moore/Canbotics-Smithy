@@ -423,7 +423,7 @@ app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,re
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
 
-	response.render('index',{dataSite:dataSite,detailsPage:detailsPage});
+	response.render('warranty',{dataSite:dataSite,detailsPage:detailsPage});
 });
 
 
