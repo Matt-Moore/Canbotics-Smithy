@@ -8,15 +8,24 @@
 <% include template/attr.ejs %>
 
 		<section id="design">
-			<h2>Design</h2>
+			<h2><% if (detailsPage.langCode == "en") { -%>Design<% } else { -%>Conception<% }; -%></h2>
+<%- include("weapon/" + detailsWeapon[detailsPage.langCode].weapUri + "-design.ejs") %>
 		</section>
 		
 		<section id="performance">
-			<h2>Performance</h2>
+			<h2><% if (detailsPage.langCode == "en") { -%>Performance<% } else { -%>Performance<% }; -%></h2>
+<%- include("weapon/" + detailsWeapon[detailsPage.langCode].weapUri + "-performance.ejs") %>
 		</section>
 		
+		<section id="warranty" class="warranty">
+			<h2><% if (detailsPage.langCode == "en") { -%>Warranty<% } else { -%>Garantie<% }; -%></h2>
 <% include template/weapon-warranty.ejs %>
-<% include template/legal.ejs %>
+		</section>
+
+		<section id="legal">
+			<h2><% if (detailsPage.langCode == "en") { -%>Legal Disclaimers<% } else { -%>Avis de non-responsabilité<% }; -%></h2>
+<%- include template/legal.ejs %>
+		</section>
 	</main>
 </body>
 </html>
