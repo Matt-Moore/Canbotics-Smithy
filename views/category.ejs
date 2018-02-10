@@ -16,7 +16,11 @@
 				</li><% }); %>
 			</ul>
 		</section><% }); %>
-<% include template/legal.ejs %>
+		
+		<section id="legal">
+			<h2><% if (detailsPage.langCode == "en") { -%>Legal Disclaimers<% } else { -%>Avis de non-responsabilité<% }; -%></h2>
+<%- include template/legal.ejs %>
+		</section>
 	</main>
 </body>
 </html>
