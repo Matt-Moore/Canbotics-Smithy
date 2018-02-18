@@ -23,176 +23,164 @@ var dataPage = {
 		navSegment:'index',
 		navCategory:'index',
 		navPage:'index',
-		pathPage:'index',
+		template:'index',
 		en:{
 			title:'',
-			desc:'Visit the Canbotics Smithy, for all your medieval warfare needs.',
+			desc:'Visit the ' & dataSite.title.en & ', for all your warfare needs.',
 			path:'/en'},
 		fr:{
 			title:'',
-			desc:'Visitez le Forge Canbotics, pour tous vos besoins de guerre médiévale.',
+			desc:'Visitez la ' & dataSite.title.fr & ', pour tous vos besoins de guerre.',
 			path:'/fr'}
 	},
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	weapon:{
 		navSegment:'weapon',
 		navCategory:'',
 		navPage:'',
-		pathPage:'segment',
+		template:'segment',
 		en:{
 			title:'Weapons',
-			desc:'DESCRIPTION_ENGLISH',
+			desc:'Browse the extensive catalogue of high quality weapons available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/weapons'},
 		fr:{
 			title:'Armes',
-			desc:'DESCRIPTION_FRENCH',
+			desc:'Parcourez le vaste catalogue d\'armes de haute qualité disponibles sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armes'}
 	},
 	melee:{
 		navSegment:'weapon',
 		navCategory:'melee',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Melee Weapons',
-			desc:'Browse the extensive lineup of high quality, melee weapons offered by the Canbotics Smithy.',
+			desc:'Browse the extensive catalogue of high quality melee weapons available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/melee-weapons'},
 		fr:{
 			title:'Armes de mêlée',
-			desc:'Parcourez la vaste gamme d\'armes de mêlée de haute qualité offertes par la Forge Canbotics.',
+			desc:'Parcourez le vaste catalogue d\'armes de mêlée de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armes-de-melee'}
 	},
 	ranged:{
 		navSegment:'weapon',
 		navCategory:'ranged',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Ranged Weapons',
-			desc:'Browse the extensive lineup of high quality, ranged weapons offered by the Canbotics Smithy.',
+			desc:'Browse the extensive catalogue of high quality ranged weapons available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/ranged-weapons'},
 		fr:{
 			title:'Armes à distance',
-			desc:'Parcourez la vaste gamme d\'armes à distance de haute qualité offertes par le Forge Canbotics.',
+			desc:'Parcourez le vaste catalogue d\'armes à distance de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armes-a-distance'}
 	},
 	magic:{
 		navSegment:'weapon',
 		navCategory:'magic',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Magic Weapons',
-			desc:'Browse the extensive lineup of high quality, magic weapons offered by the Canbotics Smithy.',
+			desc:'Browse the extensive catalogue of high quality magic weapons available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/magic-weapons'},
 		fr:{
 			title:'Armes magiques',
-			desc:'Parcourez la vaste gamme d\'armes magiques de haute qualité offertes par la Forge Canbotics.',
+			desc:'Parcourez le vaste catalogue d\'armes magiques de haute qualité disponibles sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armes-magiques'}
 	},
-
-
 
 	armour:{
 		navSegment:'armour',
 		navCategory:'',
 		navPage:'',
-		pathPage:'segment',
+		template:'segment',
 		en:{
 			title:'Armour',
-			desc:'DESCRIPTION_ENGLISH',
+			desc:'Browse the extensive catalogue of high quality armour available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/armour'},
 		fr:{
 			title:'Armure',
-			desc:'DESCRIPTION_FRENCH',
+			desc:'Parcourez le vaste catalogue d\'armures de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armure'}
 	},
 	light:{
 		navSegment:'armour',
 		navCategory:'light',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Light Armour',
-			desc:'',
+			desc:'Browse the extensive catalogue of high quality light armour available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/light-armour'},
 		fr:{
 			title:'Armure légère',
-			desc:'',
+			desc:'Parcourez le vaste catalogue d\'armures légères de haute qualité disponibles sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armure-legere'}
 	},
 	medium:{
 		navSegment:'armour',
 		navCategory:'medium',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Medium Armour',
-			desc:'',
+			desc:'Browse the extensive catalogue of high quality medium armour available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/medium-armour'},
 		fr:{
 			title:'Armure moyenne',
-			desc:'',
+			desc:'Parcourez le vaste catalogue d\'armures moyennes de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armure-moyenne'}
 	},
 	heavy:{
 		navSegment:'armour',
 		navCategory:'heavy',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Heavy Armour',
-			desc:'',
+			desc:'Browse the extensive catalogue of high quality heavy armour available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/heavy-armour'},
 		fr:{
 			title:'Armure lourde',
-			desc:'Parcourez la vaste gamme d\'armes magiques de haute qualité offertes par la Forge Canbotics.',
+			desc:'Parcourez le vaste catalogue d\'armures lourdes de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
 			path:'/fr/armure-lourde'}
 	},
 	shield:{
 		navSegment:'armour',
 		navCategory:'shield',
 		navPage:'',
-		pathPage:'category',
+		template:'category',
 		en:{
 			title:'Shields',
-			desc:'',
+			desc:'Browse the extensive catalogue of high quality shields available, on the official ' & dataSite.title.en & ' website.',
 			path:'/en/shields'},
 		fr:{
 			title:'Boucliers',
-			desc:'',
+			desc:'Parcourez le vaste catalogue de boucliers de haute qualité disponibles, sur le site officiel de' & dataSite.title.fr & '.',
 			path:'/fr/boucliers'}
 	},
-	
-	
 	
 	tool:{
 		navSegment:'tool',
 		navCategory:'tool',
 		navPage:'tool',
-		pathPage:'segment',
+		template:'tool',
 		en:{
 			title:'Tools',
 			desc:'DESCRIPTION_ENGLISH',
 			path:'/en/tools'},
 		fr:{
-			title:'TOOLS',
+			title:'Outils',
 			desc:'DESCRIPTION_FRENCH',
-			path:'/fr/TOOLS'}
+			path:'/fr/outils'}
 	},
 	warranty:{
 		navSegment:'tools',
 		navCategory:'tools',
 		navPage:'warranty',
+		template:'warranty',
 		en:{
 			title:'Warranty',
 			desc:'Read all about the comprehensive warranty provided on all ' + dataSite.title.en + ' weapons.',
@@ -202,25 +190,14 @@ var dataPage = {
 			desc:'Lisez tout sur la garantie complète fournie sur toutes les armes ' + dataSite.title.fr + '.',
 			path:'/fr/garantie'}
 	},
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	prodWeapon:{
+
+	product:{
+		template:'product',
 		en:{
-			desc:'Find out about the ' + dataSite.title.en + ' [WEAPONNAME] [WEAPONCLASS], on the official Canbotics website.'},
+			desc:'Find out about the ' + dataSite.title.en + ' [PRODUCTNAME] [PRODUCTCLASS], on the official website.'},
 		fr:{
-			desc:'Renseignez-vous sur [WEAPONCLASS] ' + dataSite.title.fr + ' [WEAPONNAME], sur le site officiel Canbotics.'}
-	}
+			desc:'Renseignez-vous sur [PRODUCTCLASS] ' + dataSite.title.fr + ' [PRODUCTNAME], sur le site officiel.'}
+	},
 };
 
 var dataWeapon = {
@@ -447,7 +424,7 @@ var dataWeapon = {
 	slingshot:{
 		en:{
 			prodClass:'Powerful Short-range Pellet Sling',
-			prodUri:'slingshot-powerful-mid-range-marksman-bow',
+			prodUri:'slingshot-powerful-short-range-pellet-sling',
 			prodBlurb:'Don\'t have a cow, man!'},
 		fr:{
 			prodClass:'Élingue puissante de granule à courte portée',
@@ -467,7 +444,7 @@ var dataWeapon = {
 	flintlock:{
 		en:{
 			prodClass:'Powerful Short-range Flint Gun',
-			prodUri:'flintlock-powerful-mid-range-marksman-bow',
+			prodUri:'flintlock-powerful-short-range-flint-gun',
 			prodBlurb:'No duel is complete without a pair.'},
 		fr:{
 			prodClass:'Puissant pistolet à silex à courte portée',
@@ -586,7 +563,7 @@ dataWeapon.hammer.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
 dataWeapon.shillelagh.similar = [dataWeapon.hammer,dataWeapon.necronomicon];
 dataWeapon.necronomicon.similar = [dataWeapon.hammer,dataWeapon.shillelagh];
 
-dataArmour.robe.similar = [dataWeapon.hammer,dataWeapon.shillelagh,dataWeapon.necronomicon]
+dataArmour.robe.similar = [dataArmour.robe,dataWeapon.shillelagh,dataWeapon.necronomicon]
 
 
 var listCategory = {
@@ -675,27 +652,26 @@ var listSegment = {
 	weapon:[
 		{
 			dataPage:dataPage.melee,
-			category:listCategory.melee},
+			subcategory:listCategory.melee},
 		{
 			dataPage:dataPage.ranged,
-			category:listCategory.ranged},
+			subcategory:listCategory.ranged},
 		{
 			dataPage:dataPage.magic,
-			category:listCategory.magic}],
+			subcategory:listCategory.magic}],
 	armour:[
 		{
 			dataPage:dataPage.light,
-			category:listCategory.light},
+			subcategory:listCategory.light},
 		{
 			dataPage:dataPage.medium,
-			category:listCategory.medium},
+			subcategory:listCategory.medium},
 		{
 			dataPage:dataPage.heavy,
-			category:listCategory.heavy},
+			subcategory:listCategory.heavy},
 		{
 			dataPage:dataPage.shield,
-			category:listCategory.shield}]
-
+			subcategory:listCategory.shield}]
 };
 
 
@@ -738,8 +714,30 @@ var listUri = {
 	'longbow-long-distance-archery-bow':dataWeapon.longbow,
 	'longbow-arc-de-tir-a-longue-distance':dataWeapon.longbow,
 	'crossbow-powerful-mid-range-marksman-bow':dataWeapon.crossbow,
-	'crossbow-puissant-arc-de-tireur-de-milieu-de-gamme':dataWeapon.crossbow
+	'slingshot-powerful-short-range-pellet-sling':dataWeapon.slingshot,
+	'slingshot-elingue-puissante-de-granule-a-courte-portee':dataWeapon.slingshot,
+	'flintlock-powerful-short-range-flint-gun':dataWeapon.flintlock,
+	'flintlock-puissant-pistolet-a-silex-a-courte-portee':dataWeapon.flintlock,
+	'hammer-testing':dataWeapon.hammer,
+	'hammer-essair':dataWeapon.hammer,
+	'shillelagh-testing':dataWeapon.shillelagh,
+	'shillelagh-essair':dataWeapon.shillelagh,
+	'necronomicon-testing':dataWeapon.necronomicon,
+	'necronomicon-essair':dataWeapon.necronomicon,
+	'robe-testing':dataArmour.robe,
+	'robe-essair':dataArmour.robe
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -759,6 +757,9 @@ app.get('/:langCode(en|fr)',function(request,response) {
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = dataSite.title[detailsPage.langCode];
 	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
 	
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
@@ -768,8 +769,7 @@ app.get('/:langCode(en|fr)',function(request,response) {
 
 /* ================================ PRODUCT PAGES */
 /* ============================================== */
-
-/* ===================================== PRODUCT : SEGMENT */
+/* ============================================== PRODUCT : SEGMENT */
 app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(request,response) {
 	if (request.params.segmentPage == 'weapons' || request.params.segmentPage == 'armes') {
 		var detailsPage = dataPage.weapon;
@@ -780,6 +780,9 @@ app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(r
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
 	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
 	
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
@@ -787,7 +790,7 @@ app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(r
 	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listSegment[detailsPage.navSegment]});
 });
 
-/* ===================================== PRODUCT : CATEGORY */
+/* ============================================== PRODUCT : CATEGORY */
 app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|light-armour|armure-legere|medium-armour|armure-moyenne|heavy-armour|armure-lourde|shields|boucliers)',function(request,response) {
 	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
 		var detailsPage = dataPage.melee;
@@ -808,6 +811,9 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-wea
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
 	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
 	
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
@@ -817,22 +823,83 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-wea
 
 
 
+
+
+
+
+
+/* ============================================== PRODUCT : PRODUCT */
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|light-armour|armure-legere|medium-armour|armure-moyenne|heavy-armour|armure-lourde|shields|boucliers)/:productUri',function(request,response) {
+	
+	var detailsProduct = listUri[request.params.productUri];
+	
+	var detailsPage = dataPage[detailsProduct.attr.category[0]];
+
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsProduct.attr.name + ' | ' + detailsProduct[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = dataPage.product[detailsPage.langCode].desc.replace('[PRODUCTNAME]',detailsProduct.attr.name).replace('[PRODUCTCLASS]',detailsProduct[detailsPage.langCode].prodClass.toLowerCase());
+	detailsPage.title = detailsProduct.attr.name;
+	
+	detailsPage.pathTemplate = dataPage.product.template;
+
+	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsProduct.en.prodUri;
+	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsProduct.fr.prodUri;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProduct:detailsProduct});
+});
+
+
+
+
+
+
+
+
+
+
+/* ================================== TOOLS PAGES */
+/* ============================================== */
+/* ============================================== TOOLS : ROOT */
+app.get('/:langCode(en|fr)/:toolsPage(tools|outils)',function(request,response) {
+	var detailsPage = dataPage.tool;
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
+});
+
+/* ============================================== TOOLS : WARRANTY */
+app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,response) {
+	var detailsPage = dataPage.warranty;
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
+});
+
+
 /* =============== */
 /* =============== */
 /* PAGES TO DO */
 /* =============== */
 /* =============== */
 
-app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,response) {
-	var detailsPage = dataPage.warranty;
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = dataSite.title[detailsPage.langCode];
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('warranty',{dataSite:dataSite,detailsPage:detailsPage});
-});
 
 
 
@@ -845,21 +912,6 @@ app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,re
 
 
 
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques)/:weaponUri',function(request,response) {
-	var detailsWeapon = listUri[request.params.weaponUri];
-	
-	var detailsPage = dataPage[detailsWeapon.attr.category[0]];
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = dataPage.weapon[detailsPage.langCode].desc.replace('[WEAPONNAME]',detailsWeapon.attr.name).replace('[WEAPONCLASS]',detailsWeapon[detailsPage.langCode].prodClass.toLowerCase());
-	
-	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.prodUri;
-	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.prodUri;
-	
-	
-	
-	response.render('weapon',{dataSite:dataSite,detailsPage:detailsPage,detailsWeapon:detailsWeapon});
-});
 
 
 

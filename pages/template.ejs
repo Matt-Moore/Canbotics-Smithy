@@ -80,7 +80,8 @@
 	</header>
 
 	<main>
-<%- include(detailsPage.pathPage + ".ejs") %>
+		<% if (detailsPage.title.length) { %><h1><%= detailsPage.title %></h1><% }; %>
+<%- include(detailsPage.pathTemplate + ".ejs") %>
 		<section id="legal">
 			<h2><% if (detailsPage.langCode == "en") { -%>Legal Disclaimers<% } else { -%>Avis de non-responsabilité<% }; -%></h2>
 <% if (detailsPage.langCode == "en") { %>

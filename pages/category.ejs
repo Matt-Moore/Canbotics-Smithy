@@ -1,4 +1,3 @@
-		<h1><%= detailsPage[detailsPage.langCode].title %></h1>
 		<% detailsProducts.forEach(function(category) {%><section>
 			<h2><% if (category.products.length == 1) { %><%= category[detailsPage.langCode][0] %><% } else { %><%= category[detailsPage.langCode][1] %><% }; %></h2>
 			<ul class="listWeapon">
