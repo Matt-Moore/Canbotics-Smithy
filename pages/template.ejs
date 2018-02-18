@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="<%= detailsPage.langCode %>">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="<%= detailsPage.metaDesc %>">
+	<title><%= detailsPage.metaTitle %></title>
+
+	<link rel="canonical" href="<%= dataSite.uriPath.rootSite + detailsPage[detailsPage.langCode].pathCanon %>" />
+	<link rel="alternate" hreflang="en" href="<%= dataSite.uriPath.rootSite + detailsPage.en.pathCanon %>" />
+	<link rel="alternate" hreflang="fr" href="<%= dataSite.uriPath.rootSite + detailsPage.fr.pathCanon %>" />
+
+	<link rel="stylesheet" type="text/css" href="<%= dataSite.uriPath.rootAsset %>canbotics-smithy.css" />	
+</head>
+<body>
+	<header>
+		<div>
+			<h1><%= dataSite.title[detailsPage.langCode] %></h1>
+			<nav aria-labelledby="siteNavTitle">
+				<% if (detailsPage.langCode.length) { if (detailsPage.langCode == "en") {%><h2 id="siteNavTitle">Site Navigation</h2>
+				<ul>
+					<li><a href="/en"<% if (detailsPage.navSegment == "index") { %> aria-current="location"<% }; %>>Home</a></li>
+					<li>
+						<a href="/en/weapons"<% if (detailsPage.navSegment == "weapon") { %> aria-current="location"<% }; %>>Weapons</a>
+						<ul>
+							<li><a href="/en/melee-weapons"<% if (detailsPage.navCategory == "melee") { %> aria-current="location"<% }; %>>Melee Weapons</a></li>
+							<li><a href="/en/ranged-weapons"<% if (detailsPage.navCategory == "ranged") { %> aria-current="location"<% }; %>>Ranged Weapons</a></li>
+							<li><a href="/en/magic-weapons"<% if (detailsPage.navCategory == "magic") { %> aria-current="location"<% }; %>>Magic Weapons</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/en/armour"<% if (detailsPage.navSegment == "armour") { %> aria-current="location"<% }; %>>Armour</a>
+						<ul>
+							<li><a href="/en/light-armour"<% if (detailsPage.navCategory == "light") { %> aria-current="location"<% }; %>>Light Armour</a></li>
+							<li><a href="/en/medium-armour"<% if (detailsPage.navCategory == "medium") { %> aria-current="location"<% }; %>>Medium Armour</a></li>
+							<li><a href="/en/heavy-armour"<% if (detailsPage.navCategory == "heavy") { %> aria-current="location"<% }; %>>Heavy Armour</a></li>
+							<li><a href="/en/shields"<% if (detailsPage.navCategory == "shields") { %> aria-current="location"<% }; %>>Shields</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/en/tools"<% if (detailsPage.navSegment == "tools") { %> aria-current="location"<% }; %>>Tools</a>
+						<ul>
+							<li><a href="/en/warranty"<% if (detailsPage.navPage == "warranty") { %> aria-current="location"<% }; %>>Warranty</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li><a href="<%= detailsPage.fr.pathCanon %>">Français</a></li>
+				</ul><% } else { %><h2 id="siteNavTitle">Navigation du site</h2>
+				<ul>
+					<li><a href="/fr"<% if (detailsPage.navSegment == "index") { %> aria-current="location"<% }; %>>Accueil</a></li>
+					<li>
+						<a href="/fr/armes"<% if (detailsPage.navSegment == "weapon") { %> aria-current="location"<% }; %>>Armes</a>
+						<ul>
+							<li><a href="/fr/armes-de-melee"<% if (detailsPage.navCategory == "melee") { %> aria-current="location"<% }; %>>Armes de mêlée</a></li>
+							<li><a href="/fr/armes-a-distance"<% if (detailsPage.navCategory == "ranged") { %> aria-current="location"<% }; %>>Armes à distance</a></li>
+							<li><a href="/fr/armes-magiques"<% if (detailsPage.navCategory == "magic") { %> aria-current="location"<% }; %>>Armes magiques</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/fr/armure"<% if (detailsPage.navSegment == "armour") { %> aria-current="location"<% }; %>>Armure</a>
+						<ul>
+							<li><a href="/fr/armure-legere"<% if (detailsPage.navCategory == "light") { %> aria-current="location"<% }; %>>Armure légère</a></li>
+							<li><a href="/fr/armure-moyenne"<% if (detailsPage.navCategory == "medium") { %> aria-current="location"<% }; %>>Armure moyenne</a></li>
+							<li><a href="/fr/armure-lourde"<% if (detailsPage.navCategory == "heavy") { %> aria-current="location"<% }; %>>Armure lourde</a></li>
+							<li><a href="/fr/boucliers"<% if (detailsPage.navCategory == "shields") { %> aria-current="location"<% }; %>>Boucliers</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/fr/outils"<% if (detailsPage.navSegment == "tools") { %> aria-current="location"<% }; %>>Outils</a>
+						<ul>
+							<li><a href="/fr/garantie"<% if (detailsPage.navPage == "warranty") { %> aria-current="location"<% }; %>>Garantie</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li><a href="<%= detailsPage.en.pathCanon %>">English</a></li>
+				</ul><% }; }; %>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+<%- include(detailsPage.pathPage + ".ejs") %>
+		<section id="legal">
+			<h2><% if (detailsPage.langCode == "en") { -%>Legal Disclaimers<% } else { -%>Avis de non-responsabilité<% }; -%></h2>
+<% if (detailsPage.langCode == "en") { %>
+			<ul>
+				<li>Design, concept, and exact copy &copy;2018 OciCat Media. Most information comes from <a href="https://en.wikipedia.org" rel="external">Wikipedia</a>. Images used are bought from <a href="https://stock.adobe.com/ca/" rel="external">Adobe Stock</a></li>
+			</ul>
+			<% if (typeof detailsWeapon != "undefined") { %><ul>
+				<li id="dis_dag"><sup>&dagger;</sup> Price is the cost of single (non-bulk) item, and based on the present primary currency. Other currencies and barter are valid for transactions.</li>
+				<li id="dis_ddag"><sup>&Dagger;</sup> Damage is an estimate of potential harm the weapon can inflict. Actual damage may vary based on real life situations.</li>
+				<li id="dis_ast"><sup>*</sup> There is a limit of 4 sharpenings, and 1 de-rusting per year.</li>
+				<li id="dis_astast"><sup>**</sup> The warranty concludes at the end of whichever event occurs first.</li>
+				<li id="dis_astastast"><sup>***</sup> The warranty only covers failures due to craftmanship or manufacturing defects. Improperly storing, handling, or using a weapon will void the warranty.</li>
+			</ul>
+			<% } %><ul>
+				<li id="dis_1"><sup>1</sup> Disclaimer 1</li>
+				<li id="dis_2"><sup>2</sup> Disclaimer 2</li>
+				<li id="dis_3"><sup>3</sup> Disclaimer 3</li>
+				<li id="dis_4"><sup>4</sup> Disclaimer 4</li>
+				<li id="dis_5"><sup>5</sup> Disclaimer 5</li>
+				<li id="dis_6"><sup>6</sup> Disclaimer 6</li>
+				<li id="dis_7"><sup>7</sup> Disclaimer 7</li>
+			</ul>
+<% } else { %>
+			<ul>
+				<li>Conception, concept et copie exacte &copy;2018 OciCat Media. La plupart des informations proviennent de <a href="https://fr.wikipedia.org" rel="external">Wikipédia</a>. Les images utilisées sont achetées auprès <a href="https://stock.adobe.com/ca_fr/" rel="external">d'Adobe Stock</a>. <a href="https://translate.google.ca/" rel="external">Google translate</a> utilisé pour les traductions.</li>
+			</ul>
+			<% if (typeof detailsWeapon != "undefined") { %><ul>
+				<li id="dis_dag"><sup>&dagger;</sup> Le prix est le coût d'un article unique (non en vrac) et basé sur la monnaie primaire actuelle. Les autres devises et le troc sont valables pour les transactions.</li>
+				<li id="dis_ddag"><sup>&Dagger;</sup> Les dommages sont une estimation des dommages potentiels que l'arme peut infliger. Les dommages réels peuvent varier en fonction des situations de la vie réelle.</li>
+				<li id="dis_ast"><sup>*</sup> Il y a une limite de 4 aiguisages et 1 dérouillage par an.</li>
+				<li id="dis_astast"><sup>**</sup> La garantie se termine à la fin de l'événement qui survient en premier.</li>
+				<li id="dis_astastast"><sup>***</sup> La garantie ne couvre que les défaillances dues à des défauts de fabrication ou de fabrication. Le stockage, la manipulation ou l'utilisation inappropriée d'une arme annuleront la garantie.</li>
+			</ul>
+			<% } %><ul>
+				<li id="dis_1"><sup>1</sup> Disclaimer 1</li>
+				<li id="dis_2"><sup>2</sup> Disclaimer 2</li>
+				<li id="dis_3"><sup>3</sup> Disclaimer 3</li>
+				<li id="dis_4"><sup>4</sup> Disclaimer 4</li>
+				<li id="dis_5"><sup>5</sup> Disclaimer 5</li>
+				<li id="dis_6"><sup>6</sup> Disclaimer 6</li>
+				<li id="dis_7"><sup>7</sup> Disclaimer 7</li>
+			</ul>
+<% }; %>				
+		</section>
+	</main>
+	<script src="<%= dataSite.uriPath.rootAssetGlobal %>jquery-3.3.1.min.js"></script>
+	<script src="<%= dataSite.uriPath.rootAsset %>canbotics-smithy.js"></script>
+</body>
+</html>

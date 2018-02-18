@@ -5,7 +5,7 @@ app.set('port',(process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
-app.set('views',__dirname + '/views');
+app.set('views',__dirname + '/pages');
 app.set('view engine', 'ejs');
 
 var dataSite = {
@@ -20,7 +20,10 @@ var dataSite = {
 
 var dataPage = {
 	index:{
-		navSite:'index',
+		navSegment:'index',
+		navCategory:'index',
+		navPage:'index',
+		pathPage:'index',
 		en:{
 			title:'',
 			desc:'Visit the Canbotics Smithy, for all your medieval warfare needs.',
@@ -30,8 +33,35 @@ var dataPage = {
 			desc:'Visitez le Forge Canbotics, pour tous vos besoins de guerre médiévale.',
 			path:'/fr'}
 	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	weapon:{
+		navSegment:'weapon',
+		navCategory:'',
+		navPage:'',
+		pathPage:'segment',
+		en:{
+			title:'Weapons',
+			desc:'DESCRIPTION_ENGLISH',
+			path:'/en/weapons'},
+		fr:{
+			title:'Armes',
+			desc:'DESCRIPTION_FRENCH',
+			path:'/fr/armes'}
+	},
 	melee:{
-		navSite:'melee',
+		navSegment:'weapon',
+		navCategory:'melee',
+		navPage:'',
+		pathPage:'category',
 		en:{
 			title:'Melee Weapons',
 			desc:'Browse the extensive lineup of high quality, melee weapons offered by the Canbotics Smithy.',
@@ -42,7 +72,10 @@ var dataPage = {
 			path:'/fr/armes-de-melee'}
 	},
 	ranged:{
-		navSite:'ranged',
+		navSegment:'weapon',
+		navCategory:'ranged',
+		navPage:'',
+		pathPage:'category',
 		en:{
 			title:'Ranged Weapons',
 			desc:'Browse the extensive lineup of high quality, ranged weapons offered by the Canbotics Smithy.',
@@ -53,7 +86,10 @@ var dataPage = {
 			path:'/fr/armes-a-distance'}
 	},
 	magic:{
-		navSite:'magic',
+		navSegment:'weapon',
+		navCategory:'magic',
+		navPage:'',
+		pathPage:'category',
 		en:{
 			title:'Magic Weapons',
 			desc:'Browse the extensive lineup of high quality, magic weapons offered by the Canbotics Smithy.',
@@ -63,8 +99,100 @@ var dataPage = {
 			desc:'Parcourez la vaste gamme d\'armes magiques de haute qualité offertes par la Forge Canbotics.',
 			path:'/fr/armes-magiques'}
 	},
+
+
+
+	armour:{
+		navSegment:'armour',
+		navCategory:'',
+		navPage:'',
+		pathPage:'segment',
+		en:{
+			title:'Armour',
+			desc:'DESCRIPTION_ENGLISH',
+			path:'/en/armour'},
+		fr:{
+			title:'Armure',
+			desc:'DESCRIPTION_FRENCH',
+			path:'/fr/armure'}
+	},
+	light:{
+		navSegment:'armour',
+		navCategory:'light',
+		navPage:'',
+		pathPage:'category',
+		en:{
+			title:'Light Armour',
+			desc:'',
+			path:'/en/light-armour'},
+		fr:{
+			title:'Armure légère',
+			desc:'',
+			path:'/fr/armure-legere'}
+	},
+	medium:{
+		navSegment:'armour',
+		navCategory:'medium',
+		navPage:'',
+		pathPage:'category',
+		en:{
+			title:'Medium Armour',
+			desc:'',
+			path:'/en/medium-armour'},
+		fr:{
+			title:'Armure moyenne',
+			desc:'',
+			path:'/fr/armure-moyenne'}
+	},
+	heavy:{
+		navSegment:'armour',
+		navCategory:'heavy',
+		navPage:'',
+		pathPage:'category',
+		en:{
+			title:'Heavy Armour',
+			desc:'',
+			path:'/en/heavy-armour'},
+		fr:{
+			title:'Armure lourde',
+			desc:'Parcourez la vaste gamme d\'armes magiques de haute qualité offertes par la Forge Canbotics.',
+			path:'/fr/armure-lourde'}
+	},
+	shield:{
+		navSegment:'armour',
+		navCategory:'shield',
+		navPage:'',
+		pathPage:'category',
+		en:{
+			title:'Shields',
+			desc:'',
+			path:'/en/shields'},
+		fr:{
+			title:'Boucliers',
+			desc:'',
+			path:'/fr/boucliers'}
+	},
+	
+	
+	
+	tool:{
+		navSegment:'tool',
+		navCategory:'tool',
+		navPage:'tool',
+		pathPage:'segment',
+		en:{
+			title:'Tools',
+			desc:'DESCRIPTION_ENGLISH',
+			path:'/en/tools'},
+		fr:{
+			title:'TOOLS',
+			desc:'DESCRIPTION_FRENCH',
+			path:'/fr/TOOLS'}
+	},
 	warranty:{
-		navSite:'warranty',
+		navSegment:'tools',
+		navCategory:'tools',
+		navPage:'warranty',
 		en:{
 			title:'Warranty',
 			desc:'Read all about the comprehensive warranty provided on all ' + dataSite.title.en + ' weapons.',
@@ -74,7 +202,20 @@ var dataPage = {
 			desc:'Lisez tout sur la garantie complète fournie sur toutes les armes ' + dataSite.title.fr + '.',
 			path:'/fr/garantie'}
 	},
-	weapon:{
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	prodWeapon:{
 		en:{
 			desc:'Find out about the ' + dataSite.title.en + ' [WEAPONNAME] [WEAPONCLASS], on the official Canbotics website.'},
 		fr:{
@@ -85,13 +226,13 @@ var dataPage = {
 var dataWeapon = {
 	gladius:{
 		en:{
-			weapClass:'Short Sword',
-			weapUri:'gladius-short-sword',
-			weapBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+			prodClass:'Short Sword',
+			prodUri:'gladius-short-sword',
+			prodBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
 		fr:{
-			weapClass:'Épée courte',
-			weapUri:'gladius-epee-courte',
-			weapBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+			prodClass:'Épée courte',
+			prodUri:'gladius-epee-courte',
+			prodBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
 		attr:{
 			name:'Gladius',
 			skill:{en:'Sword',fr:'Épée'},
@@ -105,13 +246,13 @@ var dataWeapon = {
 			dimMax:[85,68,7]}},
 	xiphos:{
 		en:{
-			weapClass:'Short Sword',
-			weapUri:'xiphos-short-sword',
-			weapBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+			prodClass:'Short Sword',
+			prodUri:'xiphos-short-sword',
+			prodBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
 		fr:{
-			weapClass:'Épée courte',
-			weapUri:'xiphos-epee-courte',
-			weapBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+			prodClass:'Épée courte',
+			prodUri:'xiphos-epee-courte',
+			prodBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
 		attr:{
 			name:'Xiphos',
 			skill:{en:'Sword',fr:'Épée'},
@@ -125,13 +266,13 @@ var dataWeapon = {
 			dimMax:[77,60,7]}},
 	claymore:{
 		en:{
-			weapClass:'Heavy Long Sword',
-			weapUri:'claymore-heavy-long-sword',
-			weapBlurb:'Enemies will cower, when they glimpse this Highland beast being wielded. Boasting a heavy weight, and two handed grip it will slice the strongest armour in half.'},
+			prodClass:'Heavy Long Sword',
+			prodUri:'claymore-heavy-long-sword',
+			prodBlurb:'Enemies will cower, when they glimpse this Highland beast being wielded. Boasting a heavy weight, and two handed grip it will slice the strongest armour in half.'},
 		fr:{
-			weapClass:'Lourde épée longue',
-			weapUri:'claymore-lourde-epee-longue',
-			weapBlurb:'Les ennemis se recroquevilleront lorsqu\'ils apercevront cette bête des Highlands qui est brandie. Bénéficiant d\'un poids lourd et d\'une prise à deux mains, il découpera l\'armure la plus solide en deux.'},
+			prodClass:'Lourde épée longue',
+			prodUri:'claymore-lourde-epee-longue',
+			prodBlurb:'Les ennemis se recroquevilleront lorsqu\'ils apercevront cette bête des Highlands qui est brandie. Bénéficiant d\'un poids lourd et d\'une prise à deux mains, il découpera l\'armure la plus solide en deux.'},
 		attr:{
 			name:'Claymore',
 			skill:{en:'Sword',fr:'Épée'},
@@ -145,13 +286,13 @@ var dataWeapon = {
 			dimMax:[140,120,5.1]}},
 	scimitar:{
 		en:{
-			weapClass:'Exotic Eastern Sabre',
-			weapUri:'scimitar-exotic-eastern-sabre',
-			weapBlurb:'Be the star of your own Arabian Night, with this shining pinnacle of Middle Eastern combat. The exotic curve of the blade will be the talk of your enemies.'},
+			prodClass:'Exotic Eastern Sabre',
+			prodUri:'scimitar-exotic-eastern-sabre',
+			prodBlurb:'Be the star of your own Arabian Night, with this shining pinnacle of Middle Eastern combat. The exotic curve of the blade will be the talk of your enemies.'},
 		fr:{
-			weapClass:'Sabre de l\'est exotique',
-			weapUri:'scimitar-sabre-de-lest-exotique',
-			weapBlurb:'Soyez la star de votre propre nuit arabe, avec ce pinacle brillant du combat moyen-oriental. La courbe exotique de la lame sera le sujet de vos ennemis.'},
+			prodClass:'Sabre de l\'est exotique',
+			prodUri:'scimitar-sabre-de-lest-exotique',
+			prodBlurb:'Soyez la star de votre propre nuit arabe, avec ce pinacle brillant du combat moyen-oriental. La courbe exotique de la lame sera le sujet de vos ennemis.'},
 		attr:{
 			name:'Scimitar',
 			skill:{en:'Sword',fr:'Épée'},
@@ -165,13 +306,13 @@ var dataWeapon = {
 			dimMax:[122,92,6]}},
 	katana:{
 		en:{
-			weapClass:'Exotic Oriental Sword',
-			weapUri:'katana-exotic-oriental-sword',
-			weapBlurb:'A truly beautiful, and exotic sword straight from Japan. Now you too can be a samurai, and cut evil from the land.'},
+			prodClass:'Exotic Oriental Sword',
+			prodUri:'katana-exotic-oriental-sword',
+			prodBlurb:'A truly beautiful, and exotic sword straight from Japan. Now you too can be a samurai, and cut evil from the land.'},
 		fr:{
-			weapClass:'Épée orientale exotique',
-			weapUri:'katana-epee-orientale-exotique',
-			weapBlurb:'Une épée vraiment belle et exotique venant tout droit du Japon. Maintenant vous aussi pouvez être un samouraï et couper le mal de la terre.'},
+			prodClass:'Épée orientale exotique',
+			prodUri:'katana-epee-orientale-exotique',
+			prodBlurb:'Une épée vraiment belle et exotique venant tout droit du Japon. Maintenant vous aussi pouvez être un samouraï et couper le mal de la terre.'},
 		attr:{
 			name:'Katana',
 			skill:{en:'Sword',fr:'Épée'},
@@ -185,13 +326,13 @@ var dataWeapon = {
 			dimMax:[103,73,4]}},
 	bo:{
 		en:{
-			weapClass:'Full Staff',
-			weapUri:'bo-full-staff',
-			weapBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+			prodClass:'Full Staff',
+			prodUri:'bo-full-staff',
+			prodBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
 		fr:{
-			weapClass:'Bâton complet',
-			weapUri:'bo-baton-complet',
-			weapBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+			prodClass:'Bâton complet',
+			prodUri:'bo-baton-complet',
+			prodBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
 		attr:{
 			name:'Bō',
 			skill:{en:'Pole',fr:'Pôle'},
@@ -205,13 +346,13 @@ var dataWeapon = {
 			dimMax:[270,3]}},
 	spear:{
 		en:{
-			weapClass:'long reach piercing pole',
-			weapUri:'spear-long-reach-piercing-pole',
-			weapBlurb:'Stick them with the pointy end.'},
+			prodClass:'long reach piercing pole',
+			prodUri:'spear-long-reach-piercing-pole',
+			prodBlurb:'Stick them with the pointy end.'},
 		fr:{
-			weapClass:'Perche longue portée',
-			weapUri:'spear-perche-longue-portee',
-			weapBlurb:'Collez-les avec l\'extrémité pointue.'},
+			prodClass:'Perche longue portée',
+			prodUri:'spear-perche-longue-portee',
+			prodBlurb:'Collez-les avec l\'extrémité pointue.'},
 		attr:{
 			name:'Spear',
 			skill:{en:'Pole',fr:'Pôle'},
@@ -225,13 +366,13 @@ var dataWeapon = {
 			dimMax:[0,0]}},
 	axe:{
 		en:{
-			weapClass:'Heavy Close Range Cleaver',
-			weapUri:'axe-heavy-close-range-cleaver',
-			weapBlurb:'Excellent for cleaving skulls in twain.'},
+			prodClass:'Heavy Close Range Cleaver',
+			prodUri:'axe-heavy-close-range-cleaver',
+			prodBlurb:'Excellent for cleaving skulls in twain.'},
 		fr:{
-			weapClass:'Cleaver lourd à courte portée',
-			weapUri:'axe-cleaver-lourd-a-courte-portee',
-			weapBlurb:'Excellent pour cliver en deux crânes.'},
+			prodClass:'Cleaver lourd à courte portée',
+			prodUri:'axe-cleaver-lourd-a-courte-portee',
+			prodBlurb:'Excellent pour cliver en deux crânes.'},
 		attr:{
 			name:'Axe',
 			skill:{en:'Cleaver',fr:'Couperet'},
@@ -245,13 +386,13 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	shortbow:{
 		en:{
-			weapClass:'Short Distance Archery Bow',
-			weapUri:'shortbow-short-distance-archery-bow',
-			weapBlurb:'Small and lightweight bow, excellent for small game hunting.'},
+			prodClass:'Short Distance Archery Bow',
+			prodUri:'shortbow-short-distance-archery-bow',
+			prodBlurb:'Small and lightweight bow, excellent for small game hunting.'},
 		fr:{
-			weapClass:'Arc de tir à courte distance',
-			weapUri:'shortbow-arc-de-tir-a-courte-distance',
-			weapBlurb:'Arc petit et léger, excellent pour la chasse au petit gibier.'},
+			prodClass:'Arc de tir à courte distance',
+			prodUri:'shortbow-arc-de-tir-a-courte-distance',
+			prodBlurb:'Arc petit et léger, excellent pour la chasse au petit gibier.'},
 		attr:{
 			name:'Shortbow',
 			skill:{en:'Archer',fr:'Arc'},
@@ -265,13 +406,13 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	longbow:{
 		en:{
-			weapClass:'Long Distance Archery Bow',
-			weapUri:'longbow-long-distance-archery-bow',
-			weapBlurb:'They will never know what hit them, literally.'},
+			prodClass:'Long Distance Archery Bow',
+			prodUri:'longbow-long-distance-archery-bow',
+			prodBlurb:'They will never know what hit them, literally.'},
 		fr:{
-			weapClass:'Arc de tir à longue distance',
-			weapUri:'longbow-arc-de-tir-a-longue-distance',
-			weapBlurb:'Ils ne sauront jamais ce qui les a frappés, littéralement.'},
+			prodClass:'Arc de tir à longue distance',
+			prodUri:'longbow-arc-de-tir-a-longue-distance',
+			prodBlurb:'Ils ne sauront jamais ce qui les a frappés, littéralement.'},
 		attr:{
 			name:'Longbow',
 			skill:{en:'Archer',fr:'Arc'},
@@ -285,13 +426,13 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	crossbow:{
 		en:{
-			weapClass:'Powerful Mid-range Marksman Bow',
-			weapUri:'crossbow-powerful-mid-range-marksman-bow',
-			weapBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+			prodClass:'Powerful Mid-range Marksman Bow',
+			prodUri:'crossbow-powerful-mid-range-marksman-bow',
+			prodBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
 		fr:{
-			weapClass:'Puissant arc de tireur de milieu de gamme',
-			weapUri:'crossbow-puissant-arc-de-tireur-de-milieu-de-gamme',
-			weapBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+			prodClass:'Puissant arc de tireur de milieu de gamme',
+			prodUri:'crossbow-puissant-arc-de-tireur-de-milieu-de-gamme',
+			prodBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
 		attr:{
 			name:'Crossbow',
 			skill:{en:'Sniper',fr:'Buteur'},
@@ -303,14 +444,157 @@ var dataWeapon = {
 			weight:0,
 			dimMin:[0,0,0],
 			dimMax:[0,0,0]}},
+	slingshot:{
+		en:{
+			prodClass:'Powerful Short-range Pellet Sling',
+			prodUri:'slingshot-powerful-mid-range-marksman-bow',
+			prodBlurb:'Don\'t have a cow, man!'},
+		fr:{
+			prodClass:'Élingue puissante de granule à courte portée',
+			prodUri:'slingshot-elingue-puissante-de-granule-a-courte-portee',
+			prodBlurb:'Je n\'ai pas de vache, mec.!'},
+		attr:{
+			name:'Slingshot',
+			skill:{en:'Pellet',fr:'Pastille'},
+			category:['ranged','sling'],
+			range:0,
+			price:0,
+			damage:[1,4,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	flintlock:{
+		en:{
+			prodClass:'Powerful Short-range Flint Gun',
+			prodUri:'flintlock-powerful-mid-range-marksman-bow',
+			prodBlurb:'No duel is complete without a pair.'},
+		fr:{
+			prodClass:'Puissant pistolet à silex à courte portée',
+			prodUri:'flintlock-puissant-pistolet-a-silex-a-courte-portee',
+			prodBlurb:'Aucun duel n\'est complet sans une paire.'},
+		attr:{
+			name:'Flintlock Pistol',
+			skill:{en:'Gun',fr:'Pistolet'},
+			category:['ranged','gun'],
+			range:0,
+			price:0,
+			damage:[1,8,1],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	hammer:{
+		en:{
+			prodClass:'Testing',
+			prodUri:'hammer-testing',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+		fr:{
+			prodClass:'Essai',
+			prodUri:'hammer-essair',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+		attr:{
+			name:'Hammer',
+			skill:{en:'Wand',fr:'Baguettes magique'},
+			category:['magic','wand'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	shillelagh:{
+		en:{
+			prodClass:'Testing',
+			prodUri:'shillelagh-testing',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+		fr:{
+			prodClass:'Essai',
+			prodUri:'shillelagh-essair',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+		attr:{
+			name:'Shillelagh',
+			skill:{en:'Staff',fr:'Bâtons magique'},
+			category:['magic','staff'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	necronomicon:{
+		en:{
+			prodClass:'Testing',
+			prodUri:'necronomicon-testing',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+		fr:{
+			prodClass:'Essai',
+			prodUri:'necronomicon-essair',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+		attr:{
+			name:'Necronomicon',
+			skill:{en:'Book',fr:'Grimoires'},
+			category:['magic','book'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}}
 };
+
+var dataArmour = {
+	robe:{
+		en:{
+			prodClass:'Testing',
+			prodUri:'robe-testing',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+		fr:{
+			prodClass:'Essai',
+			prodUri:'robe-essair',
+			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+		attr:{
+			name:'Robe',
+			skill:{en:'Robe',fr:'Peignoir'},
+			category:['light','robe'],
+			range:0,
+			price:0,
+			damage:[0,0,0],
+			speed:0,
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}}
+};
+
+dataWeapon.gladius.similar = [dataWeapon.xiphos,dataWeapon.axe];
+dataWeapon.xiphos.similar = [dataWeapon.gladius,dataWeapon.axe];
+dataWeapon.claymore.similar = [dataWeapon.scimitar,dataWeapon.katana];
+dataWeapon.scimitar.similar = [dataWeapon.claymore,dataWeapon.katana];
+dataWeapon.katana.similar = [dataWeapon.claymore,dataWeapon.scimitar];
+dataWeapon.bo.similar = [dataWeapon.spear];
+dataWeapon.spear.similar = [dataWeapon.bo];
+dataWeapon.axe.similar = [dataWeapon.bo,dataWeapon.xiphos];
+dataWeapon.shortbow.similar = [dataWeapon.longbow,dataWeapon.crossbow];
+dataWeapon.longbow.similar = [dataWeapon.shortbow,dataWeapon.crossbow];
+dataWeapon.crossbow.similar = [dataWeapon.shortbow,dataWeapon.longbow];
+dataWeapon.slingshot.similar = [dataWeapon.shortbow,dataWeapon.flintlock];
+dataWeapon.flintlock.similar = [dataWeapon.crossbow,dataWeapon.slingshot];
+dataWeapon.hammer.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
+dataWeapon.shillelagh.similar = [dataWeapon.hammer,dataWeapon.necronomicon];
+dataWeapon.necronomicon.similar = [dataWeapon.hammer,dataWeapon.shillelagh];
+
+dataArmour.robe.similar = [dataWeapon.hammer,dataWeapon.shillelagh,dataWeapon.necronomicon]
+
 
 var listCategory = {
 	melee:[
 		{
 			en:['Sword','Swords'],
 			fr:['Épée','Épées'],
-			weapons:[
+			products:[
 				dataWeapon.gladius,
 				dataWeapon.xiphos,
 				dataWeapon.claymore,
@@ -319,55 +603,118 @@ var listCategory = {
 		{
 			en:['Axe','Axes'],
 			fr:['Hache','Haches'],
-			weapons:[
+			products:[
 				dataWeapon.axe]},
 		{
 			en:['Pole','Poles'],
 			fr:['Pôle','Pôles'],
-			weapons:[
+			products:[
 				dataWeapon.bo,
 				dataWeapon.spear]}],
 	ranged:[
 		{
 			en:['Bow','Bows'],
 			fr:['Arc','Arcs'],
-			weapons:[
+			products:[
 				dataWeapon.shortbow,
 				dataWeapon.longbow,
 				dataWeapon.crossbow]},
 		{
 			en:['Sling','Slings'],
 			fr:['Lance-pierres','frondes'],
-			weapons:[
-				dataWeapon.bo,
-				dataWeapon.bo]},
+			products:[
+				dataWeapon.slingshot]},
 		{
 			en:['Gun','Guns'],
 			fr:['Pistolet','Pistolets'],
-			weapons:[
-				dataWeapon.bo,
-				dataWeapon.bo]}],
+			products:[
+				dataWeapon.flintlock]}],
 	magic:[
 		{
 			en:['Wand','Wands'],
 			fr:['Baguette magique','Baguettes magique'],
-			weapons:[
-				dataWeapon.axe,
-				dataWeapon.axe,
-				dataWeapon.axe]},
+			products:[
+				dataWeapon.hammer]},
 		{
 			en:['Staff','Staves'],
 			fr:['Bâton magique','Bâtons magique'],
-			weapons:[
-				dataWeapon.axe,
-				dataWeapon.axe]},
+			products:[
+				dataWeapon.shillelagh]},
 		{
 			en:['Spell Book','Spell Books'],
 			fr:['Grimoire','Grimoires'],
-			weapons:[
-				dataWeapon.axe,
-				dataWeapon.axe]}]
+			products:[
+				dataWeapon.necronomicon]}],
+	light:[
+		{
+			en:['Robe','Robes'],
+			fr:['Peignoir','Peignoirs'],
+			products:[
+				dataArmour.robe]}],
+	medium:[
+		{
+			en:['Test','Tests'],
+			fr:['Essai','Essais'],
+			products:[
+				]}],
+	heavy:[
+		{
+			en:['Test','Tests'],
+			fr:['Essai','Essais'],
+			products:[
+				]}],
+	shield:[
+		{
+			en:['Test','Tests'],
+			fr:['Essai','Essais'],
+			products:[
+				]}]
 };
+
+var listSegment = {
+	weapon:[
+		{
+			dataPage:dataPage.melee,
+			category:listCategory.melee},
+		{
+			dataPage:dataPage.ranged,
+			category:listCategory.ranged},
+		{
+			dataPage:dataPage.magic,
+			category:listCategory.magic}],
+	armour:[
+		{
+			dataPage:dataPage.light,
+			category:listCategory.light},
+		{
+			dataPage:dataPage.medium,
+			category:listCategory.medium},
+		{
+			dataPage:dataPage.heavy,
+			category:listCategory.heavy},
+		{
+			dataPage:dataPage.shield,
+			category:listCategory.shield}]
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var listUri = {
 	'gladius-short-sword':dataWeapon.gladius,
@@ -405,16 +752,76 @@ app.get('/',function(request,response) {
 	response.render('landing',{dataSite:dataSite});
 });
 
+
 app.get('/:langCode(en|fr)',function(request,response) {
 	var detailsPage = dataPage.index;
+
 	detailsPage.langCode = request.params.langCode;
 	detailsPage.metaTitle = dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
 	
 	detailsPage.en.pathCanon = detailsPage.en.path;
 	detailsPage.fr.pathCanon = detailsPage.fr.path;
 
-	response.render('index',{dataSite:dataSite,detailsPage:detailsPage});
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
 });
+
+/* ================================ PRODUCT PAGES */
+/* ============================================== */
+
+/* ===================================== PRODUCT : SEGMENT */
+app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(request,response) {
+	if (request.params.segmentPage == 'weapons' || request.params.segmentPage == 'armes') {
+		var detailsPage = dataPage.weapon;
+	} else {
+		var detailsPage = dataPage.armour;
+	} ;
+
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listSegment[detailsPage.navSegment]});
+});
+
+/* ===================================== PRODUCT : CATEGORY */
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|light-armour|armure-legere|medium-armour|armure-moyenne|heavy-armour|armure-lourde|shields|boucliers)',function(request,response) {
+	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
+		var detailsPage = dataPage.melee;
+	} else if (request.params.categoryPage == 'ranged-weapons' || request.params.categoryPage == 'armes-a-distance') {
+		var detailsPage = dataPage.ranged;
+	} else if (request.params.categoryPage == 'magic-weapons' || request.params.categoryPage == 'armes-magiques') {
+		var detailsPage = dataPage.magic;
+	} else if (request.params.categoryPage == 'light-armour' || request.params.categoryPage == 'armure-legere') {
+		var detailsPage = dataPage.light;
+	} else if (request.params.categoryPage == 'medium-armour' || request.params.categoryPage == 'armure-moyenne') {
+		var detailsPage = dataPage.medium;
+	} else if (request.params.categoryPage == 'heavy-armour' || request.params.categoryPage == 'armure-lourde') {
+		var detailsPage = dataPage.heavy;
+	} else if (request.params.categoryPage == 'shields' || request.params.categoryPage == 'boucliers') {
+		var detailsPage = dataPage.shield;
+	};
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listCategory[detailsPage.navCategory]});
+});
+
+
+
+/* =============== */
+/* =============== */
+/* PAGES TO DO */
+/* =============== */
+/* =============== */
 
 app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,response) {
 	var detailsPage = dataPage.warranty;
@@ -436,27 +843,6 @@ app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,re
 
 
 
-/* CATEGORY PAGES */
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques)',function(request,response) {
-	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
-		var detailsPage = dataPage.melee;
-	} else if (request.params.categoryPage == 'ranged-weapons' || request.params.categoryPage == 'armes-a-distance') {
-		var detailsPage = dataPage.ranged;
-	} else if (request.params.categoryPage == 'magic-weapons' || request.params.categoryPage == 'armes-magiques') {
-		var detailsPage = dataPage.magic;
-	};
-
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('category',{dataSite:dataSite,detailsPage:detailsPage,dataWeapon:listCategory[detailsPage.navSite]});
-});
-
-
 
 
 app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques)/:weaponUri',function(request,response) {
@@ -464,11 +850,11 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-wea
 	
 	var detailsPage = dataPage[detailsWeapon.attr.category[0]];
 	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].weapClass + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = dataPage.weapon[detailsPage.langCode].desc.replace('[WEAPONNAME]',detailsWeapon.attr.name).replace('[WEAPONCLASS]',detailsWeapon[detailsPage.langCode].weapClass.toLowerCase());
+	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = dataPage.weapon[detailsPage.langCode].desc.replace('[WEAPONNAME]',detailsWeapon.attr.name).replace('[WEAPONCLASS]',detailsWeapon[detailsPage.langCode].prodClass.toLowerCase());
 	
-	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.weapUri;
-	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.weapUri;
+	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.prodUri;
+	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.prodUri;
 	
 	
 	
@@ -495,10 +881,10 @@ app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)/:weapo
 	
 	var detailsPage = dataPage.ranged;
 	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].weapClass + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaTitle = detailsWeapon.attr.name + ' | ' + detailsWeapon[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
 	
-	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.weapUri;
-	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.weapUri;
+	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsWeapon.en.prodUri;
+	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsWeapon.fr.prodUri;
 	
 	
 	
@@ -511,7 +897,7 @@ app.get('/:langCode(en|fr)/:categoryPage(ranged-weapons|armes-a-distance)/:weapo
 app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee)/:weaponUri',function(request,response) {
 	var weaponDetails;
 	weaponData.melee.forEach(function(category) {
-		var weaponFilter = category.weapons.filter(function (weapon) {return weapon.en.weapUri == request.params.weaponUri});
+		var weaponFilter = category.weapons.filter(function (weapon) {return weapon.en.prodUri == request.params.weaponUri});
 		console.log('   ' + weaponFilter.length);
 		if (weaponFilter.length) {
 			weaponDetails = weaponFilter;
@@ -675,13 +1061,13 @@ var weaponData = {
 				price:32,
 				name:'Gladius',
 				en:{
-					weapClass:'Short Sword',
-					weapUri:'gladius-short-sword',
-					weapBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
+					prodClass:'Short Sword',
+					prodUri:'gladius-short-sword',
+					prodBlurb:'A true classic - its name literally meaning "sword" - this is a staple of Roman footsoldiers.'},
 				fr:{
-					weapClass:'Épée courte',
-					weapUri:'gladius-epee-courte',
-					weapBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
+					prodClass:'Épée courte',
+					prodUri:'gladius-epee-courte',
+					prodBlurb:'Un vrai classique - son nom signifiant littéralement «épée» - c\'est une base de footsolders romains.'},
 				attr:{
 					price:32,
 					damage:[1,6,0],
@@ -694,13 +1080,13 @@ var weaponData = {
 				price:39,
 				name:'Xiphos',
 				en:{
-					weapClass:'Short Sword',
-					weapUri:'xiphos-short-sword',
-					weapBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
+					prodClass:'Short Sword',
+					prodUri:'xiphos-short-sword',
+					prodBlurb:'Hailing from the Greeks, this feisty beauty knows how to make its mark. Traditionally used as a secondary weapon once the enemy has closed in, it comes out of its scabbard ready to maim.'},
 				fr:{
-					weapClass:'Épée courte',
-					weapUri:'xiphos-epee-courte',
-					weapBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
+					prodClass:'Épée courte',
+					prodUri:'xiphos-epee-courte',
+					prodBlurb:'Originaire des Grecs, cette beauté fougueuse sait comment faire sa marque. Traditionnellement utilisé comme une arme secondaire une fois l\'ennemi fermé, il sort de son fourreau prêt à mutiler.'},
 				attr:{
 					price:32,
 					damage:[1,6,0],

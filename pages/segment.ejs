@@ -1,0 +1,16 @@
+		<h1><%= detailsPage[detailsPage.langCode].title %></h1>
+		<% detailsProducts.forEach(function(segment) {%><section>
+			<h2><a href="<%= segment.dataPage[detailsPage.langCode].path %>"><%= segment.dataPage[detailsPage.langCode].title %></a></h2>
+			<% segment.category.forEach(function(category) { %>
+			<h3><% if (category.products.length == 1) { %><%= category[detailsPage.langCode][0] %><% } else { %><%= category[detailsPage.langCode][1] %><% }; %></h3>
+			<ul class="listWeapon">
+				<% category.products.forEach(function(product) { %><li>
+					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + product[detailsPage.langCode].prodUri %>">
+						<h3><%= product.attr.name %></h3>
+						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= product.en.prodUri%>-icon-90.png" width="90" height="90" alt="">
+					</a>
+					<p><%= product[detailsPage.langCode].prodBlurb.split(".")[0] %></p>
+				</li><% }); %>
+			</ul><% }); %>	
+		</section>
+		<% }); %>
