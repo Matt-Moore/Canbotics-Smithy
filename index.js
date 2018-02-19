@@ -554,16 +554,16 @@ dataWeapon.katana.similar = [dataWeapon.claymore,dataWeapon.scimitar];
 dataWeapon.bo.similar = [dataWeapon.spear];
 dataWeapon.spear.similar = [dataWeapon.bo];
 dataWeapon.axe.similar = [dataWeapon.bo,dataWeapon.xiphos];
-dataWeapon.shortbow.similar = [dataWeapon.longbow,dataWeapon.crossbow];
-dataWeapon.longbow.similar = [dataWeapon.shortbow,dataWeapon.crossbow];
-dataWeapon.crossbow.similar = [dataWeapon.shortbow,dataWeapon.longbow];
-dataWeapon.slingshot.similar = [dataWeapon.shortbow,dataWeapon.flintlock];
-dataWeapon.flintlock.similar = [dataWeapon.crossbow,dataWeapon.slingshot];
+dataWeapon.shortbow.similar = [dataWeapon.longbow,dataWeapon.crossbow,dataWeapon.slingshot];
+dataWeapon.longbow.similar = [dataWeapon.shortbow,dataWeapon.crossbow,dataWeapon.slingshot];
+dataWeapon.crossbow.similar = [dataWeapon.shortbow,dataWeapon.longbow,dataWeapon.flintlock];
+dataWeapon.slingshot.similar = [dataWeapon.shortbow,dataWeapon.longbow,dataWeapon.crossbow];
+dataWeapon.flintlock.similar = [dataWeapon.crossbow,dataWeapon.shortbow,dataWeapon.slingshot];
 dataWeapon.hammer.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
 dataWeapon.shillelagh.similar = [dataWeapon.hammer,dataWeapon.necronomicon];
 dataWeapon.necronomicon.similar = [dataWeapon.hammer,dataWeapon.shillelagh];
 
-dataArmour.robe.similar = [dataArmour.robe,dataWeapon.shillelagh,dataWeapon.necronomicon]
+dataArmour.robe.similar = [dataArmour.robe,dataArmour.robe,dataArmour.robe]
 
 
 var listCategory = {

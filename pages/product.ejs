@@ -15,9 +15,11 @@
 		
 		<section id="warranty">
 			<h2><% if (detailsPage.langCode == "en") { -%>Warranty<% } else { -%>Garantie<% }; -%></h2>
-			<div class="tmp_warranty">
+			<div class="component col12">
 <% if (detailsPage.langCode == "en") { if (detailsPage.navSegment == "weapon") { %>
-				<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="A blade worn and weathered before its time; from one of our competitors.">
+				<div>
+					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="A blade worn and weathered before its time; from one of our competitors.">
+				</div>
 				<div>
 					<p>We at <%= dataSite.title.en %> know there's nothing more frustrating, or terrifying when your weapon breaks mid-battle. It's for this reason that we craft all our weapons only from the best materials, and each forged by our master smiths. Every design must pass many rigorous tests, proving they are top quality.</p>
 					<p>That's why you can rest easy with a purchase from us, we are so confident that each of our weapons comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailsProduct.attr.name %>:</p>
@@ -29,7 +31,9 @@
 					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
 <% } else if (detailsPage.navSegment == "armour") { %>			
-				<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="A worn and rusted set of armour, removed from service before its time; from one of our competitors.">
+				<div>
+					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="A worn and rusted set of armour, removed from service before its time; from one of our competitors.">
+				</div>
 				<div>
 					<p>We at <%= dataSite.title.en %> know that often in combat, the only thing standing between your enemy's weapon and your gut, is your armour. We are also well aware, that you can't be thinking about your armour's performance in the heat of battle. That's why we use nothing but the best products, forged by the best master smiths around. Every design must pass many rigorous tests, proving they are top quality.</p>
 					<p>That's why you can rest easy with a purchase from us, we are so confident that all of our armour comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailsProduct.attr.name %>:</p>
@@ -42,7 +46,9 @@
 				</div>
 <% } else { %>			
 <% }; } else { if (detailsPage.navSegment == "weapon") { %>
-				<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
+				<div>
+					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
+				</div>
 				<div>
 					<p>Chez <%= dataSite.title.fr %>, nous savons qu'il n'y a rien de plus frustrant, ou terrifiant quand votre arme se brise au milieu de la bataille. C'est pour cette raison que nous fabriquons toutes nos armes uniquement à partir des meilleurs matériaux et forgés par nos maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
 					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que chacune de nos armes est livré avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailsProduct.attr.name %> <%= dataSite.title.fr %> :</p>
@@ -54,7 +60,9 @@
 					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
 				</div>
 <% } else if (detailsPage.navSegment == "armour") { %>			
-				<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="Une armure usée et rouillée, retirée du service avant son heure; de l'un de nos concurrents.">
+				<div>
+					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="Une armure usée et rouillée, retirée du service avant son heure; de l'un de nos concurrents.">
+				</div>
 				<div>
 					<p>Chez <%= dataSite.title.fr %>, nous savons que souvent au combat, la seule chose qui se trouve entre l'arme de votre ennemi et votre intestin, c'est votre armure. Nous savons également que vous ne pouvez pas penser à la performance de votre armure dans le feu de la bataille. C'est pourquoi nous n'utilisons que les meilleurs produits, forgés par les meilleurs maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
 					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que toutes nos armures sont livrées avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailsProduct.attr.name %> <%= dataSite.title.fr %> :</p>
@@ -73,7 +81,7 @@
 		<section id="similar">
 			<h2><% if (detailsPage.langCode == "en") { if (detailsPage.navSegment == "weapon") { %>Similar Weapons<% } else if (detailsPage.navSegment == "armour") { %>Similar Armour<% } else { %>Similar Ammunition<% }; } else { if (detailsPage.navSegment == "weapon") { %>Armes similaires<% } else if (detailsPage.navSegment == "armour") { %>Armure similaire<% } else { %>Munitions similaires<% }; }; %></h2>
 
-			<ul class="tmp_listProduct">
+			<ul class="component list product">
 				<% detailsProduct.similar.forEach(function(product) { %><li>
 					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + product[detailsPage.langCode].prodUri %>">
 						<h3><%= product.attr.name %></h3>
