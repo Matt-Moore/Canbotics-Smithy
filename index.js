@@ -405,11 +405,11 @@ var dataWeapon = {
 		en:{
 			prodClass:'Powerful Mid-range Marksman Bow',
 			prodUri:'crossbow-powerful-mid-range-marksman-bow',
-			prodBlurb:'An imposing staff from Japan, with proper training it\'ll have your enemies fleeing!'},
+			prodBlurb:'Fire bolts accurately, through your enemies.'},
 		fr:{
 			prodClass:'Puissant arc de tireur de milieu de gamme',
 			prodUri:'crossbow-puissant-arc-de-tireur-de-milieu-de-gamme',
-			prodBlurb:'Un bâton imposant en provenance du Japon, avec un entraînement approprié, fera fuir vos ennemis!'},
+			prodBlurb:'Les boulons de feu avec précision, à travers vos ennemis.'},
 		attr:{
 			name:'Crossbow',
 			skill:{en:'Sniper',fr:'Buteur'},
@@ -423,12 +423,12 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	slingshot:{
 		en:{
-			prodClass:'Powerful Short-range Pellet Sling',
-			prodUri:'slingshot-powerful-short-range-pellet-sling',
+			prodClass:'Low-power Short-range Pellet Sling',
+			prodUri:'slingshot-low-power-short-range-pellet-sling',
 			prodBlurb:'Don\'t have a cow, man!'},
 		fr:{
-			prodClass:'Élingue puissante de granule à courte portée',
-			prodUri:'slingshot-elingue-puissante-de-granule-a-courte-portee',
+			prodClass:'Élingue à granules courte portée de faible puissance',
+			prodUri:'slingshot-elingue-a-granules-courte-portee-de-faible-puissance',
 			prodBlurb:'Je n\'ai pas de vache, mec.!'},
 		attr:{
 			name:'Slingshot',
@@ -461,19 +461,19 @@ var dataWeapon = {
 			weight:0,
 			dimMin:[0,0,0],
 			dimMax:[0,0,0]}},
-	hammer:{
+	wand:{
 		en:{
-			prodClass:'Testing',
-			prodUri:'hammer-testing',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+			prodClass:'Slim Magic Focus',
+			prodUri:'wand-slim-magic-focus',
+			prodBlurb:'Familiar not included.'},
 		fr:{
-			prodClass:'Essai',
-			prodUri:'hammer-essair',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+			prodClass:'Focus magique mince',
+			prodUri:'wand-focus-magique-mince',
+			prodBlurb:'Familier non inclus.'},
 		attr:{
-			name:'Hammer',
-			skill:{en:'Wand',fr:'Baguettes magique'},
-			category:['magic','wand'],
+			name:'Wand',
+			skill:{en:'Magic Focus',fr:'Focus magique'},
+			category:['magic','focus'],
 			range:0,
 			price:0,
 			damage:[0,0,0],
@@ -483,16 +483,16 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	shillelagh:{
 		en:{
-			prodClass:'Testing',
-			prodUri:'shillelagh-testing',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+			prodClass:'Gaelic Magic Staff',
+			prodUri:'shillelagh-gaelic-magic-staff',
+			prodBlurb:'Both physically and magically daunting.'},
 		fr:{
-			prodClass:'Essai',
-			prodUri:'shillelagh-essair',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+			prodClass:'Bâton magique gaélique',
+			prodUri:'shillelagh-baton-magique-gaelique',
+			prodBlurb:'À la fois physiquement et magiquement décourageant.'},
 		attr:{
 			name:'Shillelagh',
-			skill:{en:'Staff',fr:'Bâtons magique'},
+			skill:{en:'Staff',fr:'Bâton magique'},
 			category:['magic','staff'],
 			range:0,
 			price:0,
@@ -503,16 +503,16 @@ var dataWeapon = {
 			dimMax:[0,0,0]}},
 	necronomicon:{
 		en:{
-			prodClass:'Testing',
-			prodUri:'necronomicon-testing',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+			prodClass:'Powerful Summoning Grimoire',
+			prodUri:'necronomicon-powerful-summoning-grimoire',
+			prodBlurb:'Now even you may summon everyone\'s favourite ancient one.'},
 		fr:{
-			prodClass:'Essai',
-			prodUri:'necronomicon-essair',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+			prodClass:'Grimoire puissant d\'invocation',
+			prodUri:'necronomicon-grimoire-puissant-d-invocation',
+			prodBlurb:'Maintenant même vous pouvez invoquer l\'ancien préféré de tout le monde.'},
 		attr:{
 			name:'Necronomicon',
-			skill:{en:'Book',fr:'Grimoires'},
+			skill:{en:'Book',fr:'Grimoire'},
 			category:['magic','book'],
 			range:0,
 			price:0,
@@ -526,13 +526,13 @@ var dataWeapon = {
 var dataArmour = {
 	robe:{
 		en:{
-			prodClass:'Testing',
-			prodUri:'robe-testing',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur..'},
+			prodClass:'Light Full-body Clothing',
+			prodUri:'robe-light-full-body-clothing',
+			prodBlurb:'Essential for magic crafting.'},
 		fr:{
-			prodClass:'Essai',
-			prodUri:'robe-essair',
-			prodBlurb:'Bacon ipsum dolor amet buffalo veniam duis, ground round jowl bacon consectetur.'},
+			prodClass:'Vêtements légers complets',
+			prodUri:'robe-vetements-legers-complets',
+			prodBlurb:'Essentiel pour l\'artisanat magique.'},
 		attr:{
 			name:'Robe',
 			skill:{en:'Robe',fr:'Peignoir'},
@@ -559,9 +559,9 @@ dataWeapon.longbow.similar = [dataWeapon.shortbow,dataWeapon.crossbow,dataWeapon
 dataWeapon.crossbow.similar = [dataWeapon.shortbow,dataWeapon.longbow,dataWeapon.flintlock];
 dataWeapon.slingshot.similar = [dataWeapon.shortbow,dataWeapon.longbow,dataWeapon.crossbow];
 dataWeapon.flintlock.similar = [dataWeapon.crossbow,dataWeapon.shortbow,dataWeapon.slingshot];
-dataWeapon.hammer.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
-dataWeapon.shillelagh.similar = [dataWeapon.hammer,dataWeapon.necronomicon];
-dataWeapon.necronomicon.similar = [dataWeapon.hammer,dataWeapon.shillelagh];
+dataWeapon.wand.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
+dataWeapon.shillelagh.similar = [dataWeapon.wand,dataWeapon.necronomicon];
+dataWeapon.necronomicon.similar = [dataWeapon.wand,dataWeapon.shillelagh];
 
 dataArmour.robe.similar = [dataArmour.robe,dataArmour.robe,dataArmour.robe]
 
@@ -608,10 +608,10 @@ var listCategory = {
 				dataWeapon.flintlock]}],
 	magic:[
 		{
-			en:['Wand','Wands'],
-			fr:['Baguette magique','Baguettes magique'],
+			en:['Focus','Foci'],
+			fr:['Concentrer','Concentrers'],
 			products:[
-				dataWeapon.hammer]},
+				dataWeapon.wand]},
 		{
 			en:['Staff','Staves'],
 			fr:['Bâton magique','Bâtons magique'],
@@ -714,23 +714,19 @@ var listUri = {
 	'longbow-long-distance-archery-bow':dataWeapon.longbow,
 	'longbow-arc-de-tir-a-longue-distance':dataWeapon.longbow,
 	'crossbow-powerful-mid-range-marksman-bow':dataWeapon.crossbow,
-	'slingshot-powerful-short-range-pellet-sling':dataWeapon.slingshot,
-	'slingshot-elingue-puissante-de-granule-a-courte-portee':dataWeapon.slingshot,
+	'slingshot-low-power-short-range-pellet-sling':dataWeapon.slingshot,
+	'slingshot-elingue-a-granules-courte-portee-de-faible-puissance':dataWeapon.slingshot,
 	'flintlock-powerful-short-range-flint-gun':dataWeapon.flintlock,
 	'flintlock-puissant-pistolet-a-silex-a-courte-portee':dataWeapon.flintlock,
-	'hammer-testing':dataWeapon.hammer,
-	'hammer-essair':dataWeapon.hammer,
-	'shillelagh-testing':dataWeapon.shillelagh,
-	'shillelagh-essair':dataWeapon.shillelagh,
-	'necronomicon-testing':dataWeapon.necronomicon,
-	'necronomicon-essair':dataWeapon.necronomicon,
-	'robe-testing':dataArmour.robe,
-	'robe-essair':dataArmour.robe
+	'wand-slim-magic-focus':dataWeapon.wand,
+	'wand-focus-magique-mince':dataWeapon.wand,
+	'shillelagh-gaelic-magic-staff':dataWeapon.shillelagh,
+	'shillelagh-baton-magique-gaelique':dataWeapon.shillelagh,
+	'necronomicon-powerful-summoning-grimoire':dataWeapon.necronomicon,
+	'necronomicon-grimoire-puissant-d-invocation':dataWeapon.necronomicon,
+	'robe-light-full-body-clothing':dataArmour.robe,
+	'robe-vetements-legers-complets':dataArmour.robe
 };
-
-
-
-
 
 
 
