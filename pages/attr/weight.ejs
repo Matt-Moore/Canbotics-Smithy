@@ -1,0 +1,4 @@
+				<li class="weight"><% if (detailsPage.langCode == "en") { %>
+					<h3>Weight</h3><div><%= detailsProduct.attr.weight %> <span>kg</span></div><small><%= Math.round(detailsProduct.attr.weight * 2.2 * 100) / 100 %> lbs</small><% } else { %>
+					<h3>Poids</h3><div><%= detailsProduct.attr.weight %> <span>kg</span></div><small><%= Math.round(detailsProduct.attr.weight * 2.2 * 100) / 100 %> lb</small><% }; %>
+				</li>

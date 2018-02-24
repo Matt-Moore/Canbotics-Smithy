@@ -1,6 +1,41 @@
 		<header>
 			<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= detailsProduct.en.prodUri%>-banner.jpg" width="980" height="450" alt="">
 			<%# include template/attr.ejs %>
+			<h2 aria-hidden="true"><% if (detailsPage.langCode == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
+			<ul class="keyattr">
+<% include attr/price.ejs %>
+<% if (detailsPage.navSegment == "weapon") { -%>
+<% include attr/damage.ejs %>
+<% if (detailsProduct.attr.category[1] == "sword" || detailsProduct.attr.category[1] == "axe") { -%>
+<% include attr/speed.ejs %>
+<% include attr/weight.ejs %>
+<% } else if (detailsProduct.attr.category[1] == "pole") { -%>
+<% include attr/reach.ejs %>
+<% include attr/speed.ejs %>
+<% } else if (detailsProduct.attr.category[0] == "ranged") { -%>
+<% include attr/skill.ejs %>
+<% include attr/range.ejs %>
+<% } else { -%>
+<% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% }; -%>
+<% } else if (detailsPage.navSegment == "armour") { -%>
+<% include attr/armourclass.ejs %>
+<% if (detailsProduct.attr.category[0] == "light") { -%>
+<% include attr/aetherconductivity.ejs %>
+<% include attr/coverage.ejs %>
+<% } else if (detailsProduct.attr.category[0] == "medium") { -%>
+<% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% } else if (detailsProduct.attr.category[0] == "heavy") { -%>
+<% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% } else { -%>
+<% include attr/placeholder.ejs %>
+<% include attr/placeholder.ejs %>
+<% }; -%>
+<% }; -%>
+			</ul>
 		</header>
 
 		<section id="design">

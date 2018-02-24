@@ -1,0 +1,4 @@
+				<li class="reach"><% if (detailsPage.langCode == "en") { %>
+					<h3>Reach</h3><div><%= detailsProduct.attr.range %> <span>m</span></div><small><%= Math.round(detailsProduct.attr.range * 1.09 * 100) / 100 %> yards</small><% } else { %>
+					<h3>Atteindre</h3><div><%= detailsProduct.attr.range %> <span>m</span></div><small><%= Math.round(detailsProduct.attr.range * 1.09 * 100) / 100 %> yards</small><% }; %>
+				</li>

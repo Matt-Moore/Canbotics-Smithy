@@ -497,7 +497,7 @@ var dataWeapon = {
 			range:0,
 			price:0,
 			damage:[0,0,0],
-			speed:0,
+			speed:1,
 			weight:0,
 			dimMin:[0,0,0],
 			dimMax:[0,0,0]}},
@@ -536,11 +536,51 @@ var dataArmour = {
 		attr:{
 			name:'Robe',
 			skill:{en:'Robe',fr:'Peignoir'},
-			category:['light','robe'],
-			range:0,
-			price:0,
-			damage:[0,0,0],
-			speed:0,
+			category:['light','full'],
+			price:27,
+			armourClass:3,
+			coverage:[90,'full'],
+			aetherConductivity:[76,4],
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	corset:{
+		en:{
+			prodClass:'Form Fitting and Shaping Top',
+			prodUri:'corset-form-fitting-and-shaping-top',
+			prodBlurb:'Add a Victorian flare to your wardrobe.'},
+		fr:{
+			prodClass:'Forme de montage et de façonnage',
+			prodUri:'corset-forme-de-montage-et-de-faconnage',
+			prodBlurb:'Ajouter une fusée victorienne à votre garde-robe.'},
+		attr:{
+			name:'Corset',
+			skill:{en:'Bodice',fr:'Corsage'},
+			category:['light','top'],
+			price:13,
+			armourClass:1,
+			coverage:[30,'upper'],
+			aetherConductivity:[45,8],
+			weight:0,
+			dimMin:[0,0,0],
+			dimMax:[0,0,0]}},
+	hakama:{
+		en:{
+			prodClass:'Exotic Oriental Pants',
+			prodUri:'hakama-exotic-oriental-pants',
+			prodBlurb:'Classic Japanese style, with high functionality.'},
+		fr:{
+			prodClass:'Pantalon oriental exotique',
+			prodUri:'hakama-pantalon-oriental-exotique',
+			prodBlurb:'Style japonais classique, avec des fonctionnalités élevées.'},
+		attr:{
+			name:'Hakama',
+			skill:{en:'pants',fr:'Peignoir'},
+			category:['light','bottom'],
+			price:15,
+			armourClass:3,
+			coverage:[60,'lower'],
+			aetherConductivity:[53,19],
 			weight:0,
 			dimMin:[0,0,0],
 			dimMax:[0,0,0]}}
@@ -563,7 +603,9 @@ dataWeapon.wand.similar = [dataWeapon.shillelagh,dataWeapon.necronomicon];
 dataWeapon.shillelagh.similar = [dataWeapon.wand,dataWeapon.necronomicon];
 dataWeapon.necronomicon.similar = [dataWeapon.wand,dataWeapon.shillelagh];
 
-dataArmour.robe.similar = [dataArmour.robe,dataArmour.robe,dataArmour.robe]
+dataArmour.robe.similar = [dataArmour.corset,dataArmour.hakama]
+dataArmour.corset.similar = [dataArmour.robe,dataArmour.hakama]
+dataArmour.hakama.similar = [dataArmour.robe,dataArmour.corset]
 
 
 var listCategory = {
@@ -627,7 +669,9 @@ var listCategory = {
 			en:['Robe','Robes'],
 			fr:['Peignoir','Peignoirs'],
 			products:[
-				dataArmour.robe]}],
+				dataArmour.robe,
+				dataArmour.corset,
+				dataArmour.hakama]}],
 	medium:[
 		{
 			en:['Test','Tests'],
@@ -725,11 +769,12 @@ var listUri = {
 	'necronomicon-powerful-summoning-grimoire':dataWeapon.necronomicon,
 	'necronomicon-grimoire-puissant-d-invocation':dataWeapon.necronomicon,
 	'robe-light-full-body-clothing':dataArmour.robe,
-	'robe-vetements-legers-complets':dataArmour.robe
+	'robe-vetements-legers-complets':dataArmour.robe,
+	'corset-form-fitting-and-shaping-top':dataArmour.corset,
+	'corset-forme-de-montage-et-de-faconnage':dataArmour.corset,
+	'hakama-exotic-oriental-pants':dataArmour.hakama,
+	'hakama-pantalon-oriental-exotique':dataArmour.hakama
 };
-
-
-
 
 
 
@@ -1119,7 +1164,8 @@ var weaponData = {
 				attr:{
 					price:32,
 					damage:[1,6,0],
-					speed:1.5,
+					armourclass:0,
+			speed:1.5,
 					weight:1,
 					dimMin:[60,45,5],
 					dimMax:[85,68,7]}
@@ -1138,7 +1184,8 @@ var weaponData = {
 				attr:{
 					price:32,
 					damage:[1,6,0],
-					speed:1.5,
+					armourclass:0,
+			speed:1.5,
 					weight:1,
 					dimMin:[60,45,5],
 					dimMax:[85,68,7]}
