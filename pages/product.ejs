@@ -21,15 +21,18 @@
 <% }; -%>
 <% } else if (detailsPage.navSegment == "armour") { -%>
 <% include attr/armourclass.ejs %>
-<% if (detailsProduct.attr.category[0] == "light") { -%>
+<% if (detailsProduct.attr.category[0] == "clothes") { -%>
 <% include attr/aetherconductivity.ejs %>
 <% include attr/coverage.ejs %>
 <% } else if (detailsProduct.attr.category[0] == "medium") { -%>
 <% include attr/placeholder.ejs %>
 <% include attr/placeholder.ejs %>
 <% } else if (detailsProduct.attr.category[0] == "heavy") { -%>
-<% include attr/placeholder.ejs %>
-<% include attr/placeholder.ejs %>
+<% include attr/mitigation.ejs %>
+<% include attr/aetherresistance.ejs %>
+<% } else if (detailsProduct.attr.category[1] == "shield") { -%>
+<% include attr/aetherresistance.ejs %>
+<% include attr/weight.ejs %>
 <% } else { -%>
 <% include attr/placeholder.ejs %>
 <% include attr/placeholder.ejs %>
