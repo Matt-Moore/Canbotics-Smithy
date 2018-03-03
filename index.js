@@ -1,5 +1,18 @@
 var express = require('express');
+var mysql = require('mysql');
 var app = express();
+
+dbSmithy.connect(function(err) {
+	if (err) {
+		console.error('error connecting: ' + err.stack);
+		return;
+	}
+
+	console.log('connected as id ' + dbSmithy.threadId);
+});
+	//dbSmithy.end();
+
+
 
 app.set('port',(process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -1051,6 +1064,25 @@ app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,re
 
 
 
+/* ============================================== TESTING */
+app.get('/:langCode(en|fr)/test',function(request,response) {
+
+	dbSmithy.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+		if (error) throw error;
+		console.log('The solution is: ', results[0].solution);
+	});
+
+var x = process.env.DBSMITHY_CRED;
+
+	console.log("=======");
+	console.log(x);
+	console.log("=======");
+	console.log("=======");
+	
+	
+	response.render('test',{});
+	
+});
 
 
 

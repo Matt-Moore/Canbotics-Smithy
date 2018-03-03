@@ -8,7 +8,7 @@
 						<h4><%= product.attr.name %></h4>
 						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= product.en.prodUri%>-icon-90.png" width="90" height="90" alt="">
 					</a>
-					<p><%= product[detailsPage.langCode].prodBlurb.split(".")[0] %></p>
+					<p><%= product[detailsPage.langCode].prodBlurb %></p>
 				</li><% }); %>
 			</ul><% }); %>	
 		</section>
