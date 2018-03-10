@@ -43,7 +43,7 @@
 					</li>
 				</ul>
 				<ul>
-					<li><a href="/fr<%= detailPage.uri.fr %>">Français</a></li>
+					<li><a href="/fr<%= detailPage.canon.fr %>">Français</a></li>
 				</ul><% } else { %><h2 id="siteNavTitle">Navigation du site</h2>
 				<ul>
 					<li><a href="/fr"<% if (detailPage.nav.segment == "index") { %> aria-current="location"<% }; %>>Accueil</a></li>
@@ -71,7 +71,7 @@
 					</li>
 				</ul>
 				<ul>
-					<li><a href="/en<%= detailPage.uri.en %>">English</a></li>
+					<li><a href="/en<%= detailPage.canon.en %>">English</a></li>
 				</ul><% }; }; %>
 			</nav>
 		</div>
