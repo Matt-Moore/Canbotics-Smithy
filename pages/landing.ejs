@@ -5,11 +5,11 @@
 	<meta name="description" content="Select Language / Choisir la langue">
 	<title><%= dataSite.title.en %> / <%= dataSite.title.fr %></title>
 
-	<link rel="canonical" href="<%= dataSite.uriPath.rootSite %>" />
-	<link rel="alternate" hreflang="en" href="<%= dataSite.uriPath.rootSite %>/en" />
-	<link rel="alternate" hreflang="fr" href="<%= dataSite.uriPath.rootSite %>/fr" />
+	<link rel="canonical" href="<%= dataSite.uri.rootSite %>" />
+	<link rel="alternate" hreflang="en" href="<%= dataSite.uri.rootSite %>/en" />
+	<link rel="alternate" hreflang="fr" href="<%= dataSite.uri.rootSite %>/fr" />
 
-	<link rel="stylesheet" type="text/css" href="<%= dataSite.uriPath.rootAsset %>canbotics-smithy.css" />	
+	<link rel="stylesheet" type="text/css" href="<%= dataSite.uri.rootAsset %>canbotics-smithy.css" />	
 </head>
 <body>
 	<header>
@@ -17,8 +17,8 @@
 			<h1><%= dataSite.title.en %> / <%= dataSite.title.fr %></h1>
 			<nav>
 				<ul>
-					<li><a href="/en">English</a></li>
-					<li><a href="/fr">Français</a></li>
+					<li><a href="/en" hreflang="en">English</a></li>
+					<li><a href="/fr" hreflang="fr">Français</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -27,8 +27,10 @@
 	<main id="landing">
 		<h1>Select Language / Choisir la langue</h1>
 		
-		<a href="/en/">English</a>
-		<a href="/fr/">Français</a>
+		<a href="/en/" hreflang="en">English</a>
+		<a href="/fr/" hreflang="fr">Français</a>
 	</main>
+	<script src="http://asset.canbotics.ca/global/jquery-3.3.1.min.js"></script>
+	<script src="http://asset.canbotics.ca/smithy/canbotics-smithy.js"></script>
 </body>
 </html>

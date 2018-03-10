@@ -1,4 +1,0 @@
-				<li class="coverage"><% if (detailsPage.langCode == "en") { %>
-					<h3>Coverage</h3><div><%= detailsProduct.attr.coverage %><span>%</span></div><small><% if (detailsProduct.attr.category[1] == "full") { %>full body<% } else if (detailsProduct.attr.category[1] == "top") { %>upper body<% } else if (detailsProduct.attr.category[1] == "bottom") { %>lower body<% }; %></small><% } else { %>
-					<h3>Couverture</h3><div><%= detailsProduct.attr.coverage %><span>%</span></div><small><% if (detailsProduct.attr.coverage[1] == "full") { %>tout le corps<% } else if (detailsProduct.attr.category[1] == "top") { %>haut du corps<% } else if (detailsProduct.attr.category[1] == "bottom") { %>bas du corps<% }; %></small><% }; %>
-				</li>

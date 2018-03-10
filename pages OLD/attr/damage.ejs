@@ -1,4 +1,0 @@
-				<li class="damage"><% if (detailsPage.langCode == "en") { %>
-					<h3>Damage</h3><div><%= detailsProduct.attr.damage[0] %><span>d</span><%= detailsProduct.attr.damage[1] %><% if (detailsProduct.attr.damage[2]) { %> <span><% if (detailsProduct.attr.damage[2] > 0) { %>+<% }; %><%= detailsProduct.attr.damage[2] %></span><% }; %></div><small>hit points<sup><a href="#dis_ddag">&Dagger;</a></sup></small><% } else { %>
-					<h3>Dommage</h3><div><%= detailsProduct.attr.damage[0] %><span>d</span><%= detailsProduct.attr.damage[1] %><% if (detailsProduct.attr.damage[2]) { %> <span><% if (detailsProduct.attr.damage[2] > 0) { %>+<% }; %><%= detailsProduct.attr.damage[2] %></span><% }; %></div><small>points de dommage<sup><a href="#dis_ddag">&Dagger;</a></sup></small><% }; %>
-				</li>
