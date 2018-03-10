@@ -1,12 +1,18 @@
-		<% detailsProducts.forEach(function(category) {%><section>
-			<h2><% if (category.products.length == 1) { %><%= category[detailsPage.langCode][0] %><% } else { %><%= category[detailsPage.langCode][1] %><% }; %></h2>
+
+<!--
+		detailCategory.prod[rsListProd.subcat_name].push({title:rsListProd.prod_title,uri:rsListProd.prod_uri,blurb:rsListProd.prod_blurb});
+		detailCategory.subcat
+		rsListProd.subcat_name + "|" + rsListProd.subcat_title
+--->
+		<% detailCategory.subcat.forEach(function(category) {%><section>
+			<h2><%= category.split("|")[1] %></h2>
 			<ul class="component list product">
-				<% category.products.forEach(function(product) { %><li>
-					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + product[detailsPage.langCode].prodUri %>">
-						<h3><%= product.attr.name %></h3>
-						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= product.en.prodUri%>-icon-90.png" width="90" height="90" alt="">
+				<% detailCategory.prod[category.split("|")[0]].forEach(function(product) { %><li>
+					<a href="/<%= detailPage.lang + detailPage.uri[detailPage.lang] + product.uri %>">
+						<h3><%= product.title %></h3>
+						<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + product.uriAsset %>-icon-90.png" width="90" height="90" alt="">
 					</a>
-					<p><%= product[detailsPage.langCode].prodBlurb %></p>
+					<p><%= product.blurb %></p>
 				</li><% }); %>
 			</ul>
 		</section>

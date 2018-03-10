@@ -1,4 +1,5 @@
-				<li class="armourclass"><% if (detailsPage.langCode == "en") { %>
-					<h3>Defence</h3><div><%= detailsProduct.attr.armourClass %></div><small>armour class<sup><a href="#dis_ddag">&Dagger;</a></sup></small><% } else { %>
-					<h3>La défense</h3><div><%= detailsProduct.attr.armourClass %></div><small>classe d'armure<sup><a href="#dis_ddag">&Dagger;</a></sup></small><% }; %>
-				</li>
+				<% if (detailPage.lang == "en") { %>
+					<h3>Defence</h3><div><%= detailProduct.attr.value.armourclass %></div><small>armour class<sup><a href="#dis_ddag">&Dagger;</a></sup></small>
+				<% } else { %>
+					<h3>La défense</h3><div><%= detailProduct.attr.value.armourclass %></div><small>classe d'armure<sup><a href="#dis_ddag">&Dagger;</a></sup></small>
+				<% }; %>

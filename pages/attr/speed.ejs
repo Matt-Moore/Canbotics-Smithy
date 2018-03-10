@@ -1,4 +1,5 @@
-				<li class="speed"><% if (detailsPage.langCode == "en") { %>
-					<h3>Speed</h3><div><%= detailsProduct.attr.speed %></div><small>seconds</small><% } else { %>
-					<h3>La vitesse</h3><div><%= detailsProduct.attr.speed %></div><small>secondes</small><% }; %>
-				</li>
+				<% if (detailPage.lang == "en") { %>
+					<h3>Speed</h3><div><%= detailProduct.attr.value.speed %></div><small>seconds</small>
+				<% } else { %>
+					<h3>La vitesse</h3><div><%= detailProduct.attr.value.speed %></div><small>secondes</small>
+				<% }; %>

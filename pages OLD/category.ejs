@@ -1,0 +1,13 @@
+		<% detailsProducts.forEach(function(category) {%><section>
+			<h2><% if (category.products.length == 1) { %><%= category[detailsPage.langCode][0] %><% } else { %><%= category[detailsPage.langCode][1] %><% }; %></h2>
+			<ul class="component list product">
+				<% category.products.forEach(function(product) { %><li>
+					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + product[detailsPage.langCode].prodUri %>">
+						<h3><%= product.attr.name %></h3>
+						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= product.en.prodUri%>-icon-90.png" width="90" height="90" alt="">
+					</a>
+					<p><%= product[detailsPage.langCode].prodBlurb %></p>
+				</li><% }); %>
+			</ul>
+		</section>
+		<% }); %>

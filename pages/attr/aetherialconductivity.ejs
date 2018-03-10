@@ -1,0 +1,5 @@
+				<% if (detailPage.lang == "en") { %>
+					<h3>Aetherial Conductivity</h3><div><%= detailProduct.attr.value.aetherialconductivity.split("|")[0] %><span>&mu;<sup><%= detailProduct.attr.value.aetherialconductivity.split("|")[1] %></sup></span></div><small><% if (detailProduct.attr.value.aetherialconductivity.split("|")[0] <= 30) {%>resistance<% } else { %>amplification<% }; %></small>
+				<% } else { %>
+					<h3>Conductivité éthérée</h3><div><%= detailProduct.attr.value.aetherialconductivity.split("|")[0] %><span>&mu;<sup><%= detailProduct.attr.value.aetherialconductivity.split("|")[1] %></sup></span></div><small><% if (detailProduct.attr.value.aetherialconductivity.split("|")[0] <= 30) {%>résistance<% } else { %>amplification<% }; %></small>
+				<% }; %>

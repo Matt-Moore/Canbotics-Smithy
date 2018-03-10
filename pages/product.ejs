@@ -1,66 +1,31 @@
 		<header>
-			<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= detailsProduct.en.prodUri%>-banner.jpg" width="980" height="450" alt="">
-			<%# include template/attr.ejs %>
-			<h2 aria-hidden="true"><% if (detailsPage.langCode == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
+			<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + detailPage.uri.en %>-banner.jpg" width="980" height="450" alt="">
+			<h2 aria-hidden="true"><% if (detailPage.lang == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
 			<ul class="keyattr">
-<% include attr/price.ejs %>
-<% if (detailsPage.navSegment == "weapon") { -%>
-<% include attr/damage.ejs %>
-<% if (detailsProduct.attr.category[1] == "sword" || detailsProduct.attr.category[1] == "axe") { -%>
-<% include attr/speed.ejs %>
-<% include attr/weight.ejs %>
-<% } else if (detailsProduct.attr.category[1] == "pole") { -%>
-<% include attr/reach.ejs %>
-<% include attr/speed.ejs %>
-<% } else if (detailsProduct.attr.category[0] == "ranged") { -%>
-<% include attr/skill.ejs %>
-<% include attr/range.ejs %>
-<% } else { -%>
-<% include attr/placeholder.ejs %>
-<% include attr/placeholder.ejs %>
-<% }; -%>
-<% } else if (detailsPage.navSegment == "armour") { -%>
-<% include attr/armourclass.ejs %>
-<% if (detailsProduct.attr.category[0] == "clothes") { -%>
-<% include attr/aetherconductivity.ejs %>
-<% include attr/coverage.ejs %>
-<% } else if (detailsProduct.attr.category[0] == "medium") { -%>
-<% include attr/placeholder.ejs %>
-<% include attr/placeholder.ejs %>
-<% } else if (detailsProduct.attr.category[0] == "heavy") { -%>
-<% include attr/mitigation.ejs %>
-<% include attr/aetherresistance.ejs %>
-<% } else if (detailsProduct.attr.category[1] == "shield") { -%>
-<% include attr/aetherresistance.ejs %>
-<% include attr/weight.ejs %>
-<% } else { -%>
-<% include attr/placeholder.ejs %>
-<% include attr/placeholder.ejs %>
-<% }; -%>
-<% }; -%>
+				<% detailProduct.attr.order.forEach(function(attr) { %><li class="<%= attr %><% if (attr == "skill") { %> <%= detailProduct.attr.value.skill.split("|")[0] %><%};%>"><%- include("attr/" + attr + ".ejs") %></li><% }); %>
 			</ul>
 		</header>
 
 		<section id="design">
-			<h2><% if (detailsPage.langCode == "en") { -%>Design<% } else { -%>Conception<% }; -%></h2>
-<%- include(detailsPage.navSegment + "/" + detailsProduct[detailsPage.langCode].prodUri + "-design.ejs") %>
+			<h2><% if (detailPage.lang == "en") { -%>Design<% } else { -%>Conception<% }; -%></h2>
+<%- include(detailPage.nav.segment + detailPage.uri[detailPage.lang] + "-design.ejs") %>
 		</section>
 		
 		<section id="performance">
-			<h2><% if (detailsPage.langCode == "en") { -%>Performance<% } else { -%>Performance<% }; -%></h2>
-<%- include(detailsPage.navSegment + "/" + detailsProduct[detailsPage.langCode].prodUri + "-performance.ejs") %>
+			<h2><% if (detailPage.lang == "en") { -%>Performance<% } else { -%>Performance<% }; -%></h2>
+<%- include(detailPage.nav.segment + detailPage.uri[detailPage.lang] + "-performance.ejs") %>
 		</section>
 		
 		<section id="warranty">
-			<h2><% if (detailsPage.langCode == "en") { -%>Warranty<% } else { -%>Garantie<% }; -%></h2>
+			<h2><% if (detailPage.lang == "en") { -%>Warranty<% } else { -%>Garantie<% }; -%></h2>
 			<div class="component col12">
-<% if (detailsPage.langCode == "en") { if (detailsPage.navSegment == "weapon") { %>
+<% if (detailPage.lang == "en") { if (detailPage.nav.segment == "weapon") { %>
 				<div>
-					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="A blade worn and weathered before its time; from one of our competitors.">
+					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="A blade worn and weathered before its time; from one of our competitors.">
 				</div>
 				<div>
 					<p>We at <%= dataSite.title.en %> know there's nothing more frustrating, or terrifying when your weapon breaks mid-battle. It's for this reason that we craft all our weapons only from the best materials, and each forged by our master smiths. Every design must pass many rigorous tests, proving they are top quality.</p>
-					<p>That's why you can rest easy with a purchase from us, we are so confident that each of our weapons comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailsProduct.attr.name %>:</p>
+					<p>That's why you can rest easy with a purchase from us, we are so confident that each of our weapons comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailProduct.title %>:</p>
 					<ul>
 						<li>Complimentary sharpening and rust removal for 2 years<sup><a href="#dis_ast">*</a></sup></li>
 						<li>4 years/10 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#dis_astastast">***</a></sup></li>
@@ -68,13 +33,13 @@
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
-<% } else if (detailsPage.navSegment == "armour") { %>			
+<% } else if (detailPage.nav.segment == "armour") { %>			
 				<div>
-					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="A worn and rusted set of armour, removed from service before its time; from one of our competitors.">
+					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="A worn and rusted set of armour, removed from service before its time; from one of our competitors.">
 				</div>
 				<div>
 					<p>We at <%= dataSite.title.en %> know that often in combat, the only thing standing between your enemy's weapon and your gut, is your armour. We are also well aware, that you can't be thinking about your armour's performance in the heat of battle. That's why we use nothing but the best products, forged by the best master smiths around. Every design must pass many rigorous tests, proving they are top quality.</p>
-					<p>That's why you can rest easy with a purchase from us, we are so confident that all of our armour comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailsProduct.attr.name %>:</p>
+					<p>That's why you can rest easy with a purchase from us, we are so confident that all of our armour comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailProduct.title %>:</p>
 					<ul>
 						<li>Complimentary patching, polishing, and rust removal for 2 years<sup><a href="#dis_ast">*</a></sup></li>
 						<li>4 years/10 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#dis_astastast">***</a></sup></li>
@@ -83,13 +48,13 @@
 					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
 <% } else { %>			
-<% }; } else { if (detailsPage.navSegment == "weapon") { %>
+<% }; } else { if (detailPage.nav.segment == "weapon") { %>
 				<div>
-					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
+					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
 				</div>
 				<div>
 					<p>Chez <%= dataSite.title.fr %>, nous savons qu'il n'y a rien de plus frustrant, ou terrifiant quand votre arme se brise au milieu de la bataille. C'est pour cette raison que nous fabriquons toutes nos armes uniquement à partir des meilleurs matériaux et forgés par nos maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
-					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que chacune de nos armes est livré avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailsProduct.attr.name %> <%= dataSite.title.fr %> :</p>
+					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que chacune de nos armes est livré avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailProduct.title %> <%= dataSite.title.fr %> :</p>
 					<ul>
 						<li>Affûtage et décapage gratuit pendant 2 ans<sup><a href="#dis_ast">*</a></sup></li>
 						<li>4 ans / 10 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#dis_astastast">***</a></sup></li>
@@ -97,13 +62,13 @@
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
 				</div>
-<% } else if (detailsPage.navSegment == "armour") { %>			
+<% } else if (detailPage.nav.segment == "armour") { %>			
 				<div>
-					<img src="<%= dataSite.uriPath.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="Une armure usée et rouillée, retirée du service avant son heure; de l'un de nos concurrents.">
+					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="Une armure usée et rouillée, retirée du service avant son heure; de l'un de nos concurrents.">
 				</div>
 				<div>
 					<p>Chez <%= dataSite.title.fr %>, nous savons que souvent au combat, la seule chose qui se trouve entre l'arme de votre ennemi et votre intestin, c'est votre armure. Nous savons également que vous ne pouvez pas penser à la performance de votre armure dans le feu de la bataille. C'est pourquoi nous n'utilisons que les meilleurs produits, forgés par les meilleurs maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
-					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que toutes nos armures sont livrées avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailsProduct.attr.name %> <%= dataSite.title.fr %> :</p>
+					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que toutes nos armures sont livrées avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailProduct.title %> <%= dataSite.title.fr %> :</p>
 					<ul>
 						<li>Ragréage, polissage et enlèvement de la rouille gratuits pendant 2 ans<sup><a href="#dis_ast">*</a></sup></li>
 						<li>4 ans / 10 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#dis_astastast">***</a></sup></li>
@@ -117,15 +82,15 @@
 		</section>
 		
 		<section id="similar">
-			<h2><% if (detailsPage.langCode == "en") { if (detailsPage.navSegment == "weapon") { %>Similar Weapons<% } else if (detailsPage.navSegment == "armour") { %>Similar Armour<% } else { %>Similar Ammunition<% }; } else { if (detailsPage.navSegment == "weapon") { %>Armes similaires<% } else if (detailsPage.navSegment == "armour") { %>Armure similaire<% } else { %>Munitions similaires<% }; }; %></h2>
+			<h2><% if (detailPage.lang == "en") { if (detailPage.nav.segment == "weapon") { %>Similar Weapons<% } else if (detailPage.nav.segment == "armour") { %>Similar Armour<% } else { %>Similar Ammunition<% }; } else { if (detailPage.nav.segment == "weapon") { %>Armes similaires<% } else if (detailPage.nav.segment == "armour") { %>Armure similaire<% } else { %>Munitions similaires<% }; }; %></h2>
 
 			<ul class="component list product">
-				<% detailsProduct.similar.forEach(function(product) { %><li>
-					<a href="<%= detailsPage[detailsPage.langCode].path + "/" + product[detailsPage.langCode].prodUri %>">
-						<h3><%= product.attr.name %></h3>
-						<img src="<%= dataSite.uriPath.rootAsset %>img/<%= detailsPage.navSegment %>/<%= product.en.prodUri%>-icon-90.png" width="90" height="90" alt="">
+				<% detailProduct.similar.forEach(function(similarProduct) { %><li>
+					<a href="<%= "/" + detailPage.lang + similarProduct[3] + similarProduct[2] %>">
+						<h3><%= similarProduct[0] %></h3>
+						<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + similarProduct[4] %>-icon-90.png" width="90" height="90" alt="">
 					</a>
-					<p><%= product[detailsPage.langCode].prodBlurb.split(".")[0] %></p>
+					<p><%= similarProduct[1] %></p>
 				</li><% }); %>
 			</ul>
 		</section>

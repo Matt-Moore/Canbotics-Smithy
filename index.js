@@ -2,15 +2,17 @@ var express = require('express');
 var mysql = require('mysql');
 var app = express();
 
+var dbSmithy = mysql.createConnection({host:process.env.DBSMITHY.split('|')[0],user:process.env.DBSMITHY.split('|')[1],password:process.env.DBSMITHY.split('|')[2],database:process.env.DBSMITHY.split('|')[3]});
+
 dbSmithy.connect(function(err) {
 	if (err) {
 		console.error('error connecting: ' + err.stack);
 		return;
 	}
 
-	console.log('connected as id ' + dbSmithy.threadId);
+	console.log('connected to dbSmithy as id ' + dbSmithy.threadId);
 });
-	//dbSmithy.end();
+//dbSmithy.end();
 
 
 
@@ -22,7 +24,7 @@ app.set('views',__dirname + '/pages');
 app.set('view engine', 'ejs');
 
 var dataSite = {
-	uriPath:{
+	uri:{
 		rootSite:'http://smithy.canbotics.ca',
 		rootAsset:'http://asset.canbotics.ca/smithy/',
 		rootAssetGlobal:'http://asset.canbotics.ca/global/'},
@@ -33,17 +35,415 @@ var dataSite = {
 
 var dataPage = {
 	index:{
+		template:'index',
+		en:'Visit the ' + dataSite.title.en + ', for all your warfare needs.',
+		fr:'Visitez la ' + dataSite.title.fr + ', pour tous vos besoins de guerre.'
+	},
+	
+	weapon:{
+		template:'segment',
+		en:'Browse the extensive catalogue of high quality weapons available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'armes de haute qualité disponibles sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	melee:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality melee weapons available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'armes de mêlée de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	ranged:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality ranged weapons available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'armes à distance de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	magic:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality magic weapons available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'armes magiques de haute qualité disponibles sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+
+	armour:{
+		template:'segment',
+		en:'Browse the extensive catalogue of high quality clothing and armour available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue de vêtements et d\'armures de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	clothing:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality clothing available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourir le vaste catalogue de vêtements de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	DELheavy:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality chainmail armour available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Passez en revue le catalogue étendu d\'armure de chainmail de haute qualité disponible, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	heavy:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality heavy armour available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'armures lourdes de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.'
+	},
+	guard:{
+		template:'category',
+		en:'Browse the extensive catalogue of high quality personal guard equipment available, on the official ' + dataSite.title.en + ' website.',
+		fr:'Parcourez le vaste catalogue d\'équipements de protection personnelle de haute qualité disponibles, sur le site officiel de' + dataSite.title.fr + '.'
+	},
+	
+	tool:{
+		template:'tool',
+		en:'DESCRIPTION_ENGLISH',
+		fr:'DESCRIPTION_FRENCH'
+	},
+	warranty:{
+		template:'warranty',
+		en:'Read all about the comprehensive warranty provided on all ' + dataSite.title.en + ' weapons.',
+		fr:'Lisez tout sur la garantie complète fournie sur toutes les armes ' + dataSite.title.fr + '.'
+	},
+
+	product:{
+		template:'product',
+		en:'Find out about the ' + dataSite.title.en + ' [PRODUCTNAME] [PRODUCTCLASS], on the official website.',
+		fr:'Renseignez-vous sur [PRODUCTCLASS] ' + dataSite.title.fr + ' [PRODUCTNAME], sur le site officiel.'
+	},
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/',function(request,response) {
+	response.render('landing',{dataSite:dataSite});
+});
+
+
+app.get('/:langCode(en|fr)',function(request,response) {
+	var detailsPage = dataPage.index;
+
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
+});
+
+/* ================================ PRODUCT PAGES */
+/* ============================================== */
+/* ============================================== PRODUCT : SEGMENT */
+app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(request,response) {
+	if (request.params.segmentPage == 'weapons' || request.params.segmentPage == 'armes') {
+		var detailsPage = dataPage.weapon;
+	} else {
+		var detailsPage = dataPage.armour;
+	} ;
+
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listSegment[detailsPage.navSegment]});
+});
+
+/* ============================================== PRODUCT : CATEGORY */
+app.get('/:langCode(en|fr)/:uriCategory(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)',function(request,response) {
+	var detailPage = {lang:request.params.langCode,title:'',template:'category',uri:{},canon:{},meta:{},nav:{},disc:[]};
+
+
+	var detailCategory = {id:'',title:'',prod:{},subcat:[]};
+	
+	dbSmithy.query('SELECT lib_prod_category.category_id, lib_prod_category.category_name, lib_prod_category_lang.category_title, lib_prod_category_lang.category_uri, lib_prod_category_lang.category_lang, lib_prod_segment.segment_name FROM lib_prod_category INNER JOIN lib_prod_category_lang ON lib_prod_category.category_id = lib_prod_category_lang.category_id INNER JOIN lib_prod_category_lang AS xref_prod_category_lang ON lib_prod_category.category_id = xref_prod_category_lang.category_id AND xref_prod_category_lang.category_uri = ? INNER JOIN lib_prod_segment ON lib_prod_category.segment_id = lib_prod_segment.segment_id',[request.params.uriCategory], function (error, results, fields) {
+		if (error) throw error;
+		
+		results.forEach(function(rsDetailPage){
+			if (rsDetailPage.category_lang == detailPage.lang) {
+				detailPage.title = rsDetailPage.category_title;
+				detailPage.meta.title = rsDetailPage.category_title + " | " + dataSite.title[rsDetailPage.category_lang];
+				detailPage.nav = {segment:rsDetailPage.segment_name.toLowerCase(),category:rsDetailPage.category_name.toLowerCase(),page:''};
+				detailPage.meta.desc = dataPage[detailPage.nav.category][rsDetailPage.category_lang];
+
+				detailCategory.id = rsDetailPage.category_id;
+				detailCategory.title = rsDetailPage.category_title;
+			}
+			detailPage.uri[rsDetailPage.category_lang] =  "/" + rsDetailPage.category_uri;
+			detailPage.canon[rsDetailPage.category_lang] =  "/" + rsDetailPage.category_uri;
+		});	
+
+		dbSmithy.query('SELECT subcat_name, subcat_title, lib_prod_lang.prod_title, lib_prod_lang.prod_uri, lib_prod_lang.prod_blurb, lib_prod_lang_asset.prod_uri AS asset_uri FROM lib_prod_subcat INNER JOIN lib_prod_subcat_lang ON lib_prod_subcat.subcat_id = lib_prod_subcat_lang.subcat_id AND lib_prod_subcat_lang.subcat_lang = ? INNER JOIN lib_prod ON lib_prod_subcat.subcat_id = lib_prod.subcat_id INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id AND lib_prod_lang.prod_lang = lib_prod_subcat_lang.subcat_lang INNER JOIN lib_prod_lang AS lib_prod_lang_asset ON lib_prod.prod_id = lib_prod_lang_asset.prod_id AND lib_prod_lang_asset.prod_lang = "en" WHERE category_id = ? ORDER BY subcat_order, prod_title',[detailPage.lang,detailCategory.id], function (error, results, fields) {
+				if (error) throw error;
+
+				results.forEach(function(rsListProd){
+					if (!detailCategory.subcat.includes(rsListProd.subcat_name + "|" + rsListProd.subcat_title)) {
+						detailCategory.subcat.push(rsListProd.subcat_name + "|" + rsListProd.subcat_title);
+						detailCategory.prod[rsListProd.subcat_name] = [];
+					};
+					detailCategory.prod[rsListProd.subcat_name].push({title:rsListProd.prod_title,uri:"/" + rsListProd.prod_uri,uriAsset:"/" + rsListProd.asset_uri,blurb:rsListProd.prod_blurb});
+			});	
+			response.render('template',{dataSite:dataSite,detailPage:detailPage,detailCategory:detailCategory});
+		});	
+	});	
+});
+
+
+
+
+
+
+
+/* ============================================== PRODUCT : PRODUCT */
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)/:uriProd',function(request,response) {
+	var detailPage = {lang:request.params.langCode,title:'',template:'product',uri:{},canon:{},meta:{},nav:{},disc:["Something","Also this","Darkside"]};
+	var detailProduct = {id:'',title:'',group:{},attr:{order:[],value:{}},similar:[]};
+
+	dbSmithy.query('SELECT lib_prod.prod_id, lib_prod.prod_name, lib_prod_lang.prod_lang, lib_prod_lang.prod_title, lib_prod_lang.prod_class, lib_prod_lang.prod_uri, lib_prod_subcat.subcat_id, lib_prod_category.category_name, lib_prod_category_lang.category_uri, lib_prod_segment.segment_name FROM lib_prod INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id INNER JOIN lib_prod_lang AS xref_prod_lang ON lib_prod_lang.prod_id = xref_prod_lang.prod_id AND xref_prod_lang.prod_uri = ? INNER JOIN lib_prod_subcat ON lib_prod.subcat_id = lib_prod_subcat.subcat_id INNER JOIN lib_prod_category ON lib_prod_subcat.category_id = lib_prod_category.category_id INNER JOIN lib_prod_category_lang ON lib_prod_category.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = lib_prod_lang.prod_lang INNER JOIN lib_prod_segment ON lib_prod_category.segment_id = lib_prod_segment.segment_id ORDER BY lib_prod_lang.prod_lang',[request.params.uriProd], function (error, results, fields) {
+		if (error) throw error;
+		
+		results.forEach(function(rsDetailPage){
+			if (rsDetailPage.prod_lang == detailPage.lang) {
+				detailPage.title = rsDetailPage.prod_title;
+				detailPage.meta.title = rsDetailPage.prod_title + " | " + rsDetailPage.prod_class + " | " + dataSite.title[rsDetailPage.prod_lang];
+				detailPage.nav = {segment:rsDetailPage.segment_name.toLowerCase(),category:rsDetailPage.category_name.toLowerCase(),page:rsDetailPage.prod_name.toLowerCase()};
+				detailPage.meta.desc = dataPage.product[rsDetailPage.prod_lang].replace('[PRODUCTNAME]',rsDetailPage.prod_title).replace('[PRODUCTCLASS]',rsDetailPage.prod_class.toLowerCase());
+
+				detailProduct.id = rsDetailPage.prod_id;
+				detailProduct.title = rsDetailPage.prod_title;
+				detailProduct.group.idSubcat = rsDetailPage.subcat_id;
+			}
+			detailPage.uri[rsDetailPage.prod_lang] =  "/" + rsDetailPage.prod_uri;
+			detailPage.canon[rsDetailPage.prod_lang] =  "/" + rsDetailPage.category_uri + detailPage.uri[rsDetailPage.prod_lang];
+		});	
+		
+		dbSmithy.query('SELECT REPLACE(LOWER(attr_name)," ","") AS attr_name, xref_value AS attr_value FROM xref_subcat_attr INNER JOIN lib_attr ON lib_attr.attr_id IN (1,2,3,xref_subcat_attr.attr_id_1,xref_subcat_attr.attr_id_2) INNER JOIN xref_prod_attr ON lib_attr.attr_id = xref_prod_attr.attr_id AND xref_prod_attr.prod_id = ? WHERE subcat_id = ? ORDER BY CASE WHEN lib_attr.attr_id IN (1,2,3) THEN lib_attr.attr_id WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_1 THEN 3 WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_2 THEN 4 END;',[detailProduct.id,detailProduct.group.idSubcat], function (error, results, fields) {
+			if (error) throw error;
+			
+			results.forEach(function(rsDetailProdAttr){
+				detailProduct.attr.order.push(rsDetailProdAttr.attr_name);
+				detailProduct.attr.value[rsDetailProdAttr.attr_name] = rsDetailProdAttr.attr_value;
+			});	
+			
+			dbSmithy.query('SELECT lib_prod_lang.prod_title, lib_prod_lang.prod_blurb, lib_prod_lang.prod_uri, lib_prod_lang_asset.prod_uri AS asset_uri, category_uri FROM iref_prod_similar INNER JOIN lib_prod ON iref_prod_similar.iref_prod_id = lib_prod.prod_id INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id AND lib_prod_lang.prod_lang = ? INNER JOIN lib_prod_subcat ON lib_prod.subcat_id = lib_prod_subcat.subcat_id INNER JOIN lib_prod_category_lang ON lib_prod_subcat.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = lib_prod_lang.prod_lang INNER JOIN lib_prod_lang AS lib_prod_lang_asset ON lib_prod.prod_id = lib_prod_lang_asset.prod_id AND lib_prod_lang_asset.prod_lang = "en" WHERE iref_prod_similar.prod_id = ? ORDER BY iref_prod_similar.iref_order',[detailPage.lang,detailProduct.id], function (error, results, fields) {
+				if (error) throw error;
+				
+				results.forEach(function(rsDetailProdSimilar){
+					detailProduct.similar.push([rsDetailProdSimilar.prod_title,rsDetailProdSimilar.prod_blurb,"/" + rsDetailProdSimilar.prod_uri,"/" + rsDetailProdSimilar.category_uri,"/" + rsDetailProdSimilar.asset_uri]);
+				});	
+
+				response.render('template',{dataSite:dataSite,detailPage:detailPage,detailProduct:detailProduct});
+			});	
+		});	
+	});
+});
+
+
+
+
+
+
+
+
+
+
+/* ================================== TOOLS PAGES */
+/* ============================================== */
+/* ============================================== TOOLS : ROOT */
+app.get('/:langCode(en|fr)/:toolsPage(tools|outils)',function(request,response) {
+	var detailsPage = dataPage.tool;
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
+});
+
+/* ============================================== TOOLS : WARRANTY */
+app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,response) {
+	var detailsPage = dataPage.warranty;
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
+});
+
+
+/* =============== */
+/* =============== */
+/* PAGES TO DO */
+/* =============== */
+/* =============== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================================== TESTING */
+app.get('/:langCode(en|fr)/test/:productURI',function(request,response) {
+	var detailPage = {lang:request.params.langCode,title:'',template:'product',uri:{},canon:{},meta:{},nav:{},disc:["Something","Also this","Darkside"]};
+	var detailProduct = {id:'',title:'',group:{},attr:{order:[],value:{}},similar:[]};
+
+	dbSmithy.query('SELECT lib_prod.prod_id, lib_prod.prod_name, lib_prod_lang.prod_lang, lib_prod_lang.prod_title, lib_prod_lang.prod_class, lib_prod_lang.prod_uri, lib_prod_subcat.subcat_id, lib_prod_category.category_name, lib_prod_category_lang.category_uri, lib_prod_segment.segment_name FROM lib_prod INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id INNER JOIN lib_prod_lang AS xref_prod_lang ON lib_prod_lang.prod_id = xref_prod_lang.prod_id AND xref_prod_lang.prod_uri = ? INNER JOIN lib_prod_subcat ON lib_prod.subcat_id = lib_prod_subcat.subcat_id INNER JOIN lib_prod_category ON lib_prod_subcat.category_id = lib_prod_category.category_id INNER JOIN lib_prod_category_lang ON lib_prod_category.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = lib_prod_lang.prod_lang INNER JOIN lib_prod_segment ON lib_prod_category.segment_id = lib_prod_segment.segment_id ORDER BY lib_prod_lang.prod_lang',[request.params.productURI], function (error, results, fields) {
+		if (error) throw error;
+		
+		results.forEach(function(rsDetailPage){
+			if (rsDetailPage.prod_lang == detailPage.lang) {
+				detailPage.title = rsDetailPage.prod_title;
+				detailPage.meta.title = rsDetailPage.prod_title + " | " + rsDetailPage.prod_class + " | " + dataSite.title[rsDetailPage.prod_lang];
+				detailPage.nav = {segment:rsDetailPage.segment_name.toLowerCase(),category:rsDetailPage.category_name.toLowerCase(),page:rsDetailPage.prod_name.toLowerCase()};
+				detailPage.meta.desc = dataPage.product[rsDetailPage.prod_lang].replace('[PRODUCTNAME]',rsDetailPage.prod_title).replace('[PRODUCTCLASS]',rsDetailPage.prod_class.toLowerCase());
+
+				detailProduct.id = rsDetailPage.prod_id;
+				detailProduct.title = rsDetailPage.prod_title;
+				detailProduct.group.idSubcat = rsDetailPage.subcat_id;
+			}
+			detailPage.uri[rsDetailPage.prod_lang] =  "/" + rsDetailPage.prod_uri;
+			detailPage.canon[rsDetailPage.prod_lang] =  "/" + rsDetailPage.category_uri + detailPage.uri[rsDetailPage.prod_lang];
+		});	
+		
+		dbSmithy.query('SELECT REPLACE(LOWER(attr_name)," ","") AS attr_name, xref_value AS attr_value FROM xref_subcat_attr INNER JOIN lib_attr ON lib_attr.attr_id IN (1,2,3,xref_subcat_attr.attr_id_1,xref_subcat_attr.attr_id_2) INNER JOIN xref_prod_attr ON lib_attr.attr_id = xref_prod_attr.attr_id AND xref_prod_attr.prod_id = ? WHERE subcat_id = ?',[detailProduct.id,detailProduct.group.idSubcat], function (error, results, fields) {
+			if (error) throw error;
+			
+			results.forEach(function(rsDetailProdAttr){
+				detailProduct.attr.order.push(rsDetailProdAttr.attr_name);
+				detailProduct.attr.value[rsDetailProdAttr.attr_name] = rsDetailProdAttr.attr_value;
+			});	
+			
+			dbSmithy.query('SELECT prod_title, prod_blurb, prod_uri, category_uri FROM iref_prod_similar INNER JOIN lib_prod ON iref_prod_similar.iref_prod_id = lib_prod.prod_id INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id AND lib_prod_lang.prod_lang = ? INNER JOIN lib_prod_subcat ON lib_prod.subcat_id = lib_prod_subcat.subcat_id INNER JOIN lib_prod_category_lang ON lib_prod_subcat.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = lib_prod_lang.prod_lang WHERE iref_prod_similar.prod_id = ? ORDER BY iref_prod_similar.iref_order',[detailPage.lang,detailProduct.id], function (error, results, fields) {
+				if (error) throw error;
+				
+				results.forEach(function(rsDetailProdSimilar){
+					detailProduct.similar.push([rsDetailProdSimilar.prod_title,rsDetailProdSimilar.prod_blurb,"/" + rsDetailProdSimilar.prod_uri,"/" + rsDetailProdSimilar.category_uri]);
+				});	
+				
+				
+				
+				
+				
+				console.log("------- DETAILPAGE -------");
+				console.log(detailPage);
+				console.log("------- DETAILPRODUCT -------");
+				console.log(detailProduct);
+				console.log("===========================");
+				console.log("===========================");
+
+				response.render('template',{dataSite:dataSite,detailPage:detailPage,detailProduct:detailProduct});
+			});	
+		});	
+	});
+});
+
+
+
+	
+
+/* ============================================== TEMPORARY BACKUP */
+/*
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)/:productUri',function(request,response) {
+	
+	var detailsProduct = listUri[request.params.productUri];
+	
+	var detailsPage = dataPage[detailsProduct.attr.category[0]];
+
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsProduct.attr.name + ' | ' + detailsProduct[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = dataPage.product[detailsPage.langCode].desc.replace('[PRODUCTNAME]',detailsProduct.attr.name).replace('[PRODUCTCLASS]',detailsProduct[detailsPage.langCode].prodClass.toLowerCase());
+	detailsPage.title = detailsProduct.attr.name;
+	
+	detailsPage.pathTemplate = dataPage.product.template;
+
+	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsProduct.en.prodUri;
+	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsProduct.fr.prodUri;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProduct:detailsProduct});
+});
+
+
+app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)',function(request,response) {
+	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
+		var detailsPage = dataPage.melee;
+	} else if (request.params.categoryPage == 'ranged-weapons' || request.params.categoryPage == 'armes-a-distance') {
+		var detailsPage = dataPage.ranged;
+	} else if (request.params.categoryPage == 'magic-weapons' || request.params.categoryPage == 'armes-magiques') {
+		var detailsPage = dataPage.magic;
+	} else if (request.params.categoryPage == 'clothing' || request.params.categoryPage == 'vetements') {
+		var detailsPage = dataPage.clothes;
+	} else if (request.params.categoryPage == 'heavy-armour' || request.params.categoryPage == 'armure-lourde') {
+		var detailsPage = dataPage.heavy;
+	} else if (request.params.categoryPage == 'plate-armour' || request.params.categoryPage == 'armure-de-plaque') {
+		var detailsPage = dataPage.plate;
+	} else if (request.params.categoryPage == 'guards' || request.params.categoryPage == 'gardes') {
+		var detailsPage = dataPage.guard;
+	};
+	
+	detailsPage.langCode = request.params.langCode;
+	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
+	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
+	detailsPage.title = detailsPage[detailsPage.langCode].title;
+	
+	detailsPage.pathTemplate = detailsPage.template;
+	
+	detailsPage.en.pathCanon = detailsPage.en.path;
+	detailsPage.fr.pathCanon = detailsPage.fr.path;
+
+	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listCategory[detailsPage.navCategory]});
+});
+
+
+
+
+
+
+var dataPage = {
+	index:{
 		navSegment:'index',
 		navCategory:'index',
 		navPage:'index',
 		template:'index',
 		en:{
 			title:'',
-			desc:'Visit the ' & dataSite.title.en & ', for all your warfare needs.',
+			desc:'Visit the ' + dataSite.title.en + ', for all your warfare needs.',
 			path:'/en'},
 		fr:{
 			title:'',
-			desc:'Visitez la ' & dataSite.title.fr & ', pour tous vos besoins de guerre.',
+			desc:'Visitez la ' + dataSite.title.fr + ', pour tous vos besoins de guerre.',
 			path:'/fr'}
 	},
 	
@@ -54,11 +454,11 @@ var dataPage = {
 		template:'segment',
 		en:{
 			title:'Weapons',
-			desc:'Browse the extensive catalogue of high quality weapons available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality weapons available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/weapons'},
 		fr:{
 			title:'Armes',
-			desc:'Parcourez le vaste catalogue d\'armes de haute qualité disponibles sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'armes de haute qualité disponibles sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armes'}
 	},
 	melee:{
@@ -68,11 +468,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Melee Weapons',
-			desc:'Browse the extensive catalogue of high quality melee weapons available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality melee weapons available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/melee-weapons'},
 		fr:{
 			title:'Armes de mêlée',
-			desc:'Parcourez le vaste catalogue d\'armes de mêlée de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'armes de mêlée de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armes-de-melee'}
 	},
 	ranged:{
@@ -82,11 +482,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Ranged Weapons',
-			desc:'Browse the extensive catalogue of high quality ranged weapons available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality ranged weapons available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/ranged-weapons'},
 		fr:{
 			title:'Armes à distance',
-			desc:'Parcourez le vaste catalogue d\'armes à distance de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'armes à distance de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armes-a-distance'}
 	},
 	magic:{
@@ -96,11 +496,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Magic Weapons',
-			desc:'Browse the extensive catalogue of high quality magic weapons available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality magic weapons available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/magic-weapons'},
 		fr:{
 			title:'Armes magiques',
-			desc:'Parcourez le vaste catalogue d\'armes magiques de haute qualité disponibles sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'armes magiques de haute qualité disponibles sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armes-magiques'}
 	},
 
@@ -111,11 +511,11 @@ var dataPage = {
 		template:'segment',
 		en:{
 			title:'Armour',
-			desc:'Browse the extensive catalogue of high quality clothing and armour available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality clothing and armour available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/armour'},
 		fr:{
 			title:'Armure',
-			desc:'Parcourez le vaste catalogue de vêtements et d\'armures de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue de vêtements et d\'armures de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armure'}
 	},
 	clothes:{
@@ -125,11 +525,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Clothing',
-			desc:'Browse the extensive catalogue of high quality clothing available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality clothing available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/clothing'},
 		fr:{
 			title:'Vêtements',
-			desc:'Parcourir le vaste catalogue de vêtements de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourir le vaste catalogue de vêtements de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/vetements'}
 	},
 	DELheavy:{
@@ -139,11 +539,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Chainmail',
-			desc:'Browse the extensive catalogue of high quality chainmail armour available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality chainmail armour available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/chainmail-armour'},
 		fr:{
 			title:'Armure de cotte de mailles',
-			desc:'Passez en revue le catalogue étendu d\'armure de chainmail de haute qualité disponible, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Passez en revue le catalogue étendu d\'armure de chainmail de haute qualité disponible, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armure-de-cotte-de-mailles'}
 	},
 	heavy:{
@@ -153,11 +553,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Heavy Armour',
-			desc:'Browse the extensive catalogue of high quality heavy armour available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality heavy armour available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/heavy-armour'},
 		fr:{
 			title:'Armure lourde',
-			desc:'Parcourez le vaste catalogue d\'armures lourdes de haute qualité disponibles, sur le site officiel de ' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'armures lourdes de haute qualité disponibles, sur le site officiel de ' + dataSite.title.fr + '.',
 			path:'/fr/armure-lourde'}
 	},
 	guard:{
@@ -167,11 +567,11 @@ var dataPage = {
 		template:'category',
 		en:{
 			title:'Guards',
-			desc:'Browse the extensive catalogue of high quality personal guard equipment available, on the official ' & dataSite.title.en & ' website.',
+			desc:'Browse the extensive catalogue of high quality personal guard equipment available, on the official ' + dataSite.title.en + ' website.',
 			path:'/en/guards'},
 		fr:{
 			title:'Gardes',
-			desc:'Parcourez le vaste catalogue d\'équipements de protection personnelle de haute qualité disponibles, sur le site officiel de' & dataSite.title.fr & '.',
+			desc:'Parcourez le vaste catalogue d\'équipements de protection personnelle de haute qualité disponibles, sur le site officiel de' + dataSite.title.fr + '.',
 			path:'/fr/gardes'}
 	},
 	
@@ -212,6 +612,14 @@ var dataPage = {
 			desc:'Renseignez-vous sur [PRODUCTCLASS] ' + dataSite.title.fr + ' [PRODUCTNAME], sur le site officiel.'}
 	},
 };
+
+
+
+
+
+
+
+
 
 var dataWeapon = {
 	gladius:{
@@ -693,6 +1101,8 @@ var dataArmour = {
 			dimMax:[0,0,0]}}
 };
 
+
+
 dataWeapon.gladius.similar = [dataWeapon.xiphos,dataWeapon.axe];
 dataWeapon.xiphos.similar = [dataWeapon.gladius,dataWeapon.axe];
 dataWeapon.claymore.similar = [dataWeapon.scimitar,dataWeapon.katana];
@@ -889,209 +1299,7 @@ var listUri = {
 	'targe-bouclier-personnel-moyen':dataArmour.targe
 };
 
-
-
-
-
-
-
-
-
-
-app.get('/',function(request,response) {
-	response.render('landing',{dataSite:dataSite});
-});
-
-
-app.get('/:langCode(en|fr)',function(request,response) {
-	var detailsPage = dataPage.index;
-
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	detailsPage.title = detailsPage[detailsPage.langCode].title;
-	
-	detailsPage.pathTemplate = detailsPage.template;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
-});
-
-/* ================================ PRODUCT PAGES */
-/* ============================================== */
-/* ============================================== PRODUCT : SEGMENT */
-app.get('/:langCode(en|fr)/:segmentPage(weapons|armes|armour|armure)',function(request,response) {
-	if (request.params.segmentPage == 'weapons' || request.params.segmentPage == 'armes') {
-		var detailsPage = dataPage.weapon;
-	} else {
-		var detailsPage = dataPage.armour;
-	} ;
-
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	detailsPage.title = detailsPage[detailsPage.langCode].title;
-	
-	detailsPage.pathTemplate = detailsPage.template;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listSegment[detailsPage.navSegment]});
-});
-
-/* ============================================== PRODUCT : CATEGORY */
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)',function(request,response) {
-	if (request.params.categoryPage == 'melee-weapons' || request.params.categoryPage == 'armes-de-melee') {
-		var detailsPage = dataPage.melee;
-	} else if (request.params.categoryPage == 'ranged-weapons' || request.params.categoryPage == 'armes-a-distance') {
-		var detailsPage = dataPage.ranged;
-	} else if (request.params.categoryPage == 'magic-weapons' || request.params.categoryPage == 'armes-magiques') {
-		var detailsPage = dataPage.magic;
-	} else if (request.params.categoryPage == 'clothing' || request.params.categoryPage == 'vetements') {
-		var detailsPage = dataPage.clothes;
-	} else if (request.params.categoryPage == 'heavy-armour' || request.params.categoryPage == 'armure-lourde') {
-		var detailsPage = dataPage.heavy;
-	} else if (request.params.categoryPage == 'plate-armour' || request.params.categoryPage == 'armure-de-plaque') {
-		var detailsPage = dataPage.plate;
-	} else if (request.params.categoryPage == 'guards' || request.params.categoryPage == 'gardes') {
-		var detailsPage = dataPage.guard;
-	};
-	
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	detailsPage.title = detailsPage[detailsPage.langCode].title;
-	
-	detailsPage.pathTemplate = detailsPage.template;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProducts:listCategory[detailsPage.navCategory]});
-});
-
-
-
-
-
-
-
-/* ============================================== PRODUCT : PRODUCT */
-app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-weapons|armes-a-distance|magic-weapons|armes-magiques|clothing|vetements|heavy-armour|armure-lourde|guards|gardes)/:productUri',function(request,response) {
-	
-	var detailsProduct = listUri[request.params.productUri];
-	
-	var detailsPage = dataPage[detailsProduct.attr.category[0]];
-
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsProduct.attr.name + ' | ' + detailsProduct[detailsPage.langCode].prodClass + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = dataPage.product[detailsPage.langCode].desc.replace('[PRODUCTNAME]',detailsProduct.attr.name).replace('[PRODUCTCLASS]',detailsProduct[detailsPage.langCode].prodClass.toLowerCase());
-	detailsPage.title = detailsProduct.attr.name;
-	
-	detailsPage.pathTemplate = dataPage.product.template;
-
-	detailsPage.en.pathCanon = detailsPage.en.path + '/' + detailsProduct.en.prodUri;
-	detailsPage.fr.pathCanon = detailsPage.fr.path + '/' + detailsProduct.fr.prodUri;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage,detailsProduct:detailsProduct});
-});
-
-
-
-
-
-
-
-
-
-
-/* ================================== TOOLS PAGES */
-/* ============================================== */
-/* ============================================== TOOLS : ROOT */
-app.get('/:langCode(en|fr)/:toolsPage(tools|outils)',function(request,response) {
-	var detailsPage = dataPage.tool;
-	
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	detailsPage.title = detailsPage[detailsPage.langCode].title;
-	
-	detailsPage.pathTemplate = detailsPage.template;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
-});
-
-/* ============================================== TOOLS : WARRANTY */
-app.get('/:langCode(en|fr)/:warrantyPage(warranty|garantie)',function(request,response) {
-	var detailsPage = dataPage.warranty;
-	
-	detailsPage.langCode = request.params.langCode;
-	detailsPage.metaTitle = detailsPage[detailsPage.langCode].title + ' | ' + dataSite.title[detailsPage.langCode];
-	detailsPage.metaDesc = detailsPage[detailsPage.langCode].desc;
-	detailsPage.title = detailsPage[detailsPage.langCode].title;
-	
-	detailsPage.pathTemplate = detailsPage.template;
-	
-	detailsPage.en.pathCanon = detailsPage.en.path;
-	detailsPage.fr.pathCanon = detailsPage.fr.path;
-
-	response.render('template',{dataSite:dataSite,detailsPage:detailsPage});
-});
-
-
-/* =============== */
-/* =============== */
-/* PAGES TO DO */
-/* =============== */
-/* =============== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================== TESTING */
-app.get('/:langCode(en|fr)/test',function(request,response) {
-
-	dbSmithy.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-		if (error) throw error;
-		console.log('The solution is: ', results[0].solution);
-	});
-
-var x = process.env.DBSMITHY_CRED;
-
-	console.log("=======");
-	console.log(x);
-	console.log("=======");
-	console.log("=======");
-	
-	
-	response.render('test',{});
-	
-});
-
-
-
-
-
-
-
-
-
+*/
 
 
 
