@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var app = express();
 
 var dbSmithy = mysql.createConnection({host:process.env.DBSMITHY.split('|')[0],user:process.env.DBSMITHY.split('|')[1],password:process.env.DBSMITHY.split('|')[2],database:process.env.DBSMITHY.split('|')[3]});
-console.log (process.env.DBSMITHY);
+
 dbSmithy.connect(function(err) {
 	if (err) {
 		console.error('Canbotics Smithy failed to connect to dbSmithy :');
