@@ -84,7 +84,7 @@ var dataPage = {
 	},
 };
 
-
+	
 
 
 
@@ -107,7 +107,108 @@ app.get('/:langCode(en|fr)',function(request,response) {
 	var detailPage = {lang:request.params.langCode,title:'',template:'index',uri:{},canon:{},meta:{},nav:{},disc:[]};
 
 	
-	detailPage.title = "";
+var indexPromo = {
+	banner:[
+		{
+			segment:"weapon",
+			en: {
+				title:"Gladius",
+				uri:"/gladius-short-sword",
+				uriCategory:"/melee-weapons"
+			},
+			fr: {
+				title:"Gladius",
+				uri:"/gladius-epee-courte",
+				uriCategory:"/armes-de-melee"
+			}
+		},
+		{
+			segment:"weapon",
+			en: {
+				title:"Crossbow",
+				uri:"/crossbow-powerful-mid-range-marksman-bow",
+				uriCategory:"/ranged-weapons"
+			},
+			fr: {
+				title:"Crossbow",
+				uri:"/crossbow-puissant-arc-de-tireur-de-milieu-de-gamme",
+				uriCategory:"/armes-a-distance"
+			}
+		},
+		{
+			segment:"armour",
+			en: {
+				title:"Corset",
+				uri:"/corset-form-fitting-and-shaping-top",
+				uriCategory:"/clothing"
+			},
+			fr: {
+				title:"Corset",
+				uri:"/corset-forme-de-montage-et-de-faconnage",
+				uriCategory:"/vetements"
+			}
+		},
+		{
+			segment:"armour",
+			en: {
+				title:"Cuirass",
+				uri:"/cuirass-heavy-body-armour",
+				uriCategory:"/heavy-armour"
+			},
+			fr: {
+				title:"Cuirass",
+				uri:"/cuirass-armure-de-corps-lourde",
+				uriCategory:"/armure-lourde"
+			}
+		}
+	],
+	badge:[
+		{
+			segment:"weapon",
+			en: {
+				title:"Flintlock",
+				uri:"/flintlock-powerful-short-range-flint-gun",
+				uriCategory:"/ranged-weapons"
+			},
+			fr: {
+				title:"Flintlock",
+				uri:"/flintlock-puissant-pistolet-a-silex-a-courte-portee",
+				uriCategory:"/armes-a-distance"
+			}
+		},
+		{
+			segment:"armour",
+			en: {
+				title:"Targe",
+				uri:"/targe-medium-personal-shield",
+				uriCategory:"/guards"
+			},
+			fr: {
+				title:"Targe",
+				uri:"/targe-bouclier-personnel-moyen",
+				uriCategory:"/gardes"
+			}
+		},
+		{
+			segment:"weapon",
+			en: {
+				title:"Necronomicon",
+				uri:"/necronomicon-powerful-summoning-grimoire",
+				uriCategory:"/magic-weapons"
+			},
+			fr: {
+				title:"Necronomicon",
+				uri:"/necronomicon-grimoire-puissant-d-invocation",
+				uriCategory:"/armes-magiques"
+			}
+		}
+	]
+}	
+	
+	
+	var langTitle = {en:"Home",fr:"Accueil"}
+
+	detailPage.title = ""; //langTitle[detailPage.lang];
 	detailPage.meta.title = dataSite.title[detailPage.lang];
 	detailPage.nav = {segment:"index",category:"index",page:"index"};
 	detailPage.meta.desc = dataPage.index[detailPage.lang];
@@ -116,7 +217,7 @@ app.get('/:langCode(en|fr)',function(request,response) {
 	detailPage.uri.fr =  "/fr";
 	detailPage.canon =  {en:"",fr:""};
 
-	response.render('template',{dataSite:dataSite,detailPage:detailPage});
+	response.render('template',{dataSite:dataSite,detailPage:detailPage,indexPromo:indexPromo});
 });
 
 /* ================================ PRODUCT PAGES */
