@@ -1,5 +1,5 @@
 				<% if (detailPage.lang == "en") { %>
-					<h3>Reach</h3><div><%= detailProduct.attr.value.reach %> <span>m</span></div><small><%= Math.round(detailProduct.attr.value.reach * 1.09 * 100) / 100 %> yards</small>
+					<h3>Reach</h3><div><%= detailProduct.attr.value.reach %> <span>m</span></div><small><%= Math.round(detailProduct.attr.value.reach * 1.09 * 100) / 100 %> yards<sup><a href="#dis<%= attrdisc %>"><%= attrdisc %></a></sup></small>
 				<% } else { %>
-					<h3>Atteindre</h3><div><%= detailProduct.attr.value.reach %> <span>m</span></div><small><%= Math.round(detailProduct.attr.value.reach * 1.09 * 100) / 100 %> yards</small>
+					<h3>Atteindre</h3><div><%= detailProduct.attr.value.reach %> <span>m</span></div><small><%= Math.round(detailProduct.attr.value.reach * 1.09 * 100) / 100 %> yards<sup><a href="#dis<%= attrdisc %>"><%= attrdisc %></a></sup></small>
 				<% }; %>

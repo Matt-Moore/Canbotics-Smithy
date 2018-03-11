@@ -88,26 +88,26 @@
 				<li>Design, concept, and exact copy &copy;2018 OciCat Media. Most information comes from <a href="https://en.wikipedia.org" rel="external">Wikipedia</a>. Images used are bought from <a href="https://stock.adobe.com/ca/" rel="external">Adobe Stock</a></li>
 			</ul>
 			<% if (detailPage.template == "product") { %><ul>
-				<li id="dis_dag"><sup>&dagger;</sup> Price is the cost of single (non-bulk) item, and based on the present primary currency. Other currencies and barter are valid for transactions.</li>
-				<li id="dis_ddag"><sup>&Dagger;</sup> <% if (detailPage.nav.segment == "weapon") { %>Damage is an estimate of potential harm the weapon can inflict<% } else { %>Armour Class is an estimate of difficulty for an opponent to inflict damage<% }; %>. Actual results may vary based on real life situations.</li>
-				<li id="dis_ast"><sup>*</sup> There is a limit of 4 <% if (detailPage.nav.segment == "weapon") { %>sharpenings<% } else { %>patchings/polishings<% }; %>, and 1 derusting per year.</li>
-				<li id="dis_astast"><sup>**</sup> The warranty concludes at the end of whichever event occurs first.</li>
-				<li id="dis_astastast"><sup>***</sup> The warranty only covers failures due to craftmanship or manufacturing defects. Improperly storing, handling, or using the <% if (detailPage.nav.segment == "weapon") { %>weapon<% } else { %>armour<% }; %> will void the warranty.</li>
+				<li id="disdag"><sup>&dagger;</sup> Price is the cost of single (non-bulk) item, and based on the present primary currency. Other currencies and barter are valid for transactions.</li>
+				<li id="disddag"><sup>&Dagger;</sup> <% if (detailPage.nav.segment == "weapon") { %>Damage is an estimate of potential harm the weapon can inflict<% } else { %>Armour Class is an estimate of difficulty for an opponent to inflict damage<% }; %>. Actual results may vary based on real life situations.</li>
+				<li id="disast"><sup>*</sup> There is a limit of 4 <% if (detailPage.nav.segment == "weapon") { %>sharpenings<% } else { %>patchings/polishings<% }; %>, and 1 derusting per year.</li>
+				<li id="disastast"><sup>**</sup> The warranty concludes at the end of whichever event occurs first.</li>
+				<li id="disastastast"><sup>***</sup> The warranty only covers failures due to craftmanship or manufacturing defects. Improperly storing, handling, or using the <% if (detailPage.nav.segment == "weapon") { %>weapon<% } else { %>armour<% }; %> will void the warranty.</li>
 			</ul><% } %>
 <% } else { %>
 			<ul>
 				<li>Conception, concept et copie exacte &copy;2018 OciCat Media. La plupart des informations proviennent de <a href="https://fr.wikipedia.org" rel="external">Wikipédia</a>. Les images utilisées sont achetées auprès <a href="https://stock.adobe.com/ca_fr/" rel="external">d'Adobe Stock</a>. <a href="https://translate.google.ca/" rel="external">Google translate</a> utilisé pour les traductions.</li>
 			</ul>
 			<% if (detailPage.template == "product") { %><ul>
-				<li id="dis_dag"><sup>&dagger;</sup> Le prix est le coût d'un article unique (non en vrac) et basé sur la monnaie primaire actuelle. Les autres devises et le troc sont valables pour les transactions.</li>
-				<li id="dis_ddag"><sup>&Dagger;</sup> <% if (detailPage.nav.segment == "weapon") { %>Les dommages sont une estimation des dommages potentiels que l'arme peut infliger<% } else { %>La classe d'armure est une estimation de la difficulté pour un adversaire d'infliger des dégâts<% }; %>. Les résultats réels peuvent varier en fonction des situations de la vie réelle.</li>
-				<li id="dis_ast"><sup>*</sup> Il y a une limite de 4 <% if (detailPage.nav.segment == "weapon") { %>affûtages<% } else { %>patches / polissages<% }; %>, et 1 dérouillage par an.</li>
-				<li id="dis_astast"><sup>**</sup> La garantie se termine à la fin de l'événement qui survient en premier.</li>
-				<li id="dis_astastast"><sup>***</sup> La garantie ne couvre que les défaillances dues à des défauts de fabrication ou de fabrication. Un stockage, une manipulation ou une utilisation inappropriés de l'<% if (detailPage.nav.segment == "weapon") { %>arme<% } else { %>armure<% }; %> annuleront la garantie.</li>
+				<li id="disdag"><sup>&dagger;</sup> Le prix est le coût d'un article unique (non en vrac) et basé sur la monnaie primaire actuelle. Les autres devises et le troc sont valables pour les transactions.</li>
+				<li id="disddag"><sup>&Dagger;</sup> <% if (detailPage.nav.segment == "weapon") { %>Les dommages sont une estimation des dommages potentiels que l'arme peut infliger<% } else { %>La classe d'armure est une estimation de la difficulté pour un adversaire d'infliger des dégâts<% }; %>. Les résultats réels peuvent varier en fonction des situations de la vie réelle.</li>
+				<li id="disast"><sup>*</sup> Il y a une limite de 4 <% if (detailPage.nav.segment == "weapon") { %>affûtages<% } else { %>patches / polissages<% }; %>, et 1 dérouillage par an.</li>
+				<li id="disastast"><sup>**</sup> La garantie se termine à la fin de l'événement qui survient en premier.</li>
+				<li id="disastastast"><sup>***</sup> La garantie ne couvre que les défaillances dues à des défauts de fabrication ou de fabrication. Un stockage, une manipulation ou une utilisation inappropriés de l'<% if (detailPage.nav.segment == "weapon") { %>arme<% } else { %>armure<% }; %> annuleront la garantie.</li>
 			</ul><% } %>
 <% }; if (detailPage.disc.length) { -%>
 			<ul><% detailPage.disc.forEach(function(disclaimer,disclaimerNumber) { %>
-				<li id="dis_<%= disclaimerNumber + 1 %>"><sup><%= disclaimerNumber + 1 %></sup> <%= disclaimer %></li><% }); %>
+				<li id="dis<%= disclaimerNumber + 1 %>"><sup><%= disclaimerNumber + 1 %></sup> <%= disclaimer %></li><% }); %>
 			</ul>
 <% } -%>
 		</section>

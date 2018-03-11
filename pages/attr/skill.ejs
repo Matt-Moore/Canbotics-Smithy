@@ -1,5 +1,5 @@
 				<% if (detailPage.lang == "en") { %>
-					<h3>Skill</h3><div><%= detailProduct.attr.value.skill.split("|")[0] %></div><small>required</small>
+					<h3>Skill</h3><div><%= detailProduct.attr.value.skill.split("|")[0] %></div><small>required<sup><a href="#dis<%= attrdisc %>"><%= attrdisc %></a></sup></small>
 				<% } else { %>
-					<h3>Compétence</h3><div><%= detailProduct.attr.value.skill.split("|")[1] %></div><small>champs obligatoires</small>
+					<h3>Compétence</h3><div><%= detailProduct.attr.value.skill.split("|")[1] %></div><small>champs obligatoires<sup><a href="#dis<%= attrdisc %>"><%= attrdisc %></a></sup></small>
 				<% }; %>		

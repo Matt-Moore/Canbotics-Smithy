@@ -8,6 +8,7 @@ dbSmithy.connect(function(err) {
 	if (err) {
 		console.error('Canbotics Smithy failed to connect to dbSmithy :');
 		console.error(err.stack);
+		console.error("=====");
 		return;
 	}
 	console.log('Canbotics Smithy has connected to dbSmithy as id : ' + dbSmithy.threadId);
@@ -329,10 +330,13 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-wea
 			detailPage.canon[rsDetailPage.prod_lang] =  "/" + rsDetailPage.category_uri + detailPage.uri[rsDetailPage.prod_lang];
 		});	
 		
-		dbSmithy.query('SELECT REPLACE(LOWER(attr_name)," ","") AS attr_name, xref_value AS attr_value FROM xref_subcat_attr INNER JOIN lib_attr ON lib_attr.attr_id IN (1,2,3,xref_subcat_attr.attr_id_1,xref_subcat_attr.attr_id_2) INNER JOIN xref_prod_attr ON lib_attr.attr_id = xref_prod_attr.attr_id AND xref_prod_attr.prod_id = ? WHERE subcat_id = ? ORDER BY CASE WHEN lib_attr.attr_id IN (1,2,3) THEN lib_attr.attr_id WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_1 THEN 3 WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_2 THEN 4 END;',[detailProduct.id,detailProduct.group.idSubcat], function (error, results, fields) {
+		dbSmithy.query('SELECT REPLACE(LOWER(attr_name)," ","") AS attr_name, xref_value AS attr_value, disclaimer_text FROM xref_subcat_attr INNER JOIN lib_attr ON lib_attr.attr_id IN (1,2,3,xref_subcat_attr.attr_id_1,xref_subcat_attr.attr_id_2) LEFT JOIN lib_disclaimer ON lib_attr.disclaimer_id = lib_disclaimer.disclaimer_id LEFT JOIN lib_disclaimer_lang ON lib_disclaimer.disclaimer_id = lib_disclaimer_lang.disclaimer_id AND lib_disclaimer_lang.disclaimer_lang = ? INNER JOIN xref_prod_attr ON lib_attr.attr_id = xref_prod_attr.attr_id AND xref_prod_attr.prod_id = ? WHERE subcat_id = ? ORDER BY CASE WHEN lib_attr.attr_id IN (1,2,3) THEN lib_attr.attr_id WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_1 THEN 15 WHEN lib_attr.attr_id = xref_subcat_attr.attr_id_2 THEN 20 END;',[detailPage.lang,detailProduct.id,detailProduct.group.idSubcat], function (error, results, fields) {
 			if (error) throw error;
 			
 			results.forEach(function(rsDetailProdAttr){
+				if (rsDetailProdAttr.disclaimer_text) {
+					detailPage.disc.push(rsDetailProdAttr.disclaimer_text);
+				};
 				detailProduct.attr.order.push(rsDetailProdAttr.attr_name);
 				detailProduct.attr.value[rsDetailProdAttr.attr_name] = rsDetailProdAttr.attr_value;
 			});	

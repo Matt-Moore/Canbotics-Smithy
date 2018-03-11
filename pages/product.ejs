@@ -2,7 +2,7 @@
 			<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + detailPage.uri.en %>-banner.jpg" width="980" height="450" alt="">
 			<h2 aria-hidden="true"><% if (detailPage.lang == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
 			<ul class="keyattr">
-				<% detailProduct.attr.order.forEach(function(attr) { %><li class="<%= attr %><% if (attr == "skill") { %> <%= detailProduct.attr.value.skill.split("|")[0] %><%};%>"><%- include("attr/" + attr + ".ejs") %></li><% }); %>
+				<% detailProduct.attr.order.forEach(function(attr,disc) { %><li class="<%= attr %><% if (attr == "skill") { %> <%= detailProduct.attr.value.skill.split("|")[0] %><%};%>"><%- include("attr/" + attr + ".ejs",{attrdisc:disc - 1}) %></li><% }); %>
 			</ul>
 		</header>
 
@@ -24,9 +24,9 @@
 					<p>We at <%= dataSite.title.en %> know there's nothing more frustrating, or terrifying when your weapon breaks mid-battle. It's for this reason that we craft all our weapons only from the best materials, and each forged by our master smiths. Every design must pass many rigorous tests, proving they are top quality.</p>
 					<p>That's why you can rest easy with a purchase from us, we are so confident that each of our weapons comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailProduct.title %>:</p>
 					<ul class="square">
-						<li>Complimentary sharpening and rust removal for 2 years<sup><a href="#dis_ast">*</a></sup></li>
-						<li>4 years/10 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#dis_astastast">***</a></sup></li>
-						<li>6 years/15 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of major failures<sup><a href="#dis_astastast">***</a></sup></li>
+						<li>Complimentary sharpening and rust removal for 2 years<sup><a href="#disast">*</a></sup></li>
+						<li>4 years/10 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#disastastast">***</a></sup></li>
+						<li>6 years/15 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of major failures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
@@ -38,9 +38,9 @@
 					<p>We at <%= dataSite.title.en %> know that often in combat, the only thing standing between your enemy's weapon and your gut, is your armour. We are also well aware, that you can't be thinking about your armour's performance in the heat of battle. That's why we use nothing but the best products, forged by the best master smiths around. Every design must pass many rigorous tests, proving they are top quality.</p>
 					<p>That's why you can rest easy with a purchase from us, we are so confident that all of our armour comes with a comprehensive warranty plan. Just see the list below for some of the key benefits of owning a <%= dataSite.title.en %> <%= detailProduct.title %>:</p>
 					<ul class="square">
-						<li>Complimentary patching, polishing, and rust removal for 2 years<sup><a href="#dis_ast">*</a></sup></li>
-						<li>4 years/10 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#dis_astastast">***</a></sup></li>
-						<li>6 years/15 battles<sup><a href="#dis_astast">**</a></sup> parts and labour coverage of major failures<sup><a href="#dis_astastast">***</a></sup></li>
+						<li>Complimentary patching, polishing, and rust removal for 2 years<sup><a href="#disast">*</a></sup></li>
+						<li>4 years/10 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#disastastast">***</a></sup></li>
+						<li>6 years/15 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of major failures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
@@ -53,9 +53,9 @@
 					<p>Chez <%= dataSite.title.fr %>, nous savons qu'il n'y a rien de plus frustrant, ou terrifiant quand votre arme se brise au milieu de la bataille. C'est pour cette raison que nous fabriquons toutes nos armes uniquement à partir des meilleurs matériaux et forgés par nos maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
 					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que chacune de nos armes est livré avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailProduct.title %> <%= dataSite.title.fr %> :</p>
 					<ul class="square">
-						<li>Affûtage et décapage gratuit pendant 2 ans<sup><a href="#dis_ast">*</a></sup></li>
-						<li>4 ans / 10 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#dis_astastast">***</a></sup></li>
-						<li>6 ans / 15 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#dis_astastast">***</a></sup></li>
+						<li>Affûtage et décapage gratuit pendant 2 ans<sup><a href="#disast">*</a></sup></li>
+						<li>4 ans / 10 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#disastastast">***</a></sup></li>
+						<li>6 ans / 15 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
 				</div>
@@ -67,9 +67,9 @@
 					<p>Chez <%= dataSite.title.fr %>, nous savons que souvent au combat, la seule chose qui se trouve entre l'arme de votre ennemi et votre intestin, c'est votre armure. Nous savons également que vous ne pouvez pas penser à la performance de votre armure dans le feu de la bataille. C'est pourquoi nous n'utilisons que les meilleurs produits, forgés par les meilleurs maîtres forgerons. Chaque conception doit passer de nombreux tests rigoureux, prouvant qu'ils sont de qualité supérieure.</p>
 					<p>C'est pourquoi vous pouvez vous reposer facilement avec un achat chez nous, nous sommes si confiants que toutes nos armures sont livrées avec un plan de garantie complet. Il suffit de voir la liste ci-dessous pour quelques-uns des principaux avantages de posséder une <%= detailProduct.title %> <%= dataSite.title.fr %> :</p>
 					<ul class="square">
-						<li>Ragréage, polissage et enlèvement de la rouille gratuits pendant 2 ans<sup><a href="#dis_ast">*</a></sup></li>
-						<li>4 ans / 10 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#dis_astastast">***</a></sup></li>
-						<li>6 ans / 15 batailles<sup><a href="#dis_astast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#dis_astastast">***</a></sup></li>
+						<li>Ragréage, polissage et enlèvement de la rouille gratuits pendant 2 ans<sup><a href="#disast">*</a></sup></li>
+						<li>4 ans / 10 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#disastastast">***</a></sup></li>
+						<li>6 ans / 15 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
 					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
 				</div>
