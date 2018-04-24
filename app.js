@@ -246,7 +246,7 @@ app.get('/:langCode(en|fr)/:uriSegment(weapons|armes|armour|armure)',function(re
 			detailPage.canon[rsDetailPage.segment_lang] =  "/" + rsDetailPage.segment_uri;
 		});
 
-		dbSmithy.query('SELECT category_name, category_title, category_uri, subcat_name, subcat_title, lib_prod_lang.prod_title, lib_prod_lang.prod_uri, lib_prod_lang.prod_blurb, lib_prod_lang_asset.prod_uri AS asset_uri FROM lib_prod_category INNER JOIN lib_prod_category_lang ON lib_prod_category.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = ? INNER JOIN lib_prod_subcat ON lib_prod_category.category_id = lib_prod_subcat.category_id INNER JOIN lib_prod_subcat_lang ON lib_prod_subcat.subcat_id = lib_prod_subcat_lang.subcat_id AND lib_prod_subcat_lang.subcat_lang = lib_prod_category_lang.category_lang INNER JOIN lib_prod ON lib_prod_subcat.subcat_id = lib_prod.subcat_id INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id AND lib_prod_lang.prod_lang = lib_prod_category_lang.category_lang INNER JOIN lib_prod_lang AS lib_prod_lang_asset ON lib_prod.prod_id = lib_prod_lang_asset.prod_id AND lib_prod_lang_asset.prod_lang = "en" WHERE segment_id = ? ORDER BY category_order, subcat_order, prod_title',[detailPage.lang,detailSegment.id], function (error, results, fields) {
+		dbSmithy.query('SELECT category_name, category_title, category_uri, subcat_name, subcat_title, lib_prod_lang.prod_title, lib_prod_lang.prod_uri, lib_prod_lang.prod_blurb, lib_prod_lang_asset.prod_uri AS asset_uri FROM lib_prod_category INNER JOIN lib_prod_category_lang ON lib_prod_category.category_id = lib_prod_category_lang.category_id AND lib_prod_category_lang.category_lang = ? INNER JOIN lib_prod_subcat ON lib_prod_category.category_id = lib_prod_subcat.category_id INNER JOIN lib_prod_subcat_lang ON lib_prod_subcat.subcat_id = lib_prod_subcat_lang.subcat_id AND lib_prod_subcat_lang.subcat_lang = lib_prod_category_lang.category_lang INNER JOIN lib_prod ON lib_prod_subcat.subcat_id = lib_prod.subcat_id INNER JOIN lib_prod_lang ON lib_prod.prod_id = lib_prod_lang.prod_id AND lib_prod_lang.prod_lang = lib_prod_category_lang.category_lang INNER JOIN lib_prod_lang AS lib_prod_lang_asset ON lib_prod.prod_id = lib_prod_lang_asset.prod_id AND lib_prod_lang_asset.prod_lang = ? WHERE segment_id = ? ORDER BY category_order, subcat_order, prod_title',[detailPage.lang,detailSegment.id], function (error, results, fields) {
 			if (error) throw error;
 
 			results.forEach(function(rsListProd){
@@ -323,6 +323,7 @@ app.get('/:langCode(en|fr)/:categoryPage(melee-weapons|armes-de-melee|ranged-wea
 				detailPage.meta.desc = dataPage.product[rsDetailPage.prod_lang].replace('[PRODUCTNAME]',rsDetailPage.prod_title).replace('[PRODUCTCLASS]',rsDetailPage.prod_class.toLowerCase());
 
 				detailProduct.id = rsDetailPage.prod_id;
+				detailProduct.class = rsDetailPage.prod_class;
 				detailProduct.title = rsDetailPage.prod_title;
 				detailProduct.group.idSubcat = rsDetailPage.subcat_id;
 

@@ -6,6 +6,11 @@
 			</ul>
 		</header>
 
+		<section id="intro">
+			<h2><%= detailProduct.class %></h2>
+<%- include(detailPage.nav.segment + detailPage.uri[detailPage.lang] + "-intro.ejs") %>
+		</section>
+
 		<section id="design">
 			<h2><% if (detailPage.lang == "en") { -%>Design<% } else { -%>Conception<% }; -%></h2>
 <%- include(detailPage.nav.segment + detailPage.uri[detailPage.lang] + "-design.ejs") %>
@@ -20,13 +25,67 @@
 			<footer>
 				<% if (detailPage.lang == "en") {var btnSpecs = ["Technical Specs","/technical-specs"]} else {var btnSpecs = ["Spécifications techniques","/specifications-techniques"]} %><a href="/<%= detailPage.lang + detailPage.canon[detailPage.lang] + btnSpecs[1] %>" class="btn prim"><%= btnSpecs[0] %></a>
 			</footer>
+		</section>
 
-
+		<section id="technology">
+			<h2><% if (detailPage.lang == "en") { -%>Technology<% } else { -%>Technologie<% }; -%></h2>
+<%- include(detailPage.nav.segment + detailPage.uri[detailPage.lang] + "-technology.ejs") %>
+			<div class="comp img txt free reverse">
+<% if (detailPage.lang == "en") { %>
+				<div>
+					<h3>Stay Connected, Even in the Field</h3>
+					<p>The <%= detailProduct.title %> <%= detailProduct.class.toLowerCase() %> - as with the entire catalogue - comes equipped with the latest in wireless communications technology. As of 2018, <%= dataSite.title.en %> utilizes the <sup>m</sup>3 ART system. This allows for connecting your personal smart devices, and even remote connection to the myArsenal<sup>&copy;,<a href="#dis50">50</a></sup>.</p>
+				</div>
+				<div>
+					<img src="<%= dataSite.uri.rootAsset %>img/global/m3-art-logo-decal.png" width="200" height="100" alt="">
+				</div>
+<% } else { %>
+				<div>
+					<h3>Restez connecté, même sur le terrain</h3>
+					<p><%= detailProduct.title %> <%= detailProduct.class.toLowerCase() %> - comme tout le catalogue - est équipée des dernières technologies de communication sans fil. En 2018, <%= dataSite.title.fr %> utilise le système <sup>m</sup>3 ART. Cela permet de connecter vos appareils intelligents personnels, et même une connexion à distance au myArsenal<sup>MD,<a href="#dis50">50</a></sup>.</p>
+				</div>
+				<div>
+					<img src="<%= dataSite.uri.rootAsset %>img/global/m3-art-logo-decal.png" width="200" height="100" alt="">
+				</div>
+<% }; %>
+			</div>
+			<div class="comp img txt free reverse">
+<% if (detailPage.lang == "en") { %>
+				<div>
+					<h3>Canbotics myArsenal Companion App</h3>
+					<p>Utilizing the built-in <sup>m</sup>3 ART system<sup><a href="#dis51">51</a></sup>, the Canbotics myArsenal<sup>&copy;</sup> application puts you in complete control. Your <%= dataSite.title.en %> <%= detailProduct.title %> integrates with your choice of smart device<sup><a href="#dis52">52</a></sup>, to provide a slew of services:</p>
+					<ul class="list square">
+						<li>Monitor the status of your <%= detailProduct.title %></li>
+						<li>Track the <%= detailProduct.title %>, in case of loss or theft</li>
+						<li>Contact your personal myArsenal squire</li>
+					</ul>
+				</div>
+				<div>
+					<img src="<%= dataSite.uri.rootAsset %>img/global/canbotics-myarsenal-logo-decal.png" width="200" height="100" alt="">
+				</div>
+<% } else { %>
+				<div>
+					<h3>Canbotics myArsenal Companion App</h3>
+					<p>Utilisant le système <sup>m</sup>3 ART intégré<sup><a href="#dis51">51</a></sup>, l'application Canbotics myArsenal<sup>&copy;</sup> vous permet d'avoir un contrôle total. Votre <%= dataSite.title.fr %> <%= detailProduct.title %> s'intègre à votre choix de smart device<sup><a href="#dis52">52</a></sup>, pour fournir une multitude de services:</p>
+					<ul class="list square">
+						<li>Surveillez l'état de votre <%= detailProduct.title %></li>
+						<li>Suivre le <%= detailProduct.title %>, en cas de perte ou de vol</li>
+						<li>Contactez votre écuyer personnel myArsenal</li>
+					</ul>
+				</div>
+				<div>
+					<img src="<%= dataSite.uri.rootAsset %>img/global/canbotics-myarsenal-logo-decal.png" width="200" height="100" alt="">
+				</div>
+<% }; %>
+			</div>
+			<footer>
+				<a href="" class="btn prim">Canbotics myArsenal</a>
+			</footer>
 		</section>
 
 		<section id="warranty">
 			<h2><% if (detailPage.lang == "en") { -%>Warranty<% } else { -%>Garantie<% }; -%></h2>
-			<div class="component col21 imgbtxt reverse">
+			<div class="comp img txt col21 reverse">
 <% if (detailPage.lang == "en") { if (detailPage.nav.segment == "weapon") { %>
 				<div>
 					<p>We at <%= dataSite.title.en %> know there's nothing more frustrating, or terrifying when your weapon breaks mid-battle. It's for this reason that we craft all our weapons only from the best materials, and each forged by our master smiths. Every design must pass many rigorous tests, proving they are top quality.</p>

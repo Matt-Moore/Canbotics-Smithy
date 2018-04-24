@@ -81,7 +81,7 @@
 		<% if (detailPage.title.length) { %><h1><%= detailPage.title %></h1><% }; %>
 <%- include(detailPage.template + ".ejs") %>
 
-		<section id="legal">
+		<footer id="legal">
 			<h2><% if (detailPage.lang == "en") { -%>Legal Disclaimers<% } else { -%>Avis de non-responsabilité<% }; -%></h2>
 <% if (detailPage.lang == "en") { %>
 			<ul>
@@ -110,7 +110,16 @@
 				<li id="dis<%= disclaimerNumber + 1 %>"><sup><%= disclaimerNumber + 1 %></sup> <%= disclaimer %></li><% }); %>
 			</ul>
 <% } -%>
-		</section>
+			<ul>
+<% if (detailPage.lang == "en") { %>
+				<li>Android is a trademark of Google LLC.</li>
+				<li>Apple is a trademark of Apple Inc.</li>
+<% } else { %>
+				<li>Android est une marque de commerce de Google LLC.</li>
+				<li>Apple est une marque d'Apple Inc.</li>
+<% } -%>
+			</ul>
+		</footer>
 	</main>
 	<script src="<%= dataSite.uri.rootAssetGlobal %>jquery-3.3.1.min.js"></script>
 	<script src="<%= dataSite.uri.rootAsset %>canbotics-smithy.js"></script>
