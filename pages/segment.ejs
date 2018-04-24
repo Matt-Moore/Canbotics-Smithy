@@ -2,7 +2,7 @@
 			<h2><a href="/<%= detailPage.lang + category.uri %>"><%= category.title %></a></h2>
 			<% category.listSubcat.forEach(function(subcat) { %>
 			<h3><%= subcat.title %></h3>
-			<ul class="component list product">
+			<ul class="list product">
 				<% subcat.listProd.forEach(function(prod) { %><li>
 					<a href="/<%= detailPage.lang + category.uri + prod.uri %>">
 						<h4><%= prod.title %></h4>

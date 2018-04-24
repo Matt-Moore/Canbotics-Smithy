@@ -1,6 +1,6 @@
 		<% detailCategory.listSubcat.forEach(function(subcat) { %><section>
 			<h3><%= subcat.title %></h3>
-			<ul class="component list product">
+			<ul class="list product">
 				<% subcat.listProd.forEach(function(prod) { %><li>
 					<a href="/<%= detailPage.lang + detailPage.uri[detailPage.lang] + prod.uri %>">
 						<h4><%= prod.title %></h4>

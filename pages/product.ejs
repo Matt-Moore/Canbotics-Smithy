@@ -95,7 +95,6 @@
 						<li>4 years/10 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#disastastast">***</a></sup></li>
 						<li>6 years/15 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of major failures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
-					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
 				<div>
 					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="A blade worn and weathered before its time; from one of our competitors.">
@@ -109,7 +108,6 @@
 						<li>4 years/10 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of minor failures<sup><a href="#disastastast">***</a></sup></li>
 						<li>6 years/15 battles<sup><a href="#disastast">**</a></sup> parts and labour coverage of major failures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
-					<div class="or_alignRight"><a class="btn prim" href="/en/warranty">Full Warranty Details</a></div>
 				</div>
 				<div>
 					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="A worn and rusted set of armour, removed from service before its time; from one of our competitors.">
@@ -124,7 +122,6 @@
 						<li>4 ans / 10 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#disastastast">***</a></sup></li>
 						<li>6 ans / 15 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
-					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
 				</div>
 				<div>
 					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-weapon-badge.jpg" width="320" height="300" alt="Une lame usée et altérée avant son heure; de l'un de nos concurrents.">
@@ -138,7 +135,7 @@
 						<li>4 ans / 10 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances mineures<sup><a href="#disastastast">***</a></sup></li>
 						<li>6 ans / 15 batailles<sup><a href="#disastast">**</a></sup> couverture des pièces et main-d'œuvre des défaillances majeures<sup><a href="#disastastast">***</a></sup></li>
 					</ul>
-					<div class="or_alignRight"><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a></div>
+					<div class="or_alignRight"></div>
 				</div>
 				<div>
 					<img src="<%= dataSite.uri.rootAsset %>img/warranty/canbotics-smithy-warranty-armour-badge.jpg" width="320" height="300" alt="Une armure usée et rouillée, retirée du service avant son heure; de l'un de nos concurrents.">
@@ -146,12 +143,15 @@
 <% } else { %>
 <% }; }; %>
 			</div>
+			<footer>
+				<% if (detailPage.lang == "en") { %><a class="btn prim" href="/en/warranty">Full Warranty Details</a><% } else { %><a class="btn prim" href="/fr/garantie">Détails complets de la garantie</a><% }; %>
+			</footer>
 		</section>
 
 		<section id="similar">
 			<h2><% if (detailPage.lang == "en") { if (detailPage.nav.segment == "weapon") { %>Similar Weapons<% } else if (detailPage.nav.segment == "armour") { %>Similar Armour<% } else { %>Similar Ammunition<% }; } else { if (detailPage.nav.segment == "weapon") { %>Armes similaires<% } else if (detailPage.nav.segment == "armour") { %>Armure similaire<% } else { %>Munitions similaires<% }; }; %></h2>
 
-			<ul class="component list product">
+			<ul class="list product">
 				<% detailProduct.similar.forEach(function(similarProduct) { %><li>
 					<a href="<%= "/" + detailPage.lang + similarProduct[3] + similarProduct[2] %>">
 						<h3><%= similarProduct[0] %></h3>
