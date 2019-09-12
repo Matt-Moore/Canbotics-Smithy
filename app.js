@@ -23,8 +23,8 @@ app.set('view engine', 'ejs');
 var dataSite = {
 	uri:{
 		rootSite:'http://smithy.canbotics.ca',
-		rootAsset:'http://asset.canbotics.ca/smithy/',
-		rootAssetGlobal:'http://asset.canbotics.ca/global/'},
+		rootAsset:'http://asset.canbotics.xyz/smithy/',
+		rootAssetGlobal:'http://asset.canbotics.xyz/global/'},
 	title:{
 		en:'Canbotics Smithy',
 		fr:'Forge Canbotics'}

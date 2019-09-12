@@ -6,7 +6,7 @@
 				<% subcat.listProd.forEach(function(prod) { %><li>
 					<a href="/<%= detailPage.lang + category.uri + prod.uri %>">
 						<h4><%= prod.title %></h4>
-						<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + prod.uriAsset %>-icon-90.png" width="90" height="90" alt="">
+						<img src="<%= dataSite.uri.rootAsset + "images/" + detailPage.nav.segment + prod.uriAsset %>-icon-90.png" width="90" height="90" alt="">
 					</a>
 					<p><%= prod.blurb %></p>
 				</li><% }); %>

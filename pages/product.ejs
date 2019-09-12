@@ -1,5 +1,5 @@
 		<header>
-			<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + detailPage.uri.en %>-banner.jpg" width="980" height="450" alt="">
+			<img src="<%= dataSite.uri.rootAsset + "images/" + detailPage.nav.segment + detailPage.uri.en %>-banner.jpg" width="980" height="450" alt="">
 			<h2 aria-hidden="true"><% if (detailPage.lang == "en") { %>Attributes<% } else { %>Les attributs<% }; %></h2>
 			<ul class="keyattr">
 				<% detailProduct.attr.order.forEach(function(attr,disc) { %><li class="<%= attr %><% if (attr == "skill") { %> <%= detailProduct.attr.value.skill.split("|")[0] %><%};%>"><%- include("attr/" + attr + ".ejs",{attrdisc:disc - 1}) %></li><% }); %>
@@ -167,7 +167,7 @@
 				<% detailProduct.similar.forEach(function(similarProduct) { %><li>
 					<a href="<%= "/" + detailPage.lang + similarProduct[3] + similarProduct[2] %>">
 						<h3><%= similarProduct[0] %></h3>
-						<img src="<%= dataSite.uri.rootAsset + "img/" + detailPage.nav.segment + similarProduct[4] %>-icon-90.png" width="90" height="90" alt="">
+						<img src="<%= dataSite.uri.rootAsset + "images/" + detailPage.nav.segment + similarProduct[4] %>-icon-90.png" width="90" height="90" alt="">
 					</a>
 					<p><%= similarProduct[1] %></p>
 				</li><% }); %>
